@@ -1,3 +1,4 @@
-output.txt
-lookup.txt
-issue.txt
+*.txt
+grammar/*
+!grammar/RegCondition.g4
+!grammar/parse.sh
