@@ -2,3 +2,4 @@
 grammar/*
 !grammar/RegCondition.g4
 !grammar/parse.sh
+!grammar/count_err.sh
