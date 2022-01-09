@@ -2,7 +2,7 @@ grammar RegCondition;
 
 s : expr EOF;
 expr : atomic | expr 'and' expr | expr 'or' expr;
-atomic : 'none' | COURSE_NUM | concurrence | req_year | consent;
+atomic : 'none' | COURSE_NUM | concurrence | req_year | consent | '(' expr ')';
 concurrence : 'concurrent to' COURSE_NUM;
 req_year : YEAR 'year standing';
 consent : 'consent of the' CONSENT_OF;
