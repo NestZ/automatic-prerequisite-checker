@@ -13,3 +13,6 @@ do
 	echo "$filename"
 done
 echo "$FAIL"
+
+# Before : 1821
+# After fixing typo, replace nan with NONE, replace some synonym : 1749
