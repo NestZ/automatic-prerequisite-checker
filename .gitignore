@@ -1,7 +1,7 @@
 *.txt
-grammar/*
-!grammar/RegCondition.g4
-!grammar/parse.sh
-!grammar/count_err.sh
-csv/*
-!reg-condition.csv
+bulletin-beautifier/grammar/*
+!bulletin-beautifier/grammar/RegCondition.g4
+!bulletin-beautifier/grammar/parse.sh
+!bulletin-beautifier/grammar/count_err.sh
+bulletin-beautifier/csv/*
+!bulletin-beautifier/csv/reg-condition.csv
