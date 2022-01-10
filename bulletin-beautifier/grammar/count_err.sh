@@ -9,10 +9,9 @@ do
 	if [[ -n "$OUTPUT" ]]
 	then
 		FAIL=$((FAIL+1))
+		cat $filename >> out.txt
+		echo "" >> out.txt
 	fi
 	echo "$filename"
 done
 echo "$FAIL"
-
-# Before : 1821
-# After fixing typo, replace nan with NONE, replace some synonym : 1749
