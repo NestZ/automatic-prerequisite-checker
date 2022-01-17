@@ -1,6 +1,6 @@
 #!/bin/zsh
 source ~/.zshrc
-antlr4 -Dlanguage=Java RegCondition.g4
+antlr4 -Dlanguage=Java RegCondition.g4 -visitor
 javac *.java
 FAIL=0
 for filename in ../conditions/*.txt;
