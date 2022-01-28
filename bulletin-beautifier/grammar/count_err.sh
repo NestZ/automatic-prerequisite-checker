@@ -9,8 +9,8 @@ do
 	if [[ -n "$OUTPUT" ]]
 	then
 		FAIL=$((FAIL+1))
-		cat $filename >> out.txt
-		echo "" >> out.txt
+		CON="$filename $(cat $filename)"
+		echo $CON >> out.txt
 	fi
 	echo "$filename"
 done
