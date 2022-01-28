@@ -1,0 +1,74 @@
+courseNumber,old_condition,new_condition
+210474,third year standing; materials science or physics students,third year standing and (material science major students or physics major students)
+356212,non agricultural students,non agriculture students
+651644,sixth year standing: veterinary,sixth year standing and veterinary medicine students
+6470,fourth year standing; home and country major students,fourth year standing and home and country major students
+13432,psy 330 (013330) ; major students,013330 and major students
+202185,202184; enrollment is permitted students from the faculty of associated medical sciences,202184 and non associated medical sciences students
+202109,202108; enrollment is permitted students from the faculties of agriculture and pharmacy,202108 and non agriculture students and non pharmacy students
+651698,sixth year standing veterinary students,sixth year standing and veterinary medicine students
+1118,001101; human engl major students,001101 and english major students
+356201,agricultural students,agriculture students
+462442,fourth year standing pharmacy students,fourth year standing and pharmacy students
+852401,852400; fourth year standing and consent of the department,852400 and fourth year standing and consent of the department
+852403,852401; fourth year standing and consent of the department,852401 and fourth year standing and consent of the department
+1111,human engl major students,english major students
+304352,304251; dentistry students,304251 and dentistry students
+322251,fourth year standing dentistry students,fourth year standing and dentistry students
+326691,sixth year standing medical student,sixth year standing and medicine students
+303253,second year standing dentistry students or consent of the department,(second year standing and dentistry students) or consent of the department
+352103,non agricultural students,non agriculture students
+14409,the fourth year standing student,fourth year standing
+1112,001111; engl. major students,001111 and english major students
+601322,third year standing; agro industry students,third year standing and agro-industry students
+801481,third year standing bachelor of science program in architecture or fourth year standing bachelor of architecture program,(third year standing or fourth year standing) and architecture students
+801341,third year standing : architecture students,third year standing and architecture students
+751447,third year standing; economics students,third year standing and economics students
+254222,254206; mechanical engineering students,254206 and mechanical engineering major students
+18499,fourth year standing; japanese major students and consent of the department,fourth year standing and japanese major students and consent of the department
+4499,(third and fourth year standing) and major students,(third year standing or fourth year standing) and major students
+254483,fourth year standing non mechanical engineering major students,fourth year standing and non mechanical engineering major students
+651533,fifth year standing; veterinary students,fifth year standing and veterinary medicine students
+254383,third year standing non mechanical engineering major students,third year standing and non mechanical engineering major students
+321242,second year standing pharmacy students,second year standing and pharmacy students
+205232,205103; enrollments are not permitted geology major students,205103 and non geology major students
+356320,second year standing in vet or 356210,356210 or second year standing and veterinary medicine students
+321251,"207135, 202145 and 202146",207135 and 202145 and 202146
+461535,"461102, 461404 and 462311",461102 and 461404 and 462311
+461584,"461459, 461435 and 462410",461459 and 461435 and 462410
+462501,"462431, 462441 and 462452",462431 and 462441 and 462452
+461102,"203151, 203157, 202141 and 202142",203151 and 203157 and 202141 and 202142
+408382,"301254, 321251, 320351 and 311352",301254 and 321251 and 320351 and 311352
+413383,"409281, 409292, 411281 and 411291",409281 and 409292 and 411281 and 411291
+461333,"203204, 203208, 303242 and 321242",203204 and 203208 and 303242 and 321242
+515381,"515335, 515337, 515338 and 515380",515335 and 515337 and 515338 and 515380
+413381,"409281, 409291,411281 and 411291",409281 and 409291 and 411281 and 411291
+453538,"453211, 321241,203204 and 458314",453211 and 321241 and 203204 and 458314
+601428,"601231, 601232 and 601344",601231 and 601232 and 601344
+605315,"203206, 203209 and 605201",203206 and 203209 and 605201
+703361,"702211, 703202 and 705211",702211 and 703202 and 705211
+751425,"751209, 751302 and 751309",751209 and 751302 and 751309
+451441,"320343, 451311 and 458314",320343 and 451311 and 458314
+422381,"301252, 301253, 301254, 409281 and 409292",301252 and 301253 and 301254 and 409281 and 409292
+606463,"203206, 203209 and third year standing",203206 and 203209 and third year standing
+421386,"421385, 421395 and concurrent to 421396",421385 and 421395 and concurrent to 421396
+421396,"421385, 421395 and concurrent to 421386",421385 and 421395 and concurrent to 421386
+462301,"303242, 321241 and concurrent to 320342",303242 and 321241 and concurrent to 320342
+462412,"462308, 462409 and concurrent to 462410",462308 and 462409 and concurrent to 462410
+406392,"406282, 406291 and concurrent to 406384",406282 and 406291 and concurrent to 406384
+158489,"158302, 158304, and fourth year standing",158302 and 158304 and fourth year standing
+462307,"303242, 321242, and concurrent to 320342",303242 and 321242 and concurrent to 320342
+462498,"462410, 462431 and consent of the department",462410 and 462431 and consent of the department
+311352,"202145, 202146 or consent of the department",202145 and 202146 or consent of the department
+515338,"(515253 and 515310) or (515254, 515255 and 515310)",(515253 and 515310) or (515254 and 515255 and 515310)
+601431,"(211311, 215207 and 215208) or (211311 and 602122)",(211311 and 215207 and 215208) or (211311 and 602122)
+462413,"462308, 462409 and concurrent to 462410",462308 and 462409 and concurrent to 462410
+262381,"(203321 and 203327) or (203323, 203324 and 203327)",(203321 and 203327) or (203323 and 203324 and 203327)
+411281,"202145, 202146, 203154 and concurrent to 411291",202145 and 202146 and 203154 and concurrent to 411291
+1211,001101 and 001102; human engl major students,001101 and 001102 and english major students
+461524,461201 and 461403 : or 461102 and 461404,461524 and 461201 and 461403 or 461102 and 461404
+301208,consent of the department; occupational therapy and physical therapy students,consent of the department and (occupational therapy major students or physical therapy major students)
+208265,environmental science students,environmental science major students
+2111,humanities french major students,humanities students and french major students
+751441,"751209 and 751302, major students or consent of the instructor non major students",751209 and 751302 and (major students or consent of the instructor and non major students)
+100316,(100112 and third year standing) or (100112 and second year standing of program in early childhood education special education and consent of the department),(100112 and third year standing) or (100112 and second year standing and consent of the department and early childhood special education major students)
