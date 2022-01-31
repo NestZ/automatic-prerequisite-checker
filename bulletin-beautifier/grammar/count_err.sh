@@ -3,15 +3,19 @@ source ~/.zshrc
 antlr4 -Dlanguage=Java RegCondition.g4 -visitor
 javac *.java
 FAIL=0
-for filename in ../conditions/*.txt;
-do
-	OUTPUT=$(grun RegCondition s < $filename 2>&1)
+parse () {
+	OUTPUT=$(grun RegCondition s < $1 2>&1)
 	if [[ -n "$OUTPUT" ]]
 	then
 		FAIL=$((FAIL+1))
-		CON="$filename $(cat $filename)"
+		CON="$1 $(cat $1)"
 		echo $CON >> out.txt
 	fi
-	echo "$filename"
+	echo "$1"
+}
+for filename in ../conditions/*.txt;
+do
+	parse $filename &
 done
+wait
 echo "$FAIL"
