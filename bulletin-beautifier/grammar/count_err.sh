@@ -4,7 +4,7 @@ antlr4 -Dlanguage=Java RegCondition.g4 -visitor
 javac *.java
 FAIL=0
 parse () {
-	OUTPUT=$(grun RegCondition s < $1 2>&1)
+	OUTPUT=$(grun RegCondition condition < $1 2>&1)
 	if [[ -n "$OUTPUT" ]]
 	then
 		FAIL=$((FAIL+1))
