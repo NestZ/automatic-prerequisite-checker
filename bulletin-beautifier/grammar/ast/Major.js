@@ -4,4 +4,8 @@ export default class Major {
 	constructor(major) {
 		this.#major = major;
 	}
+
+	getMajor() {
+		return this.#major;
+	}
 }

@@ -1,12 +1,12 @@
-import Atomic from "./Atomic";
+import Atomic from "./Atomic.js";
 
 export class YearEnum {
-	static FIRST = new Season("first")
-	static SECOND = new Season("second")
-	static THIRD = new Season("third")
-	static FOURTH = new Season("fourth")
-	static FIFTH = new Season("fifth")
-	static SIXTH = new Season("sixth")
+	static FIRST = new YearEnum("first")
+	static SECOND = new YearEnum("second")
+	static THIRD = new YearEnum("third")
+	static FOURTH = new YearEnum("fourth")
+	static FIFTH = new YearEnum("fifth")
+	static SIXTH = new YearEnum("sixth")
   
 	constructor(name) {
 	  this.name = name
@@ -15,9 +15,19 @@ export class YearEnum {
 
 export class Year extends Atomic {
 	#year;
+	#isAtLeast;
 
-	constructor(year) {
+	constructor(year, isAtLeast) {
 		super();
 		this.#year = year;
+		this.#isAtLeast = isAtLeast;
+	}
+
+	getYear() {
+		return this.#year;
+	}
+
+	print() {
+		process.stdout.write(this.#year + " year standing");
 	}
 }

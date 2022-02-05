@@ -8,4 +8,8 @@ export default class Condition {
 	getExpression() {
 		return this.#expr;
 	}
+
+	print() {
+		this.#expr.print();
+	}
 }

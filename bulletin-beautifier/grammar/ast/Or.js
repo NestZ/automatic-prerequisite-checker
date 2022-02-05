@@ -1,4 +1,4 @@
-import Expression from "./Expression";
+import Expression from "./Expression.js";
 
 export default class Or extends Expression {
 	#left;
@@ -8,5 +8,11 @@ export default class Or extends Expression {
 		super();
 		this.#left = left;
 		this.#right = right;
+	}
+
+	print() {
+		this.#left.print();
+		process.stdout.write(" or ");
+		this.#right.print();
 	}
 }

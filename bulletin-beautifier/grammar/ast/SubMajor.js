@@ -4,4 +4,8 @@ export default class SubMajor {
 	constructor(subMajor) {
 		this.#subMajor = subMajor;
 	}
+
+	getMajor() {
+		return this.#subMajor;
+	}
 }

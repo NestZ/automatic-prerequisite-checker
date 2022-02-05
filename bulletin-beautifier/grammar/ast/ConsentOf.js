@@ -1,10 +1,10 @@
-import Atomic from "./Atomic";
+import Atomic from "./Atomic.js";
 
 export class ConsentOfEnum {
-	static DEPARTMENT = new Season("department")
-	static INSTRUCTOR = new Season("instructor")
-	static FACULTY = new Season("faculty")
-	static ADVISOR = new Season("advisor")
+	static DEPARTMENT = new ConsentOfEnum("department")
+	static INSTRUCTOR = new ConsentOfEnum("instructor")
+	static FACULTY = new ConsentOfEnum("faculty")
+	static ADVISOR = new ConsentOfEnum("advisor")
 	name;
   
 	constructor(name) {
@@ -18,5 +18,9 @@ export class ConsentOf extends Atomic {
 	constructor(consentOf) {
 		super();
 		this.#consentOf = consentOf;
+	}
+
+	print() {
+		process.stdout.write("consent of the " + this.#consentOf);
 	}
 }

@@ -1,4 +1,5 @@
-import Expression from "./Expression";
+import Expression from "./Expression.js";
+import CourseNum from "./CourseNum.js";
 
 export default class And extends Expression {
 	#left;
@@ -8,5 +9,12 @@ export default class And extends Expression {
 		super();
 		this.#left = left;
 		this.#right = right;
+	}
+
+	print() {
+		// console.log(this.#left instanceof CourseNum);
+		this.#left.print();
+		process.stdout.write(" and ");
+		this.#right.print();
 	}
 }
