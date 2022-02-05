@@ -109,16 +109,27 @@ courseNumber,old_condition,new_condition
 703399,third year standing; major,third year standing and business administration students in management major
 020490,fourth year standing major,fourth year standing and humanities students in burmese major
 701399,third year standing; major,third year standing and business administration students in accountancy major
+009103,non major,non humanities students in library science major
+008401,major,humanities students in tourism study major
+008449,fourth year standing; major,humanities students in tourism study major and fourth year standing
+008442,fourth year standing; major,humanities students in tourism study major and fourth year standing
+009499,fourth year standing; major,humanities students in library science major
+510419,fourth year standing medical technology students or consent of the department,fourth year standing and associated medical sciences students or consent of the department
+510451,fourth year standing medical technology students or consent of the department,fourth year standing and associated medical sciences students or consent of the department
+510452,fourth year standing medical technology students or consent of the department,fourth year standing and associated medical sciences students or consent of the department
+215208,202111 and concurrent to 215207 and enrollments are not permitted major students in microbiology,202111 and concurrent to 215207 and non science students in microbiology
+210200,second year standing materials science students or consent of the department,second year standing and science students in material science or consent of the department
+701499,fourth year standing accounting students or consent of the department,fourth year standing and business administration students in accountancy major or consent of the department
+701105,non accounting major students,non business administration students in accountancy major
+701103,non accounting major students,non business administration students in accountancy major
+356486,third and fourth year standing in ans or psy or biol or vet,(third year standing or fourth year standing) and (agriculture students in animal science major or humanities students in psychology major or science students in biology major or veterinary students)
 176220,non major,none
 176101,non major,none
 176104,non major,none
 176211,non major,none
 176100,non major,none
-009103,non major,none
 851108,major,none
-008401,major,none
-008449,fourth year standing; major,none
-008442,fourth year standing; major,none
-009499,fourth year standing; major,none
 704399,third year standing; major,none
 751441,"751209 and 751302, major students or consent of the instructor non major students",none
+329203,second year standing health science students,none
+329291,second year standing health science students,none
