@@ -12,9 +12,12 @@ export default class And extends Expression {
 	}
 
 	print() {
-		// console.log(this.#left instanceof CourseNum);
 		this.#left.print();
 		process.stdout.write(" and ");
 		this.#right.print();
+	}
+
+	eval(std, courses) {
+		return this.#left.eval(std, courses) && this.#right.eval(std, courses);
 	}
 }

@@ -12,4 +12,8 @@ export default class Condition {
 	print() {
 		this.#expr.print();
 	}
+
+	eval(std, courses) {
+		return this.#expr.eval(std, courses);
+	}
 }

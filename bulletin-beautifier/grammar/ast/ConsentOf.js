@@ -23,4 +23,8 @@ export class ConsentOf extends Atomic {
 	print() {
 		process.stdout.write("consent of the " + this.#consentOf);
 	}
+
+	eval(std, courses) {
+		return true;
+	}
 }

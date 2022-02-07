@@ -26,4 +26,14 @@ export default class Faculty extends Atomic {
 			else process.stdout.write(" sub-major");
 		}
 	}
+
+	eval(std, courses) {
+		const fac = std["faculty"] === this.#faculty;
+		let dep = false;
+		if(this.#dep !== null) {
+			dep = this.#dep.eval(std, courses);
+		}
+		else dep = true;
+		return this.#isNon ? !(fac && dep) : (fac && dep);
+	}
 }

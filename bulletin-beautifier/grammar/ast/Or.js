@@ -15,4 +15,8 @@ export default class Or extends Expression {
 		process.stdout.write(" or ");
 		this.#right.print();
 	}
+
+	eval(std, courses) {
+		return this.#left.eval(std, courses) || this.#right.eval(std, courses);
+	}
 }

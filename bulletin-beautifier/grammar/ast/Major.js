@@ -8,4 +8,8 @@ export default class Major {
 	getMajor() {
 		return this.#major;
 	}
+
+	eval(std, courses) {
+		return std["major"] === this.#major;
+	}
 }

@@ -19,6 +19,7 @@ export class Year extends Atomic {
 
 	constructor(year, isAtLeast) {
 		super();
+		//TODO : fix this to integer
 		this.#year = year;
 		this.#isAtLeast = isAtLeast;
 	}
@@ -29,5 +30,12 @@ export class Year extends Atomic {
 
 	print() {
 		process.stdout.write(this.#year + " year standing");
+	}
+
+	eval(std, courses) {
+		const stdYear = parseInt(std["year"]);
+		const reqYear = parseInt(this.#year);
+		if(this.#isAtLeast) return stdYear <= reqYear;
+		else return stdYear === reqYear;
 	}
 }
