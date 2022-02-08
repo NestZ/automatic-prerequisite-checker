@@ -1,5 +1,4 @@
 import Expression from "./Expression.js";
-import CourseNum from "./CourseNum.js";
 
 export default class And extends Expression {
 	#left;

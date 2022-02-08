@@ -4,7 +4,7 @@ import RegConditionParser from './RegConditionParser.js';
 import RegConditionListener from './RegConditionListener.js';
 import AntlrToCondition from './AntlrToCondition.js';
 
-const input = "100005 or non engineering students in civil engineering major";
+const input = "for food science and technology students in optometry sub-major";
 const chars = new antlr4.InputStream(input);
 const lexer = new RegConditionLexer(chars);
 const tokens = new antlr4.CommonTokenStream(lexer);
@@ -38,7 +38,7 @@ const courses = {
 			"100004" : "A",
 			"100005" : "B+"
 		},
-		"2" :{
+		"2" : {
 			"100006" : "C",
 			"100007" : "B"
 		}

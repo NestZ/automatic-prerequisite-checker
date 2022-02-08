@@ -38,35 +38,43 @@ export default class AntlrToCondition extends RegConditionVisitor {
 	visitAtomic(ctx) {
 		const child = ctx.getChild(0).getText();
 		if(!isNaN(child)) return new CourseNum(child);
-		else if(child == 'none' || child == 'see bulletin') return new Atomic();
+		else if(child == 'none' || child == 'see bulletin') return new Atomic(child);
 		else return super.visit(ctx.getChild(0));
 	}
 
 	visitReq_student(ctx) {
-		let fac;
-		if(ctx.getChild(0).getText() == 'non') {
-			fac = super.visit(ctx.getChild(1));
+		const fac = super.visit(ctx.getChild(1));
+		if(ctx.getChild(0).getText() !== 'for') {
 			fac.setIsNon();
 		}
-		else fac = super.visit(ctx.getChild(0));
 		return fac;
 	}
 
+	getFieldName(ctx) {
+		const cnt = ctx.getChildCount();
+		let name = "";
+		for(let i = 0;i < cnt;i++) {
+			name += ctx.getChild(i).getText();
+			if(i < cnt - 1) name += " ";
+		}
+		return name;
+	}
+
 	visitReqFaculty(ctx) {
-		return new Faculty(ctx.getChild(0).getText(), null);
+		return new Faculty(this.getFieldName(ctx.getChild(0)), null);
 	}
 
 	visitReqFacultyAndMajor(ctx) {
 		const dep = super.visit(ctx.getChild(2));
-		return new Faculty(ctx.getChild(0).getText(), dep);
+		return new Faculty(this.getFieldName(ctx.getChild(0)), dep);
 	}
 
 	visitReqMajor(ctx) {
-		return new Major(ctx.getChild(0).getText());
+		return new Major(this.getFieldName(ctx.getChild(0)));
 	}
 
 	visitReqSubMajor(ctx) {
-		return new SubMajor(ctx.getChild(0).getText());
+		return new SubMajor(this.getFieldName(ctx.getChild(0)));
 	}
 
 	visitConcurrence(ctx) {

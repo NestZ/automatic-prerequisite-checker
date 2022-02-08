@@ -18,8 +18,8 @@ export default class Faculty extends Atomic {
 	}
 
 	print() {
-		if(this.#isNon) process.stdout.write("non ");
-		process.stdout.write(this.#faculty + " students");
+		if(this.#isNon) process.stdout.write("not for ");
+		process.stdout.write("for " + this.#faculty + " students");
 		if(this.#dep != null) {
 			process.stdout.write(" in " + this.#dep.getMajor());
 			if(this.#dep instanceof Major) process.stdout.write(" major");
