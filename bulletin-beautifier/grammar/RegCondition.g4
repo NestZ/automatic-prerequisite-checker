@@ -4,10 +4,10 @@ condition : expr EOF
 	;
 expr : '(' expr ')' #Expression
 	| atomic #AtomicExpression
-	| expr 'and' expr #And
-	| expr 'or' expr #Or
+	| expr AND expr #And
+	| expr OR expr #Or
 	;
-atomic : 'none' 
+atomic : 'none'
 	| 'see bulletin'
 	| concurrence
 	| COURSE_NUM
@@ -16,42 +16,29 @@ atomic : 'none'
 	| consent
 	| req_student
 	;
-req_student : req_fac
-	| 'non' req_fac
+req_student : 'for' req_fac
+	| 'not for' req_fac
 	;
-req_fac : FAC 'students' #ReqFaculty
-	| FAC 'students in' req_major #ReqFacultyAndMajor
+req_fac : field 'students' #ReqFaculty
+	| field 'students in' req_major #ReqFacultyAndMajor
 	;
-req_major : DEP 'major' #ReqMajor
-	| SUB_DEP 'sub-major' #ReqSubMajor
+req_major : field 'major' #ReqMajor
+	| field 'sub-major' #ReqSubMajor
 	;
 concurrence : 'concurrent to' COURSE_NUM;
 req_year : YEAR 'year standing';
 at_least_req_year : 'at least' req_year;
 consent : 'consent of the' CONSENT_OF;
+field : (FIELD | AND | OR)+;
 
 CONSENT_OF : 'department' | 'instructor' | 'faculty' | 'advisor';
 YEAR : 'first' | 'second' | 'third' | 'fourth' | 'fifth' | 'sixth';
 COURSE_NUM : [0-9][0-9][0-9][0-9][0-9][0-9];
-FAC : 'medicine' | 'pharmacy' | 'veterinary medicine' | 'dentistry' | 'architecture' | 'science'
-	| 'associated medical sciences' | 'economics' | 'agro-industry' | 'agriculture' | 'humanities'
-	| 'engineering' | 'arts, media and technology' | 'business administration' | 'education';
-DEP : 'biology' | 'english' | 'government' | 'japanese' | 'french' | 'environmental science'
-	| 'geology' | 'statistics' | 'material science' | 'physics' | 'early childhood-special education'
-	| 'home and community' | 'mechanical engineering' | 'food science and technology'
-	| 'psychology' | 'history' | 'mathematics' | 'animal science' | 'accountancy' | 'biotechnology'
-	| 'animation' | 'product development technology' | 'biochemistry and biochemical technology'
-	| 'industrial engineering' | 'civil engineering' | 'german' | 'finance and banking' | 'chinese'
-	| 'agricultural extension' | 'burmese' | 'marketing' | 'management';
-SUB_DEP : 'optometry' | 'microbiology' | 'physical therapy' | 'occupational therapy';
+AND : 'and';
+OR : 'or';
+FIELD : [a-z\-]+;
 WS : [ \n] -> skip;
 
-// -
-//112212 duplicate
-//economics faculty has the same name with economics major (also mass communication and agriculture)
-//ยึดชื่อ faculty / department ตาม excel ? medicine / medical, destistry / dental, agriculture / agricultural, accounting / accountancy
-//opthalmology = optometry ?
-//associated medical science = medical technology ?
-//176 course num ?
-//what is red parentheses after major name ?
+//opthalmology = optometry ? -> no
+//what is red parentheses after major name ? -> use black
 //which is major or sub-major ?
