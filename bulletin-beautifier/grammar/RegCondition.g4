@@ -36,9 +36,11 @@ YEAR : 'first' | 'second' | 'third' | 'fourth' | 'fifth' | 'sixth';
 COURSE_NUM : [0-9][0-9][0-9][0-9][0-9][0-9];
 AND : 'and';
 OR : 'or';
-FIELD : [a-z\-]+;
+FIELD : [a-z\-,]+;
 WS : [ \n] -> skip;
 
 //opthalmology = optometry ? -> no
 //what is red parentheses after major name ? -> use black
 //which is major or sub-major ?
+//add group of faculty to grammar
+//add prefix for
