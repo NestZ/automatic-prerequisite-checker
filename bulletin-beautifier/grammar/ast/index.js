@@ -3,16 +3,40 @@ import RegConditionLexer from './RegConditionLexer.js';
 import RegConditionParser from './RegConditionParser.js';
 import RegConditionListener from './RegConditionListener.js';
 import AntlrToCondition from './AntlrToCondition.js';
+import * as fs from 'fs';
+import csv from 'neat-csv';
+// const csv = require('neat-csv');
 
-const input = "for food science and technology students in optometry sub-major";
+const raw = fs.readFileSync('../../csv/reg-condition-corres-refactored.csv', 'utf-8');
+
+const readCsv = async () => {
+	const result = await csv(raw, { header : true });
+	return result;
+}
+
+const data = await readCsv();
+console.log(data);
+process.exit();
+
+// test with all conditions from csv file
+const input = "for engineering students in microbiology sub-major";
 const chars = new antlr4.InputStream(input);
 const lexer = new RegConditionLexer(chars);
 const tokens = new antlr4.CommonTokenStream(lexer);
 const parser = new RegConditionParser(tokens);
 parser.buildParseTrees = true;
 const antlrTree = parser.condition();
-const antlrToCondition = new AntlrToCondition();
-const condition = antlrToCondition.visitCondition(antlrTree);
+
+let antlrToCondition;
+let condition;
+
+try {
+	antlrToCondition = new AntlrToCondition();
+	condition = antlrToCondition.visitCondition(antlrTree);
+} catch(err) {
+	console.log(err);
+	process.exit();
+}
 
 condition.print();
 console.log();

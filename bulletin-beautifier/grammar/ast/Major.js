@@ -1,7 +1,10 @@
+const majorLst = ['biology', 'english', 'government', 'japanese', 'french', 'environmental science', 'geology', 'statistics', 'material science', 'physics', 'early childhood-special education', 'home and community', 'mechanical engineering', 'food science and technology', 'psychology', 'history', 'mathematics', 'animal science', 'accountancy', 'biotechnology', 'animation', 'product development technology', 'biochemistry and biochemical technology', 'industrial engineering', 'civil engineering', 'german', 'finance and banking', 'chinese', 'agricultural extension', 'burmese', 'marketing', 'management']
+
 export default class Major {
 	#major;
 
 	constructor(major) {
+		if(!majorLst.includes(major)) throw "can't find " + major + ' major';
 		this.#major = major;
 	}
 
@@ -10,6 +13,6 @@ export default class Major {
 	}
 
 	eval(std, courses) {
-		return std["major"] === this.#major;
+		return std['major'] === this.#major;
 	}
 }

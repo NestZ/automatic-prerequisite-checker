@@ -1,12 +1,15 @@
 import Atomic from "./Atomic.js";
 import Major from "./Major.js";
 
+const facultyLst = ['medicine', 'pharmacy', 'veterinary medicine', 'dentistry', 'architecture', 'science', 'associated medical sciences', 'economics', 'agro-industry', 'agriculture', 'humanities', 'engineering', 'arts, media and technology', 'business administration', 'education']
+
 export default class Faculty extends Atomic {
 	#faculty;
 	#dep;
 	#isNon;
 
 	constructor(faculty, dep) {
+		if(!facultyLst.includes(faculty)) throw "can't find " + faculty + ' faculty';
 		super();
 		this.#faculty = faculty;
 		this.#dep = dep;
@@ -28,7 +31,7 @@ export default class Faculty extends Atomic {
 	}
 
 	eval(std, courses) {
-		const fac = std["faculty"] === this.#faculty;
+		const fac = std['faculty'] === this.#faculty;
 		let dep = false;
 		if(this.#dep !== null) {
 			dep = this.#dep.eval(std, courses);
