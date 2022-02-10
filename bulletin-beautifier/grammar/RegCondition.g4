@@ -17,13 +17,13 @@ atomic : 'none'
 	| req_student
 	| req_fac_group
 	;
-req_student : 'for' req_fac
-	| 'not for' req_fac
+req_student : 'for' (req_fac | req_fac_group)
+	| 'not for' (req_fac | req_fac_group)
 	;
 req_fac : field 'students' #ReqFaculty
 	| field 'students in' req_major #ReqFacultyAndMajor
 	;
-req_fac_group : 'for students in' field 'group';
+req_fac_group : 'students in' field 'group';
 req_major : field 'major' #ReqMajor
 	| field 'sub-major' #ReqSubMajor
 	;
@@ -33,7 +33,7 @@ at_least_req_year : 'at least' req_year;
 consent : 'consent of the' CONSENT_OF;
 field : (FIELD | AND | OR)+;
 
-CONSENT_OF : 'department' | 'instructor' | 'faculty' | 'advisor';
+CONSENT_OF : 'department' | 'instructor' | 'faculty' | 'advisor' | 'academic committee';
 YEAR : 'first' | 'second' | 'third' | 'fourth' | 'fifth' | 'sixth';
 COURSE_NUM : [0-9][0-9][0-9][0-9][0-9][0-9];
 AND : 'and';
@@ -43,8 +43,12 @@ WS : [ \n] -> skip;
 
 //what is red parentheses after major name ? -> use black
 //which is major or sub-major ?
-//add group of faculty to grammar วิทย์สุขภาพ (health science) วิทย์เทคโนโลยี (sciences and technology) มนุษย์สังคม (humanities and social sciences)
-//manually fixed conditions
 //update semantic action (check valid major / faculty)
 //fix data schema
-//fix for / not for
+//merge error and manual file from reg
+//remove active = 0 from manual file
+//check major / faculty name (have s or not ?)
+//grouping up faculty group in manual file
+//science based : science, engineering, agriculture, agro-industry, architecture
+//humanities and social science : humanities, education, fine arts, social sciences, business administration, economics, mass communication, political science and public administration, law
+//(science based, humanities and social science, sciences and technology, health sciences)
