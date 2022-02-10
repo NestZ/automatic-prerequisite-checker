@@ -15,6 +15,7 @@ atomic : 'none'
 	| at_least_req_year
 	| consent
 	| req_student
+	| req_fac_group
 	;
 req_student : 'for' req_fac
 	| 'not for' req_fac
@@ -22,6 +23,7 @@ req_student : 'for' req_fac
 req_fac : field 'students' #ReqFaculty
 	| field 'students in' req_major #ReqFacultyAndMajor
 	;
+req_fac_group : 'for students in' field 'group';
 req_major : field 'major' #ReqMajor
 	| field 'sub-major' #ReqSubMajor
 	;
@@ -39,8 +41,10 @@ OR : 'or';
 FIELD : [a-z\-,]+;
 WS : [ \n] -> skip;
 
-//opthalmology = optometry ? -> no
 //what is red parentheses after major name ? -> use black
 //which is major or sub-major ?
-//add group of faculty to grammar
-//add prefix for
+//add group of faculty to grammar วิทย์สุขภาพ (health science) วิทย์เทคโนโลยี (sciences and technology) มนุษย์สังคม (humanities and social sciences)
+//manually fixed conditions
+//update semantic action (check valid major / faculty)
+//fix data schema
+//fix for / not for
