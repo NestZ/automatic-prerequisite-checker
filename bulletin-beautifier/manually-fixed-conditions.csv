@@ -132,5 +132,51 @@ courseNumber, oldCondition, newCondition
 851108,major,for mass communication students in mass communication major
 704399,third year standing; major,third year standing and for business administration students in service business management major
 751441,"751209 and 751302, major students or consent of the instructor non major students",(751209 and 751302) and (for economics students in economics major or not for economics students in economics major and consent of the instructor) 
-329203,second year standing health science students,second year standing and for students in health science group
-329291,second year standing health science students,second year standing and for students in health science group
+329203,second year standing health science students,second year standing and for students in health sciences group
+329291,second year standing health science students,second year standing and for students in health sciences group
+202446,202342 or consent of the department graduatefor  students,202342 or consent of the department
+100589,fifth year standing and having passed all required courses of each program or consent of the department,fifth year standing or consent of the department
+303252,"202145,202146,207135,203154,203159",202145 and 202146 and 207135 and 203154 and 203159
+360301,(360210 and 360212) or concurrent,concurrent to 360210 and concurrent to 360212
+360210,(215205 and 215206) or concurrent,concurrent to 215205 and concurrent to 215206
+503401,"501305, 501306, 502313, 502314",501305 and 501306 and 502313 and 502314
+420291,"420281, concurrent to 420282",420281 and concurrent to 420282
+423381,409281; concurrent to 423391,409281 and concurrent to 423391
+423391,409291; concurrent to 423381,409291 and concurrent to 423381
+515370,"515205 or (515201, 515205)",515205 or (515201 and 515205)
+602472,602313 or 602315 ; 602321,(602313 or 602315) and 602321
+603451,254181 ; 603321 or 603351,254181 and (603321 or 603351)
+801231,"207183, 207193,801112",207183 or 207193 or 801112
+462505,"320343 and 461353 or 461256, consent of the instructor",320343 and (461353 or 461256) and consent of the instructor
+303261,"202182, 203152 and 203158 or 202182, 203153 and 203159 or 651108, 203154 and 203159",(202182 and 203152 and 203158) or (202182 and 203153 and 203159) or (651108 and 203154 and 203159)
+251499,concurrent to 251399; and/or approval from the department of civil engineering,concurrent to 251399 or consent of the department
+461201,"(203151, 203157) and (202108 or 202141 and 202142)",203151 and 203157 and (202108 or (202141 and 202142))
+462513,"462403 and 462411 or 462410, 462412 and 462413",((462403 and 462411) or 462410) and 462412 and 462413
+211441,"215201,215205 and 215206 ; 211312, and 211318",(215201 or (215205 and 215206)) and 211312 and 211318
+303242,"(203203, 203207, 202108) or (202141 and 202142)",(203203 and 203207 and 202108) or (202141 and 202142)
+107599,complete all courses in study program or consent of the department,consent of the department
+406281,409281 and 409291; concurrent to 406291,409281 and 409291 and concurrent to 406291
+406382,406281 and 406291; concurrent to 406392,406281 and 406291 and concurrent to 406392
+401381,411281 and 411291; concurrent to 401391,411281 and 411291 and concurrent to 401391
+406383,401382 and 406392; concurrent to 406393,401382 and 406392 and concurrent to 406393
+413382,413381 and 318351; concurrent to 413391,413381 and 318351 and concurrent to 413391
+406393,406382 and 406392; concurrent to 406383,406382 and 406392 and concurrent to 406383
+421383,421282 and 421292 concurrent to 421393,421282 and 421292 and concurrent to 421393
+421393,421282 and 421292 concurrent to 421383,421282 and 421292 and concurrent to 421383
+510442,"503401, 505401, 507401, 509401, 512401",503401 and 505401 and 507401 and 509401 and 512401
+318351,"301252, 301253, 303252 and 321251 or consent of the department",(301252 and 301253 and 303252 and 321251) or consent of the department
+202181,high school biology,none
+210200,second year standing and for science students in material science or consent of the department,(second year standing and for science students in material science major) or consent of the department
+215208,202111 and concurrent to 215207 and not for science students in microbiology,202111 and concurrent to 215207 and not for science students in microbiology sub-major
+127459,fourth year standing; politics and government major,fourth year standing and for political science and public administration students in politics and government major
+208100,enrollments are not permitted science basedfor  students,not for students in science based group
+253303,third year standing science basedfor  students (environmental not for engineering students),third year standing and not for engineering students in environmental engineering major and for students in science based group
+207100,non sciences based,not for students in science based group
+651620,sixth year standing or consent of academic committee; for veterinary medicine students,(sixth year standing and for veterinary medicine students) or consent of the academic committee
+126359,fourth year standing; international affairs major,fourth year standing and for political science and public administration students in international affairs major
+208272,208271;for  students in humanities and social sciences,208271 and for students in humanities and social sciences group
+208271,students in humanities and social for sciences,for students in humanities and social sciences group
+208270,students in humanities and social for sciences,for students in humanities and social sciences group
+321232,second year standing physical therapyfor  students and occupational therapyfor  students,second year standing and (for associated medical sciences students in occupational therapy sub-major or for associated medical sciences students in physical therapy sub-major)
+202108,"high school biology; enrollment is permittedfor  students from the faculties of agriculture, pharmacy and nursing",for agriculture students or for pharmacy students or for nursing students
+208263,students in sciences and technology and health for sciences,"for science students or for engineering students or for medicine students or for agriculture students or for dentistry students or for pharmacy students or for associated medical sciences students or for nursing students or for agro-industry students or for veterinary medicine students or for economics students or for architecture students or for arts, media and technology students"
