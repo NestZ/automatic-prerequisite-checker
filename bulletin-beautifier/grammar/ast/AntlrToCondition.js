@@ -1,14 +1,15 @@
-import RegConditionVisitor from "./RegConditionVisitor.js";
-import Or from "./Or.js";
-import And from "./And.js";
-import Condition from "./Condition.js";
-import CourseNum from "./CourseNum.js";
-import Major from "./Major.js";
-import SubMajor from "./SubMajor.js";
-import Faculty from "./Faculty.js";
-import Atomic from "./Atomic.js";
-import { ConsentOf } from "./ConsentOf.js";
-import { Year } from "./Year.js";
+import RegConditionVisitor from './RegConditionVisitor.js';
+import Or from './Or.js';
+import And from './And.js';
+import Condition from './Condition.js';
+import CourseNum from './CourseNum.js';
+import Major from './Major.js';
+import SubMajor from './SubMajor.js';
+import Faculty from './Faculty.js';
+import Atomic from './Atomic.js';
+import FacGroup from './FacGroup.js';
+import { ConsentOf } from './ConsentOf.js';
+import { Year } from './Year.js';
 
 export default class AntlrToCondition extends RegConditionVisitor {
 	visitCondition(ctx) {
@@ -52,29 +53,38 @@ export default class AntlrToCondition extends RegConditionVisitor {
 
 	getFieldName(ctx) {
 		const cnt = ctx.getChildCount();
-		let name = "";
+		let name = '';
 		for(let i = 0;i < cnt;i++) {
 			name += ctx.getChild(i).getText();
-			if(i < cnt - 1) name += " ";
+			if(i < cnt - 1) name += ' ';
 		}
 		return name;
 	}
 
 	visitReqFaculty(ctx) {
-		return new Faculty(this.getFieldName(ctx.getChild(0)), null);
+		const facultyName = this.getFieldName(ctx.getChild(0));
+		return new Faculty(facultyName, null);
 	}
 
 	visitReqFacultyAndMajor(ctx) {
 		const dep = super.visit(ctx.getChild(2));
-		return new Faculty(this.getFieldName(ctx.getChild(0)), dep);
+		const facultyName = this.getFieldName(ctx.getChild(0));
+		return new Faculty(facultyName, dep);
+	}
+
+	visitReq_fac_group(ctx) {
+		const groupName = this.getFieldName(ctx.getChild(1));
+		return new FacGroup(groupName);
 	}
 
 	visitReqMajor(ctx) {
-		return new Major(this.getFieldName(ctx.getChild(0)));
+		const majorName = this.getFieldName(ctx.getChild(0));
+		return new Major(majorName);
 	}
 
 	visitReqSubMajor(ctx) {
-		return new SubMajor(this.getFieldName(ctx.getChild(0)));
+		const subMajorName = this.getFieldName(ctx.getChild(0));
+		return new SubMajor(subMajorName);
 	}
 
 	visitConcurrence(ctx) {
@@ -86,7 +96,7 @@ export default class AntlrToCondition extends RegConditionVisitor {
 	}
 
 	visitAt_least_req_year(ctx) {
-		const year = super.visit(ctx.getChild(2));
+		const year = super.visit(ctx.getChild(1));
 		return new Year(year.getYear(), true);
 	}
 
