@@ -1,7 +1,7 @@
-import Atomic from "./Atomic.js";
-import Major from "./Major.js";
+import Atomic from './Atomic.js';
+import Major from './Major.js';
 
-const facultyLst = ['medicine', 'pharmacy', 'veterinary medicine', 'dentistry', 'architecture', 'science', 'associated medical sciences', 'economics', 'agro-industry', 'agriculture', 'humanities', 'engineering', 'arts, media and technology', 'business administration', 'education']
+const facultyLst = ['nursing', 'medicine', 'pharmacy', 'veterinary medicine', 'dentistry', 'architecture', 'science', 'associated medical sciences', 'economics', 'agro-industry', 'agriculture', 'humanities', 'engineering', 'arts, media and technology', 'business administration', 'education', 'political science and public administration', 'law', 'mass communication']
 
 export default class Faculty extends Atomic {
 	#faculty;
@@ -21,12 +21,13 @@ export default class Faculty extends Atomic {
 	}
 
 	print() {
-		if(this.#isNon) process.stdout.write("not for ");
-		process.stdout.write("for " + this.#faculty + " students");
+		if(this.#isNon) process.stdout.write('not for ');
+		else process.stdout.write('for ');
+		process.stdout.write(this.#faculty + ' students');
 		if(this.#dep != null) {
-			process.stdout.write(" in " + this.#dep.getMajor());
-			if(this.#dep instanceof Major) process.stdout.write(" major");
-			else process.stdout.write(" sub-major");
+			process.stdout.write(' in ' + this.#dep.getMajor());
+			if(this.#dep instanceof Major) process.stdout.write(' major');
+			else process.stdout.write(' sub-major');
 		}
 	}
 
