@@ -19,11 +19,11 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		return null;
 	}
 
-	visitCondition(ctx: ConditionContext): Expression {
+	visitCondition(ctx: ConditionContext): Condition {
 		return new Condition(super.visit(ctx.expr()));
 	}
 
-	visitOr(ctx: OrContext): Expression {
+	visitOr(ctx: OrContext): Or {
 		const left: Expression = super.visit(ctx.expr(0));
 		const right: Expression = super.visit(ctx.expr(1));
 		return new Or(left, right);
@@ -37,7 +37,7 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		return super.visit(ctx.atomic());
 	}
 
-	visitAnd(ctx: AndContext): Expression {
+	visitAnd(ctx: AndContext): And {
 		const left: Expression = super.visit(ctx.expr(0));
 		const right: Expression = super.visit(ctx.expr(1));
 		return new And(left, right);
@@ -68,47 +68,47 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		return name;
 	}
 
-	visitReqFaculty(ctx: ReqFacultyContext): Expression {
+	visitReqFaculty(ctx: ReqFacultyContext): Faculty {
 		const facultyName: string = this.getFieldName(ctx.field());
 		return new Faculty(facultyName, null);
 	}
 
-	visitReqFacultyAndMajor(ctx: ReqFacultyAndMajorContext): Expression {
+	visitReqFacultyAndMajor(ctx: ReqFacultyAndMajorContext): Faculty {
 		const dep: Expression = super.visit(ctx.req_major());
 		const facultyName: string = this.getFieldName(ctx.field());
-		return new Faculty(facultyName, dep);
+		return new Faculty(facultyName, (dep as Major));
 	}
 
-	visitReq_fac_group(ctx: Req_fac_groupContext): Expression {
+	visitReq_fac_group(ctx: Req_fac_groupContext): FacGroup {
 		const groupName: string = this.getFieldName(ctx.field());
 		return new FacGroup(groupName);
 	}
 
-	visitReqMajor(ctx: ReqMajorContext): Expression {
+	visitReqMajor(ctx: ReqMajorContext): Major {
 		const majorName: string = this.getFieldName(ctx.field());
 		return new Major(majorName);
 	}
 
-	visitReqSubMajor(ctx: ReqSubMajorContext): Expression {
+	visitReqSubMajor(ctx: ReqSubMajorContext): SubMajor {
 		const subMajorName: string = this.getFieldName(ctx.field());
 		return new SubMajor(subMajorName);
 	}
 
-	visitConcurrence(ctx: ConcurrenceContext): Expression {
+	visitConcurrence(ctx: ConcurrenceContext): CourseNum {
 		//TODO: print concurrent to
 		return new CourseNum(ctx.COURSE_NUM().payload.text);
 	}
 
-	visitReq_year(ctx: Req_yearContext): Expression {
+	visitReq_year(ctx: Req_yearContext): Year {
 		return new Year(ctx.YEAR().payload.text, false);
 	}
 
-	visitAt_least_req_year(ctx: At_least_req_yearContext): Expression {
+	visitAt_least_req_year(ctx: At_least_req_yearContext): Year {
 		const year: Expression = super.visit(ctx.req_year());
 		return new Year((year as Year).getYear(), true);
 	}
 
-	visitConsent(ctx: ConsentContext): Expression {
+	visitConsent(ctx: ConsentContext): ConsentOf {
 		const consentOf: string = ctx.CONSENT_OF().payload.text;
 		return new ConsentOf(consentOf);
 	}

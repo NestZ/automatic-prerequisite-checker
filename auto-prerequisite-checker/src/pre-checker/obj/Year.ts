@@ -1,43 +1,43 @@
 import Atomic from './Atomic';
 
 export class YearEnum {
-	static FIRST = new YearEnum('first')
-	static SECOND = new YearEnum('second')
-	static THIRD = new YearEnum('third')
-	static FOURTH = new YearEnum('fourth')
-	static FIFTH = new YearEnum('fifth')
-	static SIXTH = new YearEnum('sixth')
-	name;
+	public static FIRST: YearEnum = new YearEnum('first')
+	public static SECOND: YearEnum = new YearEnum('second')
+	public static THIRD: YearEnum = new YearEnum('third')
+	public static FOURTH: YearEnum = new YearEnum('fourth')
+	public static FIFTH: YearEnum = new YearEnum('fifth')
+	public static SIXTH: YearEnum = new YearEnum('sixth')
+	private name: string;
   
-	constructor(name) {
+	constructor(name: string) {
 	  this.name = name
 	}
 }
 
 export class Year extends Atomic {
-	#year;
-	#isAtLeast;
+	private year: string;
+	private isAtLeast: boolean;
 
-	constructor(year, isAtLeast) {
+	constructor(year: string, isAtLeast: boolean) {
 		super();
 		//TODO : fix this to integer
-		this.#year = year;
-		this.#isAtLeast = isAtLeast;
+		this.year = year;
+		this.isAtLeast = isAtLeast;
 	}
 
-	getYear() {
-		return this.#year;
+	getYear(): string {
+		return this.year;
 	}
 
-	print() {
-		if(this.#isAtLeast) console.log('at least ');
-		console.log(this.#year + ' year standing');
+	print(): void {
+		if(this.isAtLeast) console.log('at least ');
+		console.log(this.year + ' year standing');
 	}
 
-	eval(std, courses) {
-		const stdYear = parseInt(std['year']);
-		const reqYear = parseInt(this.#year);
-		if(this.#isAtLeast) return stdYear <= reqYear;
+	eval(std: any, courses: any): boolean {
+		const stdYear: number = parseInt(std['year']);
+		const reqYear: number = parseInt(this.year);
+		if(this.isAtLeast) return stdYear <= reqYear;
 		else return stdYear === reqYear;
 	}
 }

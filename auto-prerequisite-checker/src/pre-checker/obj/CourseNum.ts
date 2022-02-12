@@ -1,22 +1,22 @@
 import Atomic from "./Atomic";
 
 export default class CourseNum extends Atomic {
-	#courseNum;
+	private courseNum: string;
 
-	constructor(courseNum) {
+	constructor(courseNum: string) {
 		super();
-		this.#courseNum = courseNum;
+		this.courseNum = courseNum;
 	}
 
-	print() {
-		console.log(this.#courseNum);
+	print(): void {
+		console.log(this.courseNum);
 	}
 
-	eval(std, courses) {
+	eval(std: any, courses: any): boolean {
 		for(const year in courses) {
 			for(const semester in courses[year]) {
 				for(const course in courses[year][semester]) {
-					if(course === this.#courseNum) return true;
+					if(course === this.courseNum) return true;
 				}
 			}
 		}

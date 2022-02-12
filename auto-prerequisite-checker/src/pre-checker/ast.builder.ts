@@ -1,8 +1,8 @@
 import AntlrToCondition from './antlr.to.condition';
 import Expression from './obj/Expression';
-import { CharStreams, CommonTokenStream } from 'antlr4ts';
+import { CharStreams, CodePointCharStream, CommonTokenStream } from 'antlr4ts';
 import { RegConditionLexer } from './parser/RegConditionLexer';
-import { RegConditionParser } from './parser/RegConditionParser';
+import { ConditionContext, RegConditionParser } from './parser/RegConditionParser';
 import { load } from 'csv-load-sync';
 
 type Course = {
@@ -15,23 +15,23 @@ type Course = {
 };
 
 type CourseCondition = {
-	[courseNum: string] : Expression
+	[courseNum: string]: Expression
 };
 
 export default class PreChecker {
-	static getAST() {
+	static getAST(): CourseCondition {
 		const csv: Course[] = load('../bulletin-beautifier/csv/reg-condition-corres-refactored.csv');
 
-		let astLst = <CourseCondition>{};
+		let astLst: CourseCondition = <CourseCondition>{};
 
-		csv.forEach((course, i) => {
-			let inputStream = CharStreams.fromString(course['pre_en']);
-			let lexer = new RegConditionLexer(inputStream);
-			let tokenStream = new CommonTokenStream(lexer);
-			let parser = new RegConditionParser(tokenStream);
+		csv.forEach((course: Course, i: number) => {
+			let inputStream: CodePointCharStream = CharStreams.fromString(course['pre_en']);
+			let lexer: RegConditionLexer = new RegConditionLexer(inputStream);
+			let tokenStream: CommonTokenStream = new CommonTokenStream(lexer);
+			let parser: RegConditionParser = new RegConditionParser(tokenStream);
 			parser.buildParseTree = true;
 
-			const antlrTree = parser.condition();
+			const antlrTree: ConditionContext = parser.condition();
 		
 			let antlrToCondition: AntlrToCondition;
 			let condition: Expression;

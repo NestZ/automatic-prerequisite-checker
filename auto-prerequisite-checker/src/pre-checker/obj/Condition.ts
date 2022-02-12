@@ -1,19 +1,21 @@
+import Expression from "./Expression";
+
 export default class Condition {
-	#expr;
+	private expr: Expression;
 
-	constructor(expr) {
-		this.#expr = expr;
+	constructor(expr: Expression) {
+		this.expr = expr;
 	}
 
-	getExpression() {
-		return this.#expr;
+	getExpression(): Expression {
+		return this.expr;
 	}
 
-	print() {
-		this.#expr.print();
+	print(): void {
+		this.expr.print();
 	}
 
-	eval(std, courses) {
-		return this.#expr.eval(std, courses);
+	eval(std: any, courses: any): boolean {
+		return this.expr.eval(std, courses);
 	}
 }

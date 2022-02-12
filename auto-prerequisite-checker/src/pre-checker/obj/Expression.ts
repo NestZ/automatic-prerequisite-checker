@@ -1,7 +1,7 @@
 export default class Expression {
-	print() {
-		console.log('kuy');
-	}
+	print?(): void;
 
-	setIsNon?() { }
+	setIsNon?(): void;
+
+	eval?(std: any, courses: any): boolean;
 }

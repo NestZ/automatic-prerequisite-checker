@@ -1,29 +1,29 @@
 import Atomic from "./Atomic";
 
-const facGroupLst = ['science based', 'humanities and social sciences', 'sciences and technology', 'health sciences'];
+const facGroupLst: string[] = ['science based', 'humanities and social sciences', 'sciences and technology', 'health sciences'];
 
 export default class FacGroup extends Atomic {
-	#facultyGroup
-	#isNon
+	private facultyGroup: string;
+	private isNon: boolean;
 
-	constructor(facultyGroup) {
+	constructor(facultyGroup: string) {
 		super();
 		if(!facGroupLst.includes(facultyGroup)) throw "can't find " + facultyGroup + ' group';
-		this.#facultyGroup = facultyGroup;
-		this.#isNon = false;
+		this.facultyGroup = facultyGroup;
+		this.isNon = false;
 	}
 
-	setIsNon() {
-		this.#isNon = true;
+	setIsNon(): void {
+		this.isNon = true;
 	}
 
-	print() {
-		if(this.#isNon) console.log('not for ');
+	print(): void {
+		if(this.isNon) console.log('not for ');
 		else console.log('for ');
-		console.log('students in ' + this.#facultyGroup + ' group');
+		console.log('students in ' + this.facultyGroup + ' group');
 	}
 
-	eval() {
+	eval(): boolean {
 		return true;
 	}
 }

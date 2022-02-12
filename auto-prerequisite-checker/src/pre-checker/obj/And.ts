@@ -1,22 +1,22 @@
 import Expression from "./Expression";
 
 export default class And extends Expression {
-	#left;
-	#right;
+	private left: Expression;
+	private right: Expression;
 
-	constructor(left, right) {
+	constructor(left: Expression, right: Expression) {
 		super();
-		this.#left = left;
-		this.#right = right;
+		this.left = left;
+		this.right = right;
 	}
 
-	print() {
-		this.#left.print();
+	print(): void {
+		this.left.print();
 		console.log(" and ");
-		this.#right.print();
+		this.right.print();
 	}
 
-	eval(std, courses) {
-		return this.#left.eval(std, courses) && this.#right.eval(std, courses);
+	eval(std: any, courses: any): boolean {
+		return this.left.eval(std, courses) && this.right.eval(std, courses);
 	}
 }

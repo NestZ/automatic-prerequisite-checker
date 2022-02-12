@@ -1,18 +1,18 @@
 import Expression from "./Expression";
 
 export default class Atomic extends Expression {
-	#name;
+	private name?: string;
 
-	constructor(name?) {
+	constructor(name?: string) {
 		super();
-		this.#name = name;
+		this.name = name;
 	}
 
-	print() {
-		console.log(this.#name);
+	print(): void {
+		console.log(this.name);
 	}
 
-	eval(std, courses) {
+	eval(std: any, courses: any): boolean {
 		return true;
 	}
 }
