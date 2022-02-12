@@ -11,3 +11,5 @@ bulletin-beautifier/grammar/ast/RegCondition*
 node_modules
 package*.json
 yarn.lock
+
+test
