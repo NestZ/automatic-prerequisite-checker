@@ -2,9 +2,16 @@ version: '3.1'
 
 services:
   mongodb:
-    image: bitnami/mongodb
+    image: bitnami/mongodb:latest
     ports:
       - "27017:27017"
     environment:
       MONGODB_ROOT_USERNAME: root
       MONGODB_ROOT_PASSWORD: 1234
+
+  redis:
+    image: bitnami/redis:latest
+    ports:
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
