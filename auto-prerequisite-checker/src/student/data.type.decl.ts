@@ -33,3 +33,22 @@ export type StudentData = {
 	adviser_name: string,
 	adviser_cmu_account: string,
 }
+
+export type Course = {
+	id: string,
+	student_id: string,
+	level_id: string,
+	level_name_th: string,
+	level_name_en: string,
+	major_id: string,
+	major_name_th: string,
+	major_name_en: string,
+	courseno: string,
+	title_short_en: string,
+	title_long_en: string,
+	title_long_th: string,
+	credit: string,
+	grade: string,
+	semester: string,
+	year: string,
+}
