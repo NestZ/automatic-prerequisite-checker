@@ -1,7 +1,10 @@
-import { Student } from "./student.schema";
-import { Document } from 'mongoose';
-
-export type StudentDocument = Student & Document;
+export type Student = {
+	stdId: string;
+	facId: string;
+	majorId: string;
+	curriculumId: string;
+	year: string;
+}
 
 export type StudentData = {
 	student_id: string,

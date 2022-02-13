@@ -1,37 +1,38 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
 import { Cache } from 'cache-manager';
-import { Model } from 'mongoose';
-import { StudentData, StudentDocument } from './data.type.decl';
-import { Student } from './student.schema';
+import { Student, StudentData } from './data.type.decl';
 
 @Injectable()
 export class StudentService {
 	constructor(
 		@Inject(CACHE_MANAGER) private cacheManager: Cache,
-		@InjectModel(Student.name) private studentModel: Model<StudentDocument>
 	) {}
 
 	async updateStudentsData(data: StudentData[]): Promise<void> {
-		await this.studentModel.deleteMany({}).exec();
 		data.forEach(async (std: StudentData) => {
-			const stdModel: Student = {
-				stdId: std.student_id,
-				facId: std.faculty_id,
-				majorId: std.major_id,
-				curriculumId: std.curriculum_id,
-				year: std.year_admit,
-			}
-			const createdStd = new this.studentModel(stdModel);
-			await createdStd.save();
+			await this.setCache('facId:' + std.student_id, std.faculty_id);
+			await this.setCache('majorId:' + std.student_id, std.major_id);
+			await this.setCache('curriculumId:' + std.student_id, std.curriculum_id);
+			await this.setCache('year:' + std.student_id, std.year_admit);
 		});
 	}
 
-	async getStudentCourses(stdId: string): Promise<string[]> {
-		return await this.cacheManager.get<string[]>('courses:' + stdId);
+	async getStudentData(stdId: string): Promise<Student> {
+		const data: Student = {
+			stdId,
+			facId: (await this.getCache('facId:' + stdId)) as string,
+			majorId: (await this.getCache('majorId:' + stdId)) as string,
+			curriculumId: (await this.getCache('curriculumId:' + stdId)) as string,
+			year: (await this.getCache('year:' + stdId)) as string,
+		};
+		return data;
 	}
 
-	async setStudentCourses(stdId: string, courseIds: string[]): Promise<void> {
-		await this.cacheManager.set<string[]>('courses:' + stdId, courseIds, { ttl: 0 });
+	async setCache(key: string, value: string | string[]): Promise<void> {
+		await this.cacheManager.set<string | string[]>(key, value || '', { ttl: 0 });
+	}
+
+	async getCache(key: string): Promise<string | string[]> {
+		return await this.cacheManager.get<string | string[]>(key);
 	}
 }
