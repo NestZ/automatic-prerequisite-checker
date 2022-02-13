@@ -26,4 +26,12 @@ export class StudentService {
 			await createdStd.save();
 		});
 	}
+
+	async getStudentCourses(stdId: string): Promise<string[]> {
+		return await this.cacheManager.get<string[]>('courses:' + stdId);
+	}
+
+	async setStudentCourses(stdId: string, courseIds: string[]): Promise<void> {
+		await this.cacheManager.set<string[]>('courses:' + stdId, courseIds, { ttl: 0 });
+	}
 }
