@@ -11,8 +11,8 @@ import { StudentController } from './student.controller';
     MongooseModule.forFeature([{ name: Student.name, schema: StudentSchema }]),
     CacheModule.register({
       store: redisStore,
-      host: 'localhost',
-      port: 6379,
+      host: process.env.REDIS_HOST,
+      port: process.env.REDIS_PORT,
     }),
     HttpModule,
   ],
