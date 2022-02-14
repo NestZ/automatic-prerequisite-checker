@@ -1,5 +1,5 @@
 import * as redisStore from 'cache-manager-redis-store';
-import { Module, CacheModule } from '@nestjs/common';
+import { Module, CacheModule, Logger } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { StudentService } from './student.service';
 import { StudentController } from './student.controller';
@@ -13,7 +13,7 @@ import { StudentController } from './student.controller';
     }),
     HttpModule,
   ],
-  providers: [StudentService],
+  providers: [StudentService, Logger],
   controllers: [StudentController]
 })
 export class StudentModule {}
