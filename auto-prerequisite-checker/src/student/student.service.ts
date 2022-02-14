@@ -1,6 +1,6 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
-import { Student, StudentData } from './data.type.decl';
+import { Course, Student, StudentData } from './data.type.decl';
 
 @Injectable()
 export class StudentService {
@@ -17,6 +17,19 @@ export class StudentService {
 		});
 	}
 
+	async updateStudentCourses(data: Course[]): Promise<void> {
+		for (let rec of data) {
+			if (rec.GRADE === 'F' || rec.GRADE === 'W' || rec.GRADE === 'U' || rec.GRADE === 'P')
+				continue;
+			const curLst: string[] = (await this.getCache('courses:' + rec.STUDENT_ID) as string[]) || [];
+			await this.setCache('courses:' + rec.STUDENT_ID, curLst.concat([rec.COURSENO]));
+		}
+	}
+
+	async getStudentCourses(stdId: string): Promise<string[]> {
+		return await this.getCache('courses:' + stdId) as string[];
+	}
+
 	async getStudentData(stdId: string): Promise<Student> {
 		const data: Student = {
 			stdId,
@@ -26,6 +39,10 @@ export class StudentService {
 			year: (await this.getCache('year:' + stdId)) as string,
 		};
 		return data;
+	}
+
+	async clearCache(): Promise<void> {
+		await this.cacheManager.reset();
 	}
 
 	async setCache(key: string, value: string | string[]): Promise<void> {
