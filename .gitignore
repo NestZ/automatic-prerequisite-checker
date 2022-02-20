@@ -9,7 +9,7 @@ bulletin-beautifier/csv/*
 bulletin-beautifier/grammar/ast/RegCondition*
 
 node_modules
-package*.json
+package-lock.json
 yarn.lock
 
-test
+correctness-testing/temp
