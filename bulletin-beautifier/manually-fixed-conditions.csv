@@ -67,7 +67,7 @@ courseNumber, oldCondition, newCondition
 411281,"202145, 202146, 203154 and concurrent to 411291",202145 and 202146 and 203154 and concurrent to 411291
 001211,001101 and 001102; human engl major students,001101 and 001102 and for humanities students in english major
 461524,461201 and 461403 : or 461102 and 461404,461524 and 461201 and 461403 or 461102 and 461404
-301208,consent of the department; occupational therapy and physical therapy students,consent of the department and (for associated medical sciences students in occupational therapy sub-major or for associated medical sciences students in physical therapy sub-major)
+301208,consent of the department; occupational therapy and physical therapy students,consent of the department and (for associated medical sciences students in occupational therapy major or for associated medical sciences students in physical therapy major)
 208265,environmental science students,for science students in environmental science major
 002111,humanities french major students,for humanities students in french major
 100316,(100112 and third year standing) or (100112 and second year standing of program in early childhood education special education and consent of the department),(100112 and third year standing) or (100112 and second year standing and consent of the department and for education students in early childhood education-special education major)
@@ -117,7 +117,7 @@ courseNumber, oldCondition, newCondition
 510419,fourth year standing medical technology students or consent of the department,fourth year standing and for associated medical sciences students or consent of the department
 510451,fourth year standing medical technology students or consent of the department,fourth year standing and for associated medical sciences students or consent of the department
 510452,fourth year standing medical technology students or consent of the department,fourth year standing and for associated medical sciences students or consent of the department
-215208,202111 and concurrent to 215207 and enrollments are not permitted major students in microbiology,202111 and concurrent to 215207 and not for science students in microbiology
+215208,202111 and concurrent to 215207 and enrollments are not permitted major students in microbiology,202111 and concurrent to 215207 and not for science students in microbiology major
 210200,second year standing materials science students or consent of the department,second year standing and for science students in materials science or consent of the department
 701499,fourth year standing accounting students or consent of the department,fourth year standing and for business administration students in accountancy major or consent of the department
 701105,non accounting major students,not for business administration students in accountancy major
@@ -167,7 +167,7 @@ courseNumber, oldCondition, newCondition
 318351,"301252, 301253, 303252 and 321251 or consent of the department",(301252 and 301253 and 303252 and 321251) or consent of the department
 202181,high school biology,none
 210200,second year standing and for science students in material science or consent of the department,(second year standing and for science students in materials science major) or consent of the department
-215208,202111 and concurrent to 215207 and not for science students in microbiology,202111 and concurrent to 215207 and not for science students in microbiology sub-major
+215208,202111 and concurrent to 215207 and not for science students in microbiology,202111 and concurrent to 215207 and not for science students in microbiology major
 127459,fourth year standing; politics and government major,fourth year standing and for political science and public administration students in politics and government major
 208100,enrollments are not permitted science basedfor  students,not for students in science based group
 253303,third year standing science basedfor  students (environmental not for engineering students),third year standing and not for engineering students in environmental engineering major and for students in science based group
@@ -177,6 +177,6 @@ courseNumber, oldCondition, newCondition
 208272,208271;for  students in humanities and social sciences,208271 and for students in humanities and social sciences group
 208271,students in humanities and social for sciences,for students in humanities and social sciences group
 208270,students in humanities and social for sciences,for students in humanities and social sciences group
-321232,second year standing physical therapyfor  students and occupational therapyfor  students,second year standing and (for associated medical sciences students in occupational therapy sub-major or for associated medical sciences students in physical therapy sub-major)
+321232,second year standing physical therapyfor  students and occupational therapyfor  students,second year standing and (for associated medical sciences students in occupational therapy major or for associated medical sciences students in physical therapy major)
 202108,"high school biology; enrollment is permittedfor  students from the faculties of agriculture, pharmacy and nursing",for agriculture students or for pharmacy students or for nursing students
 208263,students in sciences and technology and health for sciences,"for science students or for engineering students or for medicine students or for agriculture students or for dentistry students or for pharmacy students or for associated medical sciences students or for nursing students or for agro-industry students or for veterinary medicine students or for economics students or for architecture students or for arts, media and technology students"
