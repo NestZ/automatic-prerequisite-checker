@@ -1,0 +1,160 @@
+facId,majorId,majorName
+01,01,English
+01,02,French
+01,03,German
+01,04,History
+01,05,Home And Community
+01,06,Library Science
+01,07,Mass Communication
+01,08,Philosophy
+01,09,Psychology
+01,10,Thai
+01,11,Japanese
+01,12,Information Studies
+01,13,Chinese
+01,14,Tourism And Hotel
+01,15,Tourism
+01,16,Thai As A Foreign Language
+01,17,Myanmar Language and Culture
+01,18,Humanities and Sustainability
+02,01,Agricultural Education
+02,02,Business Education
+02,03,Ed Administration
+02,04,Elementary Education
+02,05,English
+02,06,French
+02,07,Health Education
+02,08,Home Economics
+02,09,Industrial  Education
+02,10,Mathematics
+02,11,Physical Education
+02,12,Science
+02,13,Social Studies
+02,14,Thai
+02,15,Pre-School Education
+02,16,Industrial  Education
+02,17,Health Education And Health Promotion
+02,18,Preschool Education
+02,19,Business Administration
+02,20,Agriculture
+02,21,Art Education
+02,22,Physics
+02,23,Biology
+02,24,Chemistry
+02,25,Business Education
+02,26,Early Childhood Education and Special Education
+02,27,Early Childhood Education-Special Education
+03,01,Graphic Arts
+03,02,Painting
+03,03,Sculpture
+03,04,Thai Art
+03,05,Design
+03,06,Printmaking
+03,07,Photographic Art
+03,08,Media Arts And Design
+03,09,Multidisciplinary Art
+03,10,Printmaking
+03,11,Music And Performing Arts
+03,12,Creative Photography
+03,13,Performing Arts
+04,01,Geography
+04,02,Political Science
+04,03,Sociology And Anthropology
+04,04,Public Administration
+04,05,Laws
+04,06,Thai Studies
+04,07,Social Science
+04,08,Geoinformatics
+04,09,ASEAN Studies
+04,10,Social Science and Sustainable Development
+05,01,Biology
+05,02,Chemistry
+05,03,Computer Science
+05,04,Geology
+05,05,Mathematics
+05,06,Physics
+05,07,Statistics
+05,08,Industrial Chemistry
+05,09,Materials Science
+05,10,Biochemistry And Biochemical Technology
+05,11,Microbiology
+05,12,Zoology
+05,13,Gemology
+05,14,Data Science
+05,15,Environmental Science
+05,16,Biochemistry and Biochemical Innovation
+06,01,Civil Engineering
+06,02,Electrical Engineering
+06,03,Environmental Engineering
+06,04,Industrial Engineering
+06,05,Mechanical Engineering
+06,06,Mining Engineering
+06,07,Agricultural Machinery Engineering
+06,08,Computer Engineering
+06,09,Agricultural Engineering
+06,10,Information Systems and Network Engineering
+06,11,Management of Construction and Urban
+06,12,Robotics Engineering and Artificial Intelligence
+06,13,วิศวกรรมบูรณาการ
+07,01,Medicine
+07,02,Public Health
+07,03,Medical Science
+08,01,Agricultural Economics
+08,02,Agriculture
+08,03,Soil Science and Conservation
+08,04,Animal Science
+08,05,Agronomy
+08,06,Horticulture
+08,07,Agricultural Extension
+08,08,Plant Pathology
+08,09,Entomology
+08,10,Soil Science and Natural Resources Management
+08,11,Animal and Aquatic Sciences
+08,12,Highland Agriculture and Natural Resources
+08,13,Soil Science
+08,14,Animal Science
+09,01,Dental Surgery
+09,02,Medical Science
+10,01,Pharmacy
+10,02,Pharmaceutical Care
+10,03,Medical Science
+11,01,Medical Technology
+11,02,Occupational Therapy
+11,03,Radiologic Technology
+11,04,Physical Therapy
+11,05,Medical Rehabilitation Worker
+12,01,Nursing
+12,02,Public Health Nursing
+13,01,Food Science and Technology
+13,02,Agro-Industrial Biotechnology
+13,03,Packaging Technology
+13,04,Food Process Engineering
+13,05,Product Development Technology
+13,06,Marine Product Technology
+13,07,เทคโนโลยีผลิตภัณฑ์อาหารทะเลและนวัตกรรม
+14,01,Veterinary Med
+14,02,Veterinary Science
+15,01,Accounting
+15,02,Business Administration
+15,03,Accountancy
+15,04,Service Business Management
+16,01,Economics
+17,01,Architecture
+17,02,Architecture
+17,03,Integrated Design in Emerging Architecture
+17,04,Landscape Architecture
+18,01,Mass Communication
+18,02,Digital Film
+19,01,Political Science
+19,02,Public Administration
+19,03,International Affairs
+19,04,Politics and Government
+20,01,Laws
+21,01,Animation
+21,02,Modern Management and Information Technology
+21,03,Software Engineering
+21,04,Animation and Games
+21,05,Digital Industry Integration
+21,06,Digital Game
+21,07,Animation and Visual Effects
+24,01,Digital Innovation
