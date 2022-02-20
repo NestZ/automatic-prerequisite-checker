@@ -1,4 +1,5 @@
 import Atomic from "./Atomic";
+import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
 
 export default class CourseNum extends Atomic {
 	private courseNum: string;
@@ -15,14 +16,7 @@ export default class CourseNum extends Atomic {
 		return this.courseNum;
 	}
 
-	eval(std: any, courses: any): boolean {
-		for(const year in courses) {
-			for(const semester in courses[year]) {
-				for(const course in courses[year][semester]) {
-					if(course === this.courseNum) return true;
-				}
-			}
-		}
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
 		return false;
 	}
 }

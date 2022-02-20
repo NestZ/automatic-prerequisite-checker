@@ -1,10 +1,11 @@
 import Atomic from './Atomic';
 import Major from './Major';
 import SubMajor from './SubMajor';
+import { Student } from '../../../auto-prerequisite-checker/src/student/data.type.decl';
 
 export default class Faculty extends Atomic {
 	private facultyId: string;
-	private dep: Major | SubMajor; // sub major ?
+	private dep: Major | SubMajor;
 	private isNon: boolean;
 
 	constructor(facultyId: string, dep: Major | SubMajor) {
@@ -35,11 +36,11 @@ export default class Faculty extends Atomic {
 		return str;
 	}
 
-	eval(std: any, courses: any): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
 		const fac: boolean = std['faculty'] === this.facultyId;
 		let dep: boolean = false;
 		if(this.dep !== null) {
-			dep = this.dep.eval(std, courses);
+			dep = this.dep.eval(std, passedCourses, cart, course);
 		}
 		else dep = true;
 		return this.isNon ? !(fac && dep) : (fac && dep);

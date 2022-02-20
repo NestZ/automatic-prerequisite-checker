@@ -1,6 +1,5 @@
 import Atomic from "./Atomic";
-
-const facGroupLst: string[] = ['science based', 'humanities and social sciences', 'sciences and technology', 'health sciences'];
+import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
 
 export default class FacGroup extends Atomic {
 	private facultyGroup: string;
@@ -8,7 +7,6 @@ export default class FacGroup extends Atomic {
 
 	constructor(facultyGroup: string) {
 		super();
-		if(!facGroupLst.includes(facultyGroup)) throw "can't find " + facultyGroup + ' group';
 		this.facultyGroup = facultyGroup;
 		this.isNon = false;
 	}
@@ -25,7 +23,7 @@ export default class FacGroup extends Atomic {
 		return str;
 	}
 
-	eval(): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
 		return true;
 	}
 }

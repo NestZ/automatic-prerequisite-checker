@@ -1,31 +1,17 @@
 import Atomic from './Atomic';
-
-export class YearEnum {
-	public static FIRST: YearEnum = new YearEnum('first')
-	public static SECOND: YearEnum = new YearEnum('second')
-	public static THIRD: YearEnum = new YearEnum('third')
-	public static FOURTH: YearEnum = new YearEnum('fourth')
-	public static FIFTH: YearEnum = new YearEnum('fifth')
-	public static SIXTH: YearEnum = new YearEnum('sixth')
-	private name: string;
-  
-	constructor(name: string) {
-	  this.name = name
-	}
-}
+import { Student } from '../../../auto-prerequisite-checker/src/student/data.type.decl';
 
 export class Year extends Atomic {
-	private year: string;
+	private year: number;
 	private isAtLeast: boolean;
 
-	constructor(year: string, isAtLeast: boolean) {
+	constructor(year: number, isAtLeast: boolean) {
 		super();
-		//TODO : fix this to integer
 		this.year = year;
 		this.isAtLeast = isAtLeast;
 	}
 
-	getYear(): string {
+	getYear(): number {
 		return this.year;
 	}
 
@@ -36,9 +22,9 @@ export class Year extends Atomic {
 		return str;
 	}
 
-	eval(std: any, courses: any): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
 		const stdYear: number = parseInt(std['year']);
-		const reqYear: number = parseInt(this.year);
+		const reqYear: number = this.year;
 		if(this.isAtLeast) return stdYear <= reqYear;
 		else return stdYear === reqYear;
 	}

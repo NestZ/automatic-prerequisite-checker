@@ -1,4 +1,5 @@
 import Atomic from './Atomic';
+import { Student } from '../../../auto-prerequisite-checker/src/student/data.type.decl';
 
 export class ConsentOfEnum {
 	public static DEPARTMENT: ConsentOfEnum = new ConsentOfEnum('department');
@@ -25,7 +26,7 @@ export class ConsentOf extends Atomic {
 		return 'consent of the ' + this.consentOf;
 	}
 
-	eval(std: any, courses: any): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
 		return true;
 	}
 }

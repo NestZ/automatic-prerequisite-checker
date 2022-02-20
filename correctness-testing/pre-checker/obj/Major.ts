@@ -1,3 +1,5 @@
+import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
+
 export default class Major {
 	private majorId: string;
 
@@ -9,7 +11,7 @@ export default class Major {
 		return this.majorId;
 	}
 
-	eval(std: any, courses: any): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
 		return std['major'] === this.majorId;
 	}
 }

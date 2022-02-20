@@ -1,4 +1,5 @@
 import Expression from "./Expression";
+import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
 
 export default class Condition {
 	private expr: Expression;
@@ -15,7 +16,7 @@ export default class Condition {
 		return this.expr.print();
 	}
 
-	eval(std: any, courses: any): boolean {
-		return this.expr.eval(std, courses);
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+		return this.expr.eval(std, passedCourses, cart, course);
 	}
 }
