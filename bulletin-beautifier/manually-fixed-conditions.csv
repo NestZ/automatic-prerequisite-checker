@@ -1,5 +1,5 @@
 courseNumber, oldCondition, newCondition
-210474,third year standing; materials science or physics students,third year standing and (for science students in material science major or for science students in physics major)
+210474,third year standing; materials science or physics students,third year standing and (for science students in materials science major or for science students in physics major)
 356212,non agricultural students,not for agriculture students
 651644,sixth year standing: veterinary,sixth year standing and for veterinary medicine students
 006470,fourth year standing; home and community major students,fourth year standing and for humanities students in home and community major
@@ -70,7 +70,7 @@ courseNumber, oldCondition, newCondition
 301208,consent of the department; occupational therapy and physical therapy students,consent of the department and (for associated medical sciences students in occupational therapy sub-major or for associated medical sciences students in physical therapy sub-major)
 208265,environmental science students,for science students in environmental science major
 002111,humanities french major students,for humanities students in french major
-100316,(100112 and third year standing) or (100112 and second year standing of program in early childhood education special education and consent of the department),(100112 and third year standing) or (100112 and second year standing and consent of the department and for education students in early childhood-special education major)
+100316,(100112 and third year standing) or (100112 and second year standing of program in early childhood education special education and consent of the department),(100112 and third year standing) or (100112 and second year standing and consent of the department and for education students in early childhood education-special education major)
 206253,206103 or 206111; non major,206103 or 206111 and not for science students in mathematics major
 356242,non major students,not for agriculture students in animal science major
 356202,non major students,not for agriculture students in animal science major
@@ -80,7 +80,7 @@ courseNumber, oldCondition, newCondition
 701295,701100 ; non major,701100 and not for business administration students in accountancy major
 018111,non major,not for humanities students in japanese major
 013215,non major,not for humanities students in psychology major
-602120,non major,not for agro-industry students in biotechnology major
+602120,non major,not for agro-industry students in agro-industrial biotechnology major
 013110,non major,not for humanities students in psychology major
 605314,206104 ; non major,206104 and not for agro-industry students in product development technology major
 951103,major,"for arts, media and technology students in animation major"
@@ -90,7 +90,7 @@ courseNumber, oldCondition, newCondition
 251101,non major,not for engineering students in civil engineering major
 255122,non major,not for engineering students in industrial engineering major
 601202,203104 or 203111 and 602120; non major,203104 or 203111 and 602120 and not for agro-industry students in food science and technology major
-602301,215205 or 215207 or 602120; non major,215205 or 215207 or 602120 and not for agro-industry students in biotechnology major
+602301,215205 or 215207 or 602120; non major,215205 or 215207 or 602120 and not for agro-industry students in agro-industrial biotechnology major
 208383,208150 or 208263 or 208270 or 208271; non statistics major students,208150 or 208263 or 208270 or 208271 and not for science students in statistics major
 208384,208150 or 208263 or 208270 or 208271; non statistics major students,208150 or 208263 or 208270 or 208271 and not for science students in statistics major
 206266,second year standing; non major,second year standing and not for science students in mathematics major
@@ -99,36 +99,36 @@ courseNumber, oldCondition, newCondition
 018498,fourth year standing; major,fourth year standing and for humanities students in japanese major
 006342,fourth year standing; major,fourth year standing and for humanities students in home and community major
 019490,fourth year standing; major,fourth year standing and for humanities students in chinese major
-702399,third year standing ; major,third year standing and for business administration students in finance and banking major
+702399,third year standing ; major,third year standing and for business administration students in business administration major
 002488,fourth year standing; major,fourth year standing and for humanities students in french major
 001113,english major students,for humanities students in english major
 352311,major student or third year standing,third year standing or for agriculture students in agricultural extension major
 601463,fourth year standing; food science and technology students,fourth year standing and for agro-industry students in food science and technology major
 601464,fourth year standing; food science and technology students,fourth year standing and for agro-industry students in food science and technology major
-705399,third year standing; major,third year standing and for business administration students in marketing major
-703399,third year standing; major,third year standing and for business administration students in management major
-020490,fourth year standing major,fourth year standing and for humanities students in burmese major
+705399,third year standing; major,third year standing and for business administration students in business administration major
+703399,third year standing; major,third year standing and for business administration students in accountancy major
+020490,fourth year standing major,fourth year standing and for humanities students in myanmar language and culture major
 701399,third year standing; major,third year standing and for business administration students in accountancy major
 009103,non major,not for humanities students in library science major
-008401,major,for humanities students in tourism study major
-008449,fourth year standing; major,for humanities students in tourism study major and fourth year standing
-008442,fourth year standing; major,for humanities students in tourism study major and fourth year standing
+008401,major,for humanities students in tourism major
+008449,fourth year standing; major,for humanities students in tourism major and fourth year standing
+008442,fourth year standing; major,for humanities students in tourism major and fourth year standing
 009499,fourth year standing; major,for humanities students in library science major
 510419,fourth year standing medical technology students or consent of the department,fourth year standing and for associated medical sciences students or consent of the department
 510451,fourth year standing medical technology students or consent of the department,fourth year standing and for associated medical sciences students or consent of the department
 510452,fourth year standing medical technology students or consent of the department,fourth year standing and for associated medical sciences students or consent of the department
 215208,202111 and concurrent to 215207 and enrollments are not permitted major students in microbiology,202111 and concurrent to 215207 and not for science students in microbiology
-210200,second year standing materials science students or consent of the department,second year standing and for science students in material science or consent of the department
+210200,second year standing materials science students or consent of the department,second year standing and for science students in materials science or consent of the department
 701499,fourth year standing accounting students or consent of the department,fourth year standing and for business administration students in accountancy major or consent of the department
 701105,non accounting major students,not for business administration students in accountancy major
 701103,non accounting major students,not for business administration students in accountancy major
 356486,third and fourth year standing in ans or psy or biol or vet,(third year standing or fourth year standing) and (for agriculture students in animal science major or for humanities students in psychology major or for science students in biology major or for veterinary medicine students)
 321210,SECOND YEAR STANDING; FOR OPTOMETRY STUDENTS OR CONSENT OF THE DEPARTMENT,second year standing and consent of the department
-176220,non major,not for law students in law major
-176101,non major,not for law students in law major
-176104,non major,not for law students in law major
-176211,non major,not for law students in law major
-176100,non major,not for law students in law major
+176220,non major,not for law students in laws major
+176101,non major,not for law students in laws major
+176104,non major,not for law students in laws major
+176211,non major,not for law students in laws major
+176100,non major,not for law students in laws major
 851108,major,for mass communication students in mass communication major
 704399,third year standing; major,third year standing and for business administration students in service business management major
 751441,"751209 and 751302, major students or consent of the instructor non major students",(751209 and 751302) and (for economics students in economics major or not for economics students in economics major and consent of the instructor) 
@@ -166,7 +166,7 @@ courseNumber, oldCondition, newCondition
 510442,"503401, 505401, 507401, 509401, 512401",503401 and 505401 and 507401 and 509401 and 512401
 318351,"301252, 301253, 303252 and 321251 or consent of the department",(301252 and 301253 and 303252 and 321251) or consent of the department
 202181,high school biology,none
-210200,second year standing and for science students in material science or consent of the department,(second year standing and for science students in material science major) or consent of the department
+210200,second year standing and for science students in material science or consent of the department,(second year standing and for science students in materials science major) or consent of the department
 215208,202111 and concurrent to 215207 and not for science students in microbiology,202111 and concurrent to 215207 and not for science students in microbiology sub-major
 127459,fourth year standing; politics and government major,fourth year standing and for political science and public administration students in politics and government major
 208100,enrollments are not permitted science basedfor  students,not for students in science based group
