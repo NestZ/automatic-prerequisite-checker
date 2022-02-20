@@ -1,4 +1,4 @@
-export default class Expression {
+export default abstract class Expression {
 	print?(): void;
 
 	setIsNon?(): void;
