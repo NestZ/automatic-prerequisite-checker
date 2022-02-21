@@ -12,6 +12,7 @@ export default class SubMajor {
 	}
 
 	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
-		return std['major'] === this.subMajorId;
+		//TODO: check sub-major
+		return std.majorId === this.subMajorId;
 	}
 }

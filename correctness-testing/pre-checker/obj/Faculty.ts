@@ -37,12 +37,12 @@ export default class Faculty extends Atomic {
 	}
 
 	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
-		const fac: boolean = std['faculty'] === this.facultyId;
-		let dep: boolean = false;
+		let validFac: boolean = std.facId === this.facultyId;
+		let validDep: boolean = this.dep === null;
 		if(this.dep !== null) {
-			dep = this.dep.eval(std, passedCourses, cart, course);
+			validDep = this.dep.eval(std, passedCourses, cart, course);
 		}
-		else dep = true;
-		return this.isNon ? !(fac && dep) : (fac && dep);
+		const valid = validFac && validDep;
+		return this.isNon ? !valid : valid;
 	}
 }

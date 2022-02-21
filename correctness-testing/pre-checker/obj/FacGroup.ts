@@ -1,5 +1,7 @@
 import Atomic from "./Atomic";
+import PreChecker from "pre-checker/ast.builder";
 import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
+import { FacultyData } from "../data.type.decl";
 
 export default class FacGroup extends Atomic {
 	private facultyGroup: string;
@@ -24,6 +26,16 @@ export default class FacGroup extends Atomic {
 	}
 
 	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
-		return true;
+		const faculty: FacultyData[] = PreChecker.getFaculty();
+		for(const fac of faculty) {
+			if(std.facId === fac.facId) {
+				if(this.facultyGroup === 'science based') {
+					if(fac.isScienceBased === '1') return true;
+				} else {
+					if(this.facultyGroup === fac.facGroup) return true;
+				}
+			}
+		}
+		return false;
 	}
 }

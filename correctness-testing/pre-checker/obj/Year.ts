@@ -23,7 +23,8 @@ export class Year extends Atomic {
 	}
 
 	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
-		const stdYear: number = parseInt(std['year']);
+		const stdYear: number = parseInt(std.year);
+		const stdYearStanding: number = 2564 - stdYear + 1;
 		const reqYear: number = this.year;
 		if(this.isAtLeast) return stdYear <= reqYear;
 		else return stdYear === reqYear;

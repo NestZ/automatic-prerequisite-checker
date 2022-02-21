@@ -12,6 +12,6 @@ export default class Major {
 	}
 
 	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
-		return std['major'] === this.majorId;
+		return std.majorId === this.majorId;
 	}
 }

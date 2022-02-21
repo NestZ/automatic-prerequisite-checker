@@ -17,6 +17,14 @@ export default class CourseNum extends Atomic {
 	}
 
 	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+		for(const passed of passedCourses) {
+			if(passed === this.courseNum) return true;
+		}
+		if(this.isConcurrent) {
+			for(const cur of cart) {
+				if(cur === this.courseNum) return true;
+			}
+		}
 		return false;
 	}
 }
