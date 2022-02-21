@@ -1,6 +1,7 @@
 import Atomic from "./Atomic";
-
-const facGroupLst: string[] = ['science based', 'humanities and social sciences', 'sciences and technology', 'health sciences'];
+import PreChecker from "../ast.builder";
+import { Student } from "../../student/data.type.decl";
+import { FacultyData } from "../data.type.decl";
 
 export default class FacGroup extends Atomic {
 	private facultyGroup: string;
@@ -8,7 +9,6 @@ export default class FacGroup extends Atomic {
 
 	constructor(facultyGroup: string) {
 		super();
-		if(!facGroupLst.includes(facultyGroup)) throw "can't find " + facultyGroup + ' group';
 		this.facultyGroup = facultyGroup;
 		this.isNon = false;
 	}
@@ -17,13 +17,25 @@ export default class FacGroup extends Atomic {
 		this.isNon = true;
 	}
 
-	print(): void {
-		if(this.isNon) console.log('not for ');
-		else console.log('for ');
-		console.log('students in ' + this.facultyGroup + ' group');
+	print(): string {
+		let str = '';
+		if(this.isNon) str += 'not for ';
+		else str += 'for ';
+		str += 'students in ' + this.facultyGroup + ' group';
+		return str;
 	}
 
-	eval(): boolean {
-		return true;
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+		const faculty: FacultyData[] = PreChecker.getFaculty();
+		for(const fac of faculty) {
+			if(std.facId === fac.facId) {
+				if(this.facultyGroup === 'science based') {
+					if(fac.isScienceBased === '1') return true;
+				} else {
+					if(this.facultyGroup === fac.facGroup) return true;
+				}
+			}
+		}
+		return false;
 	}
 }

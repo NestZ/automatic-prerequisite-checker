@@ -1,23 +1,28 @@
 import Atomic from "./Atomic";
+import { Student } from "../../student/data.type.decl";
 
 export default class CourseNum extends Atomic {
 	private courseNum: string;
+	private isConcurrent: boolean;
 
-	constructor(courseNum: string) {
+	constructor(courseNum: string, isConcurrent: boolean) {
 		super();
 		this.courseNum = courseNum;
+		this.isConcurrent = isConcurrent;
 	}
 
-	print(): void {
-		console.log(this.courseNum);
+	print(): string {
+		if(this.isConcurrent) return 'concurrent to ' + this.courseNum;
+		return this.courseNum;
 	}
 
-	eval(std: any, courses: any): boolean {
-		for(const year in courses) {
-			for(const semester in courses[year]) {
-				for(const course in courses[year][semester]) {
-					if(course === this.courseNum) return true;
-				}
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+		for(const passed of passedCourses) {
+			if(passed === this.courseNum) return true;
+		}
+		if(this.isConcurrent) {
+			for(const cur of cart) {
+				if(cur === this.courseNum) return true;
 			}
 		}
 		return false;

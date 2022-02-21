@@ -1,17 +1,16 @@
 import Atomic from './Atomic';
 import Major from './Major';
-
-const facultyLst = ['nursing', 'medicine', 'pharmacy', 'veterinary medicine', 'dentistry', 'architecture', 'science', 'associated medical sciences', 'economics', 'agro-industry', 'agriculture', 'humanities', 'engineering', 'arts, media and technology', 'business administration', 'education', 'political science and public administration', 'law', 'mass communication']
+import SubMajor from './SubMajor';
+import { Student } from '../../student/data.type.decl';
 
 export default class Faculty extends Atomic {
-	private faculty: string;
-	private dep: Major;
+	private facultyId: string;
+	private dep: Major | SubMajor;
 	private isNon: boolean;
 
-	constructor(faculty: string, dep: Major) {
+	constructor(facultyId: string, dep: Major | SubMajor) {
 		super();
-		if(!facultyLst.includes(faculty)) throw "can't find " + faculty + ' faculty';
-		this.faculty = faculty;
+		this.facultyId = facultyId
 		this.dep = dep;
 		this.isNon = false;
 	}
@@ -20,24 +19,30 @@ export default class Faculty extends Atomic {
 		this.isNon = true;
 	}
 
-	print(): void {
-		if(this.isNon) console.log('not for ');
-		else console.log('for ');
-		console.log(this.faculty + ' students');
-		if(this.dep != null) {
-			console.log(' in ' + this.dep.getMajor());
-			if(this.dep instanceof Major) console.log(' major');
-			else console.log(' sub-major');
-		}
+	getFacultyId(): string {
+		return this.facultyId;
 	}
 
-	eval(std: any, courses: any): boolean {
-		const fac: boolean = std['faculty'] === this.faculty;
-		let dep: boolean = false;
+	print(): string {
+		let str = '';
+		if(this.isNon) str += 'not for ';
+		else str += 'for ';
+		str += this.facultyId + ' students';
 		if(this.dep !== null) {
-			dep = this.dep.eval(std, courses);
+			str += ' in ' + this.dep.getMajor();
+			if(this.dep instanceof Major) str += ' major';
+			else str += ' sub-major';
 		}
-		else dep = true;
-		return this.isNon ? !(fac && dep) : (fac && dep);
+		return str;
+	}
+
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+		let validFac: boolean = std.facId === this.facultyId;
+		let validDep: boolean = this.dep === null;
+		if(this.dep !== null) {
+			validDep = this.dep.eval(std, passedCourses, cart, course);
+		}
+		const valid = validFac && validDep;
+		return this.isNon ? !valid : valid;
 	}
 }

@@ -8,11 +8,12 @@ import Faculty from './obj/Faculty';
 import Atomic from './obj/Atomic';
 import FacGroup from './obj/FacGroup';
 import Expression from './obj/Expression';
+import PreChecker from './ast.builder';
 import { RegConditionVisitor } from './parser/RegConditionVisitor';
 import { ConsentOf } from './obj/ConsentOf';
 import { Year } from './obj/Year';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
-import { AndContext, AtomicContext, AtomicExpressionContext, At_least_req_yearContext, ConcurrenceContext, ConditionContext, ConsentContext, ExprContext, ExpressionContext, OrContext, ReqFacultyAndMajorContext, ReqFacultyContext, ReqMajorContext, ReqSubMajorContext, Req_fac_groupContext, Req_studentContext, Req_yearContext } from './parser/RegConditionParser';
+import { AndContext, AtomicContext, AtomicExpressionContext, At_least_req_yearContext, ConcurrenceContext, ConditionContext, ConsentContext, ExprContext, ExpressionContext, OrContext, ReqFacultyAndMajorContext, ReqFacultyContext, ReqMajorContext, ReqSubMajorContext, Req_fac_groupContext, Req_majorContext, Req_studentContext, Req_yearContext } from './parser/RegConditionParser';
 
 export default class AntlrToCondition extends AbstractParseTreeVisitor<Expression> implements RegConditionVisitor<Expression> {
 	defaultResult(): Expression {
@@ -45,7 +46,7 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 
 	visitAtomic(ctx: AtomicContext): Expression {
 		const child: string = ctx.getChild(0).payload.text;
-		if(!isNaN(Number(child))) return new CourseNum(child);
+		if(!isNaN(Number(child))) return new CourseNum(child, false);
 		else if(child == 'none' || child == 'see bulletin') return new Atomic(child);
 		else return super.visit(ctx.getChild(0));
 	}
@@ -70,37 +71,67 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 
 	visitReqFaculty(ctx: ReqFacultyContext): Faculty {
 		const facultyName: string = this.getFieldName(ctx.field());
-		return new Faculty(facultyName, null);
+		const facId: string = PreChecker.facultyId(facultyName);
+		return new Faculty(facId, null);
 	}
 
 	visitReqFacultyAndMajor(ctx: ReqFacultyAndMajorContext): Faculty {
-		const dep: Expression = super.visit(ctx.req_major());
 		const facultyName: string = this.getFieldName(ctx.field());
-		return new Faculty(facultyName, (dep as Major));
+		const facId: string = PreChecker.facultyId(facultyName);
+		const childCtx: Req_majorContext = ctx.req_major();
+		let dep: Major | SubMajor;
+		if(childCtx instanceof ReqMajorContext) {
+			const depName: string = this.getFieldName((childCtx as ReqMajorContext).field());
+			const depId: string = PreChecker.majorId(facId, depName);
+			dep = new Major(depId);
+		} else {
+			const depName: string = this.getFieldName((childCtx as ReqSubMajorContext).field());
+			const depId: string = PreChecker.subMajorId(facId, depName);
+			dep = new SubMajor(depId);
+		}
+		return new Faculty(facId, dep);
 	}
 
 	visitReq_fac_group(ctx: Req_fac_groupContext): FacGroup {
 		const groupName: string = this.getFieldName(ctx.field());
-		return new FacGroup(groupName);
-	}
-
-	visitReqMajor(ctx: ReqMajorContext): Major {
-		const majorName: string = this.getFieldName(ctx.field());
-		return new Major(majorName);
-	}
-
-	visitReqSubMajor(ctx: ReqSubMajorContext): SubMajor {
-		const subMajorName: string = this.getFieldName(ctx.field());
-		return new SubMajor(subMajorName);
+		let group: string = groupName;
+		if(groupName !== 'science based') {
+			group = PreChecker.facGroupId(groupName);
+		}
+		return new FacGroup(group);
 	}
 
 	visitConcurrence(ctx: ConcurrenceContext): CourseNum {
-		//TODO: print concurrent to
-		return new CourseNum(ctx.COURSE_NUM().payload.text);
+		return new CourseNum(ctx.COURSE_NUM().payload.text, true);
 	}
 
 	visitReq_year(ctx: Req_yearContext): Year {
-		return new Year(ctx.YEAR().payload.text, false);
+		const yearStr: string = ctx.YEAR().payload.text;
+		let year: number;
+		switch(yearStr) {
+			case 'first': {
+				year = 1;
+				break;
+			} case 'second': {
+				year = 2;
+				break;
+			} case 'third': {
+				year = 3;
+				break;
+			} case 'fourth': {
+				year = 4;
+				break;
+			} case 'fifth': {
+				year = 5;
+				break;
+			} case 'sixth': {
+				year = 6;
+				break;
+			} default: {
+				throw yearStr + ' is invalid year';
+			}
+		}
+		return new Year(year, false);
 	}
 
 	visitAt_least_req_year(ctx: At_least_req_yearContext): Year {

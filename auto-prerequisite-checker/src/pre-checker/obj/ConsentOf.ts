@@ -1,4 +1,5 @@
 import Atomic from './Atomic';
+import { Student } from '../../student/data.type.decl';
 
 export class ConsentOfEnum {
 	public static DEPARTMENT: ConsentOfEnum = new ConsentOfEnum('department');
@@ -21,11 +22,11 @@ export class ConsentOf extends Atomic {
 		this.consentOf = consentOf;
 	}
 
-	print(): void {
-		console.log('consent of the ' + this.consentOf);
+	print(): string {
+		return 'consent of the ' + this.consentOf;
 	}
 
-	eval(std: any, courses: any): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
 		return true;
 	}
 }

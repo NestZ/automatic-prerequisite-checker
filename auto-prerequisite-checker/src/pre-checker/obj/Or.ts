@@ -1,4 +1,5 @@
 import Expression from "./Expression";
+import { Student } from "../../student/data.type.decl";
 
 export default class Or extends Expression {
 	private left: Expression;
@@ -10,13 +11,11 @@ export default class Or extends Expression {
 		this.right = right;
 	}
 
-	print(): void {
-		this.left.print();
-		console.log(" or ");
-		this.right.print();
+	print(): string {
+		return this.left.print() + ' or ' + this.right.print();
 	}
 
-	eval(std: any, courses: any): boolean {
-		return this.left.eval(std, courses) || this.right.eval(std, courses);
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+		return this.left.eval(std, passedCourses, cart, course) || this.right.eval(std, passedCourses, cart, course);
 	}
 }

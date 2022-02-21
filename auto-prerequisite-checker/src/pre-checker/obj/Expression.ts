@@ -1,7 +1,9 @@
+import { Student } from "../../student/data.type.decl";
+
 export default abstract class Expression {
-	print?(): void;
+	print?(): string;
 
 	setIsNon?(): void;
 
-	eval?(std: any, courses: any): boolean;
+	eval?(std: Student, passedCourses: string[], cart: string[], course: string): boolean;
 }

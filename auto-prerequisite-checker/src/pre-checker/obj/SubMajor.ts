@@ -1,18 +1,18 @@
-const subMajorLst = ['microbiology', 'physical therapy', 'occupational therapy'];
+import { Student } from "../../student/data.type.decl";
 
 export default class SubMajor {
-	private subMajor: string;
+	private subMajorId: string;
 
-	constructor(subMajor: string) {
-		if(!subMajorLst.includes(subMajor)) throw "can't find " + subMajor + ' sub-major';
-		this.subMajor = subMajor;
+	constructor(subMajorId: string) {
+		this.subMajorId = subMajorId;
 	}
 
 	getMajor(): string {
-		return this.subMajor;
+		return this.subMajorId;
 	}
 
-	eval(std: any, courses: any): boolean {
-		return std['major'] === this.subMajor;
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+		//TODO: check sub-major
+		return std.majorId === this.subMajorId;
 	}
 }

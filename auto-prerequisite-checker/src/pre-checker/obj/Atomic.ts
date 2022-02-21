@@ -1,4 +1,5 @@
 import Expression from "./Expression";
+import { Student } from "../../student/data.type.decl";
 
 export default class Atomic extends Expression {
 	private name?: string;
@@ -8,11 +9,11 @@ export default class Atomic extends Expression {
 		this.name = name;
 	}
 
-	print(): void {
-		console.log(this.name);
+	print(): string {
+		return this.name;
 	}
 
-	eval(std: any, courses: any): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
 		return true;
 	}
 }
