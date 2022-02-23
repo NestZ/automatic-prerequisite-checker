@@ -65,6 +65,16 @@ export default class PreChecker {
 		throw "can't find " + faculty + ' faculty';
 	}
 
+	public static facultyName(facultyId: string): string {
+		const facLst: FacultyData[] = PreChecker.getFaculty();
+		for(const fac of facLst) {
+			if(fac.facId === facultyId) {
+				return fac.facName;
+			}
+		}
+		throw "can't find faculty with id " + facultyId;
+	}
+
 	public static majorId(facultyId: string, major: string): string {
 		const facLst: MajorData[] = PreChecker.getMajor().filter(
 			(fac: MajorData) => {
@@ -77,6 +87,20 @@ export default class PreChecker {
 			}
 		}
 		throw "can't find " + major + ' major';
+	}
+
+	public static majorName(facultyId: string, majorId: string): string {
+		const facLst: MajorData[] = PreChecker.getMajor().filter(
+			(fac: MajorData) => {
+				return fac.facId === facultyId;
+			}
+		);
+		for(const fac of facLst) {
+			if(fac.majorId === majorId && fac.facId === facultyId) {
+				return fac.majorName;
+			}
+		}
+		throw "can't find major with id " + majorId;
 	}
 
 	public static subMajorId(facultyId: string, subMajor: string): string {
@@ -93,7 +117,21 @@ export default class PreChecker {
 		throw "can't find " + subMajor + ' sub-major';
 	}
 
-	public static facGroupId(facGroup: string) {
+	public static subMajorName(facultyId: string, subMajorId: string): string {
+		const facLst: SubMajorData[] = PreChecker.getSubMajor().filter(
+			(fac: SubMajorData) => {
+				return fac.facId === facultyId;
+			}
+		);
+		for(const fac of facLst) {
+			if(fac.facId === facultyId && fac.subMajorId === subMajorId) {
+				return fac.subMajorName;
+			}
+		}
+		throw "can't find sub-major with id " + subMajorId;
+	}
+
+	public static facGroupId(facGroup: string): string {
 		const facGroupLst: FacGroupData[] = PreChecker.getFacGroup();
 		for(const fg of facGroupLst) {
 			if(fg.facGroupName.toLowerCase() === facGroup) {
@@ -103,7 +141,17 @@ export default class PreChecker {
 		throw "can't find " + facGroup + ' faculty group';
 	}
 
-	public static setYear(year: number) {
+	public static facGroupName(facGroupId: string): string {
+		const facGroupLst: FacGroupData[] = PreChecker.getFacGroup();
+		for(const fg of facGroupLst) {
+			if(fg.facGroupId === facGroupId) {
+				return fg.facGroupName;
+			}
+		}
+		throw "can't find faculty group with id " + facGroupId;
+	}
+
+	public static setYear(year: number): void {
 		PreChecker.academicYear = year;
 	}
 
