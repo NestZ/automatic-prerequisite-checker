@@ -26,7 +26,7 @@ export class ConsentOf extends Atomic {
 		return 'consent of the ' + this.consentOf;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		return true;
 	}
 }

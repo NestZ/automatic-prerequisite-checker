@@ -16,18 +16,40 @@ export class Year extends Atomic {
 		return this.year;
 	}
 
+	getYearName(): string {
+		switch(this.year) {
+			case 1: {
+				return 'first';
+			} case 2: {
+				return 'second';
+			} case 3: {
+				return 'third';
+			} case 4: {
+				return 'fourth';
+			} case 5: {
+				return 'fifth';
+			} default: {
+				return 'sixth';
+			}
+		}
+	}
+
 	print(): string {
 		let str = '';
 		if(this.isAtLeast) str += 'at least ';
-		str += this.year + ' year standing';
+		str += this.getYearName() + ' year standing';
 		return str;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		const stdYear: number = parseInt(std.year);
 		const stdYearStanding: number = PreChecker.getYear() - stdYear + 1;
 		const reqYear: number = this.year;
-		if(this.isAtLeast) return stdYearStanding <= reqYear;
-		else return stdYearStanding === reqYear;
+		let res: boolean = stdYearStanding >= reqYear;
+		if(!res) {
+			const errStr = 'requires ' + this.print();
+			err.push(errStr);
+		}
+		return res;
 	}
 }

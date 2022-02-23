@@ -16,7 +16,7 @@ export default class Condition {
 		return this.expr.print();
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
-		return this.expr.eval(std, passedCourses, cart, course);
+	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+		return this.expr.eval(std, passedCourses, cart, course, err);
 	}
 }

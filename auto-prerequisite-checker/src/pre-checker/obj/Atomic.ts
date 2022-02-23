@@ -13,7 +13,7 @@ export default class Atomic extends Expression {
 		return this.name;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		return true;
 	}
 }

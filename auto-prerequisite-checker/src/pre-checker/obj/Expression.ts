@@ -5,5 +5,5 @@ export default abstract class Expression {
 
 	setIsNon?(): void;
 
-	eval?(std: Student, passedCourses: string[], cart: string[], course: string): boolean;
+	eval?(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean;
 }

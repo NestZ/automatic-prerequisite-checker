@@ -10,7 +10,7 @@ export type CourseCount = {
 };
 
 @Controller('student')
-export class StudentController implements OnModuleInit {
+export class StudentController {
 	private block: number = 100000;
 
 	constructor(
@@ -18,12 +18,6 @@ export class StudentController implements OnModuleInit {
 		private studentService: StudentService,
 		private logger: Logger = new Logger(StudentService.name),
 	) {}
-
-	async onModuleInit(): Promise<void> {
-		await this.studentService.clearCache();
-		await this.updateStudentsData();
-		await this.updateStudentCourses(this.block);
-	}
 
 	@Post('/')
 	async updateStudentsData(): Promise<{ studentCount: number }> {
@@ -54,7 +48,7 @@ export class StudentController implements OnModuleInit {
 	}
 
 	@Post('/courses')
-	async updateStudentCourses(block: number): Promise<{ coursesCount: number }> {
+	async updateStudentCourses(): Promise<{ coursesCount: number }> {
 		const res: Observable<AxiosResponse<CourseCount[], any>> = this.httpService.get(
 			process.env.REG_API_GET_STUDENT_COURSES_PATH + '/count',
 			{
@@ -63,7 +57,7 @@ export class StudentController implements OnModuleInit {
 		);
 		let count: number = ((await lastValueFrom(res)).data as any as CourseCount).count;
 		this.logger.log('Saving ' + count + " student's course records.");
-		for (let i = 0;i < count;i += block) {
+		for (let i = 0;i < count;i += this.block) {
 			try{
 				const res: Observable<AxiosResponse<Course[], any>> = this.httpService.get(
 					process.env.REG_API_GET_STUDENT_COURSES_PATH,
@@ -79,7 +73,7 @@ export class StudentController implements OnModuleInit {
 									GRADE: true,
 									COURSENO: true,
 								},
-								limit: block,
+								limit: this.block,
 								skip: i,
 							},
 						},
@@ -91,7 +85,7 @@ export class StudentController implements OnModuleInit {
 			} catch(err) {
 				this.logger.log(err.message);
 				this.logger.log('Retrying...');
-				i -= block;
+				i -= this.block;
 			}
 		}
 		return { coursesCount: count };
@@ -133,5 +127,9 @@ export class StudentController implements OnModuleInit {
 	@Get('/:id')
 	async getStudentData(@Param('id') stdId: string): Promise<{ student: Student }> {
 		return { student: await this.studentService.getStudentData(stdId) };
+	}
+
+	async clearCache(): Promise<void> {
+		await this.studentService.clearCache();
 	}
 }

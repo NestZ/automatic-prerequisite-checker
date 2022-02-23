@@ -7,11 +7,11 @@ export default class Major {
 		this.majorId = majorId;
 	}
 
-	getMajor(): string {
+	getDepId(): string {
 		return this.majorId;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		return std.majorId === this.majorId;
 	}
 }

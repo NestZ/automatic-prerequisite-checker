@@ -1,6 +1,7 @@
 import Atomic from './Atomic';
 import Major from './Major';
 import SubMajor from './SubMajor';
+import PreChecker from '../ast.builder';
 import { Student } from '../../student/data.type.decl';
 
 export default class Faculty extends Atomic {
@@ -24,25 +25,31 @@ export default class Faculty extends Atomic {
 	}
 
 	print(): string {
-		let str = '';
+		let str: string = '';
+		const facName = PreChecker.facultyName(this.facultyId);
 		if(this.isNon) str += 'not for ';
 		else str += 'for ';
-		str += this.facultyId + ' students';
+		str += facName + ' students';
 		if(this.dep !== null) {
-			str += ' in ' + this.dep.getMajor();
+			let depName: string;
+			if(this.dep instanceof Major) depName = PreChecker.majorName(this.facultyId, this.dep.getDepId());
+			else depName = PreChecker.subMajorName(this.facultyId, this.dep.getDepId());
+			str += ' in ' + depName;
 			if(this.dep instanceof Major) str += ' major';
 			else str += ' sub-major';
 		}
 		return str;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		let validFac: boolean = std.facId === this.facultyId;
 		let validDep: boolean = this.dep === null;
 		if(this.dep !== null) {
-			validDep = this.dep.eval(std, passedCourses, cart, course);
+			validDep = this.dep.eval(std, passedCourses, cart, course, err);
 		}
-		const valid = validFac && validDep;
-		return this.isNon ? !valid : valid;
+		const valid: boolean = validFac && validDep;
+		const res: boolean = this.isNon ? !valid : valid;
+		if(!res) err.push(this.print());
+		return res;
 	}
 }
