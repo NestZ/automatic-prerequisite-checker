@@ -13,7 +13,8 @@ import { StudentController } from './student.controller';
     }),
     HttpModule,
   ],
-  providers: [StudentService, Logger],
-  controllers: [StudentController]
+  providers: [StudentService, Logger, StudentController],
+  controllers: [StudentController],
+  exports: [StudentService, StudentController],
 })
 export class StudentModule {}
