@@ -40,6 +40,11 @@ export type FacGroupData = {
 
 export type RegistCheckBody = {
 	stdId: string,
-	courseId: string,
 	cart: string[],
+}
+
+export type RegistrationResult = {
+	courseId: string,
+	result: string,
+	errors: string[],
 }
