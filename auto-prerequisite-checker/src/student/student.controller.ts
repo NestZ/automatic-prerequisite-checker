@@ -120,7 +120,7 @@ export class StudentController {
 			);
 			const courses: Course[] = (await lastValueFrom(res)).data;
 			await this.studentService.updateStudentCourses(courses);
-			return { courses: await this.studentService.getStudentCourses(stdId) };
+			return { courses: (await this.studentService.getStudentCourses(stdId)) || [] };
 		}
 	}
 
