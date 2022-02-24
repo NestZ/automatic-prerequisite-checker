@@ -1,0 +1,31 @@
+faculty_id,faculty_name_th,faculty_name_en,faculty_prefix_th,faculty_prefix_en,input_user,input_date,faculty_group_id
+01,มนุษยศาสตร์,Humanities,คณะ,Faculty,,,01
+02,ศึกษาศาสตร์,Education,คณะ,Faculty,,,01
+03,วิจิตรศิลป์,Fine Arts,คณะ,Faculty,,,01
+04,สังคมศาสตร์,Social Sciences,คณะ,Faculty,,,01
+05,วิทยาศาสตร์,Science,คณะ,Faculty,,,03
+06,วิศวกรรมศาสตร์,Engineering,คณะ,Faculty,,,03
+07,แพทยศาสตร์,Medicine,คณะ,Faculty,,,02
+08,เกษตรศาสตร์,Agriculture,คณะ,Faculty,,,03
+09,ทันตแพทยศาสตร์,Dentistry,คณะ,Faculty,,,02
+10,เภสัชศาสตร์,Pharmacy,คณะ,Faculty,,,02
+11,เทคนิคการแพทย์,Associated Medical Sciences,คณะ,Faculty,,,02
+12,พยาบาลศาสตร์,Nursing,คณะ,Faculty,,,02
+13,อุตสาหกรรมเกษตร,Agro-Industry,คณะ,Faculty,,,03
+14,สัตวแพทยศาสตร์,Veterinary Medicine,คณะ,Faculty,,,02
+15,บริหารธุรกิจ,Business Administration,คณะ,Faculty,,,01
+16,เศรษฐศาสตร์,Economics,คณะ,Faculty,,,01
+17,สถาปัตยกรรมศาสตร์,Architecture,คณะ,Faculty,,,03
+18,การสื่อสารมวลชน,Mass Communication,คณะ,Faculty,,,01
+19,รัฐศาสตร์และรัฐประศาสนศาสตร์,Political Science and Public Administration,คณะ,Faculty,,,01
+20,นิติศาสตร์,Law,คณะ,Faculty,,,01
+21,ศิลปะ สื่อ และเทคโนโลยี,"Arts, Media and Technology",วิทยาลัย,College,,,03
+22,สาธารณสุขศาสตร์,Public Health,คณะ,Faculty,001,7/31/2017,02
+23,การศึกษาและการจัดการทางทะเล,Maritime Studies and Management,วิทยาลัย,College,001,7/31/2017,03
+24,นานาชาตินวัตกรรมดิจิทัล,International College of Digital Innovation,วิทยาลัย,College,001,7/31/2017,03
+25,นโยบายสาธารณะ,Public Policy,สถาบัน,School,009,4/5/2018,01
+26,วิศวกรรมชีวการแพทย์,Biomedical Engineering,สถาบัน,Institute,009,4/5/2018,03
+27,วิจัยวิทยาศาสตร์สุขภาพ,Research Institute for Health Sciences,สถาบัน,Institute,009,11/5/2020,02
+95,การศึกษาตลอดชีวิต,Lifelong Education,วิทยาลัย,School,009,11/25/2020,01
+96,นานาชาติ,International College,วิทยาลัย,College,030,12/16/2016,01
+99,บัณฑิตวิทยาลัย,Graduate School,วิทยาลัย,School,,,01
