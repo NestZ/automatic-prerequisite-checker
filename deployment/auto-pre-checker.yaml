@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auto-prerequisite-checker
+spec:
+  selector:
+    matchLabels:
+      run: auto-prerequisite-checker
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: auto-prerequisite-checker
+    spec:
+      containers:
+      - name: auto-prerequisite-checker
+        image: 'registry.gitlab.com/nestz671/auto-prerequisite-checker-container-registries:latest'
+        env:
+        - name: REDIS_HOST
+          valueFrom:
+            secretKeyRef:
+              name: pre-checker-secret
+              key: redis-host
+        - name: REDIS_PORT
+          valueFrom:
+            secretKeyRef:
+              name: pre-checker-secret
+              key: redis-port
+        - name: ACADEMIC_YEAR
+          valueFrom:
+            secretKeyRef:
+              name: pre-checker-secret
+              key: academic-year
+        - name: REG_API_GET_STUDENTS_PATH
+          valueFrom:
+            secretKeyRef:
+              name: pre-checker-secret
+              key: reg-api-get-students-path
+        - name: REG_API_GET_STUDENT_COURSES_PATH
+          valueFrom:
+            secretKeyRef:
+              name: pre-checker-secret
+              key: reg-api-get-student-courses-path
+        - name: REG_API_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: pre-checker-secret
+              key: reg-api-username
+        - name: REG_API_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pre-checker-secret
+              key: reg-api-password
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: auto-prerequisite-checker
+  labels:
+    run: auto-prerequisite-checker
+spec:
+  ports:
+  - port: 3000
+    nodePort: 30000
+    protocol: TCP
+  selector:
+    run: auto-prerequisite-checker
+  type: LoadBalancer
