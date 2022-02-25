@@ -28,33 +28,33 @@ export default class EqualAst {
 	}
 
 	public static hashCourseNum(obj: CourseNum): string {
-		let ret = obj.getCourseNum();
-		if(obj.getIsConcurrent()) ret = 'con' + ret;
+		let ret = 'cid' + obj.getCourseNum();
+		if(obj.getIsConcurrent()) ret = 'con-' + ret;
 		return ret;
 	}
 
 	public static hashFacGroup(obj: FacGroup): string {
-		return obj.getFacultyGroup();
+		return 'group' + obj.getFacultyGroup();
 	}
 
 	public static hashFaculty(obj: Faculty): string {
-		let ret = obj.getFacultyId();
+		let ret = 'fac' + obj.getFacultyId();
 		if(obj.getDep() instanceof Major) ret += EqualAst.hashMajor(obj.getDep() as Major);
 		else if(obj.getDep() instanceof SubMajor) ret += EqualAst.hashSubMajor(obj.getDep() as SubMajor);
 		return ret;
 	}
 
 	public static hashMajor(obj: Major): string {
-		return obj.getDepId();
+		return 'major' + obj.getDepId();
 	}
 
 	public static hashSubMajor(obj: SubMajor): string {
-		return obj.getDepId();
+		return 'subMajor' + obj.getDepId();
 	}
 
 	public static hashYear(obj: Year): string {
-		let ret = String(obj.getYear());
-		if(obj.getIsAtLeast()) ret = 'at-least' + ret;
+		let ret = 'year' + String(obj.getYear());
+		if(obj.getIsAtLeast()) ret = 'at-least-' + ret;
 		return ret;
 	}
 
