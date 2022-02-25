@@ -58,7 +58,7 @@ export class RegConditionRegParser extends Parser {
 	];
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
-		undefined, "'('", "')'", "'not'", "'none'", "'fac'", "'ma'", "'lev'", 
+		undefined, "'('", "')'", "'not'", "'none'", "'fac'", "'ma'", "'sub'", 
 		"'con'", "'consent'", undefined, undefined, undefined, undefined, "'and'", 
 		"'or'", undefined, "'='",
 	];
@@ -180,7 +180,7 @@ export class RegConditionRegParser extends Parser {
 				this.state = 21;
 				this.match(RegConditionRegParser.T__2);
 				this.state = 22;
-				this.expr(1);
+				this.expr(3);
 				}
 				break;
 			default:
@@ -205,13 +205,13 @@ export class RegConditionRegParser extends Parser {
 						_localctx = new AndContext(new ExprContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, RegConditionRegParser.RULE_expr);
 						this.state = 25;
-						if (!(this.precpred(this._ctx, 3))) {
-							throw this.createFailedPredicateException("this.precpred(this._ctx, 3)");
+						if (!(this.precpred(this._ctx, 2))) {
+							throw this.createFailedPredicateException("this.precpred(this._ctx, 2)");
 						}
 						this.state = 26;
 						this.match(RegConditionRegParser.AND);
 						this.state = 27;
-						this.expr(4);
+						this.expr(3);
 						}
 						break;
 
@@ -220,13 +220,13 @@ export class RegConditionRegParser extends Parser {
 						_localctx = new OrContext(new ExprContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, RegConditionRegParser.RULE_expr);
 						this.state = 28;
-						if (!(this.precpred(this._ctx, 2))) {
-							throw this.createFailedPredicateException("this.precpred(this._ctx, 2)");
+						if (!(this.precpred(this._ctx, 1))) {
+							throw this.createFailedPredicateException("this.precpred(this._ctx, 1)");
 						}
 						this.state = 29;
 						this.match(RegConditionRegParser.OR);
 						this.state = 30;
-						this.expr(3);
+						this.expr(2);
 						}
 						break;
 					}
@@ -325,7 +325,7 @@ export class RegConditionRegParser extends Parser {
 				this.state = 48;
 				this.match(RegConditionRegParser.EQ);
 				this.state = 49;
-				this.match(RegConditionRegParser.LEVEL_NUM);
+				this.match(RegConditionRegParser.FIELD_NUM);
 				}
 				break;
 			default:
@@ -434,10 +434,10 @@ export class RegConditionRegParser extends Parser {
 	private expr_sempred(_localctx: ExprContext, predIndex: number): boolean {
 		switch (predIndex) {
 		case 0:
-			return this.precpred(this._ctx, 3);
+			return this.precpred(this._ctx, 2);
 
 		case 1:
-			return this.precpred(this._ctx, 2);
+			return this.precpred(this._ctx, 1);
 		}
 		return true;
 	}
@@ -456,16 +456,16 @@ export class RegConditionRegParser extends Parser {
 		"\x02\f;\x03\x02\x02\x02\x0E\x0F\x05\x04\x03\x02\x0F\x10\x07\x02\x02\x03" +
 		"\x10\x03\x03\x02\x02\x02\x11\x12\b\x03\x01\x02\x12\x13\x07\x03\x02\x02" +
 		"\x13\x14\x05\x04\x03\x02\x14\x15\x07\x04\x02\x02\x15\x1A\x03\x02\x02\x02" +
-		"\x16\x1A\x05\x06\x04\x02\x17\x18\x07\x05\x02\x02\x18\x1A\x05\x04\x03\x03" +
+		"\x16\x1A\x05\x06\x04\x02\x17\x18\x07\x05\x02\x02\x18\x1A\x05\x04\x03\x05" +
 		"\x19\x11\x03\x02\x02\x02\x19\x16\x03\x02\x02\x02\x19\x17\x03\x02\x02\x02" +
-		"\x1A#\x03\x02\x02\x02\x1B\x1C\f\x05\x02\x02\x1C\x1D\x07\x10\x02\x02\x1D" +
-		"\"\x05\x04\x03\x06\x1E\x1F\f\x04\x02\x02\x1F \x07\x11\x02\x02 \"\x05\x04" +
-		"\x03\x05!\x1B\x03\x02\x02\x02!\x1E\x03\x02\x02\x02\"%\x03\x02\x02\x02" +
+		"\x1A#\x03\x02\x02\x02\x1B\x1C\f\x04\x02\x02\x1C\x1D\x07\x10\x02\x02\x1D" +
+		"\"\x05\x04\x03\x05\x1E\x1F\f\x03\x02\x02\x1F \x07\x11\x02\x02 \"\x05\x04" +
+		"\x03\x04!\x1B\x03\x02\x02\x02!\x1E\x03\x02\x02\x02\"%\x03\x02\x02\x02" +
 		"#!\x03\x02\x02\x02#$\x03\x02\x02\x02$\x05\x03\x02\x02\x02%#\x03\x02\x02" +
 		"\x02&5\x07\x06\x02\x02\'5\x05\b\x05\x02(5\x07\r\x02\x02)5\x05\n\x06\x02" +
 		"*5\x05\f\x07\x02+,\x07\x07\x02\x02,-\x07\x13\x02\x02-5\x07\x0E\x02\x02" +
 		"./\x07\b\x02\x02/0\x07\x13\x02\x0205\x07\x0E\x02\x0212\x07\t\x02\x022" +
-		"3\x07\x13\x02\x0235\x07\x0F\x02\x024&\x03\x02\x02\x024\'\x03\x02\x02\x02" +
+		"3\x07\x13\x02\x0235\x07\x0E\x02\x024&\x03\x02\x02\x024\'\x03\x02\x02\x02" +
 		"4(\x03\x02\x02\x024)\x03\x02\x02\x024*\x03\x02\x02\x024+\x03\x02\x02\x02" +
 		"4.\x03\x02\x02\x0241\x03\x02\x02\x025\x07\x03\x02\x02\x0267\x07\n\x02" +
 		"\x0278\x07\r\x02\x028\t\x03\x02\x02\x029:\x07\f\x02\x02:\v\x03\x02\x02" +
@@ -582,6 +582,35 @@ export class AtomicExpressionContext extends ExprContext {
 		}
 	}
 }
+export class NotContext extends ExprContext {
+	public expr(): ExprContext {
+		return this.getRuleContext(0, ExprContext);
+	}
+	constructor(ctx: ExprContext) {
+		super(ctx.parent, ctx.invokingState);
+		this.copyFrom(ctx);
+	}
+	// @Override
+	public enterRule(listener: RegConditionRegListener): void {
+		if (listener.enterNot) {
+			listener.enterNot(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: RegConditionRegListener): void {
+		if (listener.exitNot) {
+			listener.exitNot(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: RegConditionRegVisitor<Result>): Result {
+		if (visitor.visitNot) {
+			return visitor.visitNot(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
 export class AndContext extends ExprContext {
 	public expr(): ExprContext[];
 	public expr(i: number): ExprContext;
@@ -654,35 +683,6 @@ export class OrContext extends ExprContext {
 		}
 	}
 }
-export class NotContext extends ExprContext {
-	public expr(): ExprContext {
-		return this.getRuleContext(0, ExprContext);
-	}
-	constructor(ctx: ExprContext) {
-		super(ctx.parent, ctx.invokingState);
-		this.copyFrom(ctx);
-	}
-	// @Override
-	public enterRule(listener: RegConditionRegListener): void {
-		if (listener.enterNot) {
-			listener.enterNot(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: RegConditionRegListener): void {
-		if (listener.exitNot) {
-			listener.exitNot(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: RegConditionRegVisitor<Result>): Result {
-		if (visitor.visitNot) {
-			return visitor.visitNot(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
 
 
 export class AtomicContext extends ParserRuleContext {
@@ -698,7 +698,6 @@ export class AtomicContext extends ParserRuleContext {
 	}
 	public EQ(): TerminalNode | undefined { return this.tryGetToken(RegConditionRegParser.EQ, 0); }
 	public FIELD_NUM(): TerminalNode | undefined { return this.tryGetToken(RegConditionRegParser.FIELD_NUM, 0); }
-	public LEVEL_NUM(): TerminalNode | undefined { return this.tryGetToken(RegConditionRegParser.LEVEL_NUM, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}

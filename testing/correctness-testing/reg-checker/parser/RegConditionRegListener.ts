@@ -5,9 +5,9 @@ import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
 import { ExpressionContext } from "./RegConditionRegParser";
 import { AtomicExpressionContext } from "./RegConditionRegParser";
+import { NotContext } from "./RegConditionRegParser";
 import { AndContext } from "./RegConditionRegParser";
 import { OrContext } from "./RegConditionRegParser";
-import { NotContext } from "./RegConditionRegParser";
 import { ConditionContext } from "./RegConditionRegParser";
 import { ExprContext } from "./RegConditionRegParser";
 import { AtomicContext } from "./RegConditionRegParser";
@@ -48,6 +48,19 @@ export interface RegConditionRegListener extends ParseTreeListener {
 	exitAtomicExpression?: (ctx: AtomicExpressionContext) => void;
 
 	/**
+	 * Enter a parse tree produced by the `Not`
+	 * labeled alternative in `RegConditionRegParser.expr`.
+	 * @param ctx the parse tree
+	 */
+	enterNot?: (ctx: NotContext) => void;
+	/**
+	 * Exit a parse tree produced by the `Not`
+	 * labeled alternative in `RegConditionRegParser.expr`.
+	 * @param ctx the parse tree
+	 */
+	exitNot?: (ctx: NotContext) => void;
+
+	/**
 	 * Enter a parse tree produced by the `And`
 	 * labeled alternative in `RegConditionRegParser.expr`.
 	 * @param ctx the parse tree
@@ -72,19 +85,6 @@ export interface RegConditionRegListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitOr?: (ctx: OrContext) => void;
-
-	/**
-	 * Enter a parse tree produced by the `Not`
-	 * labeled alternative in `RegConditionRegParser.expr`.
-	 * @param ctx the parse tree
-	 */
-	enterNot?: (ctx: NotContext) => void;
-	/**
-	 * Exit a parse tree produced by the `Not`
-	 * labeled alternative in `RegConditionRegParser.expr`.
-	 * @param ctx the parse tree
-	 */
-	exitNot?: (ctx: NotContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `RegConditionRegParser.condition`.

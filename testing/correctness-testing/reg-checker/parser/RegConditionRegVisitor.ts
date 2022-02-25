@@ -5,9 +5,9 @@ import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
 import { ExpressionContext } from "./RegConditionRegParser";
 import { AtomicExpressionContext } from "./RegConditionRegParser";
+import { NotContext } from "./RegConditionRegParser";
 import { AndContext } from "./RegConditionRegParser";
 import { OrContext } from "./RegConditionRegParser";
-import { NotContext } from "./RegConditionRegParser";
 import { ConditionContext } from "./RegConditionRegParser";
 import { ExprContext } from "./RegConditionRegParser";
 import { AtomicContext } from "./RegConditionRegParser";
@@ -41,6 +41,14 @@ export interface RegConditionRegVisitor<Result> extends ParseTreeVisitor<Result>
 	visitAtomicExpression?: (ctx: AtomicExpressionContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by the `Not`
+	 * labeled alternative in `RegConditionRegParser.expr`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitNot?: (ctx: NotContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by the `And`
 	 * labeled alternative in `RegConditionRegParser.expr`.
 	 * @param ctx the parse tree
@@ -55,14 +63,6 @@ export interface RegConditionRegVisitor<Result> extends ParseTreeVisitor<Result>
 	 * @return the visitor result
 	 */
 	visitOr?: (ctx: OrContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `Not`
-	 * labeled alternative in `RegConditionRegParser.expr`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitNot?: (ctx: NotContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `RegConditionRegParser.condition`.

@@ -4,9 +4,9 @@ condition : expr EOF
 	;
 expr : '(' expr ')' #Expression
 	| atomic #AtomicExpression
+	| 'not' expr #Not
 	| expr AND expr #And
 	| expr OR expr #Or
-	| 'not' expr #Not
 	;
 atomic : 'none'
 	| concurrence
@@ -16,6 +16,7 @@ atomic : 'none'
 	| consent
 	| 'fac' EQ FIELD_NUM
 	| 'ma' EQ FIELD_NUM
+	| 'sub' EQ FIELD_NUM
 	// | 'lev' EQ LEVEL_NUM // grad course only
 	// | req_student
 	// | req_fac_group
