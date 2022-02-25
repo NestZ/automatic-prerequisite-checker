@@ -55,7 +55,7 @@ export class StudentController {
 				auth: { username: process.env.REG_API_USERNAME, password: process.env.REG_API_PASSWORD },
 			}
 		);
-		let count: number = ((await lastValueFrom(res)).data as any as CourseCount).count;
+		const count: number = ((await lastValueFrom(res)).data as any as CourseCount).count;
 		this.logger.log('Saving ' + count + " student's course records.");
 		for (let i = 0;i < count;i += this.block) {
 			try{
@@ -129,6 +129,7 @@ export class StudentController {
 		return { student: await this.studentService.getStudentData(stdId) };
 	}
 
+	@Post('/clear')
 	async clearCache(): Promise<void> {
 		await this.studentService.clearCache();
 	}
