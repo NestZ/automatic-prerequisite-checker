@@ -2,6 +2,8 @@ import Atomic from "./Atomic";
 import PreChecker from "../ast.builder";
 import { Student } from "../data.type.decl";
 import { FacultyData } from "../data.type.decl";
+import Expression from "./Expression";
+import EqualAst from "../../main";
 
 export default class FacGroup extends Atomic {
 	private facultyGroup: string;
@@ -41,5 +43,12 @@ export default class FacGroup extends Atomic {
 		}
 		err.push(this.print());
 		return this.getIsNon() ? !res : res;
+	}
+
+	public evalTest(lst: Expression[], truth: Array<boolean>): boolean {
+		for(let i = 0;i < lst.length;i++) {
+			if(EqualAst.cmpNodes(lst[i], this)) return truth[i];
+		}
+		throw "can't find matching node";
 	}
 }

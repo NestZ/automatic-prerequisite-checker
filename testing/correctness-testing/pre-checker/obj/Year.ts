@@ -1,6 +1,8 @@
 import Atomic from './Atomic';
 import { Student } from '../data.type.decl';
 import PreChecker from '../ast.builder';
+import Expression from './Expression';
+import EqualAst from '../../main';
 
 export class Year extends Atomic {
 	private year: number;
@@ -55,5 +57,12 @@ export class Year extends Atomic {
 			err.push(errStr);
 		}
 		return res;
+	}
+
+	public evalTest(lst: Expression[], truth: Array<boolean>): boolean {
+		for(let i = 0;i < lst.length;i++) {
+			if(EqualAst.cmpNodes(lst[i], this)) return truth[i];
+		}
+		throw "can't find matching node";
 	}
 }

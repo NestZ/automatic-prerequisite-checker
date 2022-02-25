@@ -14,4 +14,6 @@ export default abstract class Expression {
 	}
 
 	public eval?(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean;
+
+	public evalTest?(lst: Expression[], truth: Array<boolean>): boolean;
 }

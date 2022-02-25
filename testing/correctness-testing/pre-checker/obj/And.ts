@@ -31,4 +31,12 @@ export default class And extends Expression {
 		if(res) err.splice(0, err.length);
 		return res;
 	}
+
+	public evalTest(lst: Expression[], truth: Array<boolean>): boolean {
+		const leftValid: boolean = this.left.evalTest(lst, truth);
+		const rightValid: boolean = this.right.evalTest(lst, truth);
+		let res: boolean = leftValid && rightValid;
+		res = this.getIsNon() ? !res : res;
+		return res;
+	}
 }

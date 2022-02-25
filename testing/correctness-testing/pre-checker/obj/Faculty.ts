@@ -3,6 +3,8 @@ import Major from './Major';
 import SubMajor from './SubMajor';
 import PreChecker from '../ast.builder';
 import { Student } from '../data.type.decl';
+import Expression from './Expression';
+import EqualAst from '../../main';
 
 export default class Faculty extends Atomic {
 	private facultyId: string;
@@ -49,5 +51,12 @@ export default class Faculty extends Atomic {
 		const res: boolean = this.getIsNon() ? !valid : valid;
 		if(!res) err.push(this.print());
 		return res;
+	}
+
+	public evalTest(lst: Expression[], truth: Array<boolean>): boolean {
+		for(let i = 0;i < lst.length;i++) {
+			if(EqualAst.cmpNodes(lst[i], this)) return truth[i];
+		}
+		throw "can't find matching node";
 	}
 }

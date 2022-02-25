@@ -14,127 +14,139 @@ import { Year } from "./pre-checker/obj/Year";
 import { CourseCondition } from "./pre-checker/data.type.decl";
 
 export default class EqualAst {
-	private myAst: CourseCondition = PreChecker.getAST();
-	private regAst: CourseCondition = RegPreChecker.getAST();
+	private static myAst: CourseCondition = PreChecker.getAST();
+	private static regAst: CourseCondition = RegPreChecker.getAST();
+	public static notEq: string[] = [];
+	public static dup: string[] = [];
 
-	public hashAtomic(obj: Atomic): string {
+	public static hashAtomic(obj: Atomic): string {
 		return obj.getName();
 	}
 
-	public hashConsentOf(obj: ConsentOf): string {
+	public static hashConsentOf(obj: ConsentOf): string {
 		return 'consent';
 	}
 
-	public hashCourseNum(obj: CourseNum): string {
+	public static hashCourseNum(obj: CourseNum): string {
 		let ret = obj.getCourseNum();
 		if(obj.getIsConcurrent()) ret = 'con' + ret;
 		return ret;
 	}
 
-	public hashFacGroup(obj: FacGroup): string {
+	public static hashFacGroup(obj: FacGroup): string {
 		return obj.getFacultyGroup();
 	}
 
-	public hashFaculty(obj: Faculty): string {
+	public static hashFaculty(obj: Faculty): string {
 		let ret = obj.getFacultyId();
-		if(obj.getDep() instanceof Major) ret += this.hashMajor(obj.getDep() as Major);
-		else if(obj.getDep() instanceof SubMajor) ret += this.hashSubMajor(obj.getDep() as SubMajor);
+		if(obj.getDep() instanceof Major) ret += EqualAst.hashMajor(obj.getDep() as Major);
+		else if(obj.getDep() instanceof SubMajor) ret += EqualAst.hashSubMajor(obj.getDep() as SubMajor);
 		return ret;
 	}
 
-	public hashMajor(obj: Major): string {
+	public static hashMajor(obj: Major): string {
 		return obj.getDepId();
 	}
 
-	public hashSubMajor(obj: SubMajor): string {
+	public static hashSubMajor(obj: SubMajor): string {
 		return obj.getDepId();
 	}
 
-	public hashYear(obj: Year): string {
+	public static hashYear(obj: Year): string {
 		let ret = String(obj.getYear());
 		if(obj.getIsAtLeast()) ret = 'at-least' + ret;
 		return ret;
 	}
 
-	public hash(obj: Expression): string {
-		if(obj instanceof ConsentOf) return this.hashConsentOf(obj);
-		else if(obj instanceof CourseNum) return this.hashCourseNum(obj);
-		else if(obj instanceof FacGroup) return this.hashFacGroup(obj);
-		else if(obj instanceof Faculty) return this.hashFaculty(obj);
-		else if(obj instanceof Major) return this.hashMajor(obj);
-		else if(obj instanceof SubMajor) return this.hashSubMajor(obj);
-		else if(obj instanceof Year) return this.hashYear(obj);
-		else if(obj instanceof Atomic) return this.hashAtomic(obj);
+	public static hash(obj: Expression): string {
+		if(obj instanceof ConsentOf) return EqualAst.hashConsentOf(obj);
+		else if(obj instanceof CourseNum) return EqualAst.hashCourseNum(obj);
+		else if(obj instanceof FacGroup) return EqualAst.hashFacGroup(obj);
+		else if(obj instanceof Faculty) return EqualAst.hashFaculty(obj);
+		else if(obj instanceof Major) return EqualAst.hashMajor(obj);
+		else if(obj instanceof SubMajor) return EqualAst.hashSubMajor(obj);
+		else if(obj instanceof Year) return EqualAst.hashYear(obj);
+		else if(obj instanceof Atomic) return EqualAst.hashAtomic(obj);
 	}
 
-	public getNodesRecur(tree: Expression, expr: Expression[]): void {
+	public static getNodesRecur(tree: Expression, expr: Expression[]): void {
 		if(tree instanceof And || tree instanceof Or) {
-			this.getNodesRecur(tree.getLeftExpr(), expr);
-			this.getNodesRecur(tree.getRightExpr(), expr);
+			EqualAst.getNodesRecur(tree.getLeftExpr(), expr);
+			EqualAst.getNodesRecur(tree.getRightExpr(), expr);
 		}
 		else expr.push(tree);
 	}
 
-	public getNodes(tree: Expression): Expression[] {
+	public static getNodes(tree: Expression): Expression[] {
 		const expr: Expression[] = [];
-		this.getNodesRecur(tree, expr);
+		EqualAst.getNodesRecur(tree, expr);
 		return expr;
 	}
 	
-	public sortNodes(nodes: Expression[]): Expression[] {
+	public static sortNodes(nodes: Expression[]): Expression[] {
 		return nodes.sort((fst: Expression, snd: Expression) => {
-			const fstHash = this.hash(fst);
-			const sndHash = this.hash(snd);
+			const fstHash = EqualAst.hash(fst);
+			const sndHash = EqualAst.hash(snd);
 			return fstHash.localeCompare(sndHash);
 		});
 	}
 
-	public cmpNodes(fst: Expression, snd: Expression): boolean {
-		return this.hash(fst) === this.hash(snd);
+	public static cmpNodes(fst: Expression, snd: Expression): boolean {
+		return EqualAst.hash(fst) === EqualAst.hash(snd);
 	}
 
-	public cmpTruthTable(fst: Expression[], snd: Expression[], fstTree: Expression, sndTree: Expression): boolean {
-		// create two array to store truth value
-		// iterate through all possibility
-		// check if truth value equal
+	public static cmpTruthTable(lst: Expression[], fstTree: Expression, sndTree: Expression): boolean {
+		const len: number = lst.length;
+		const truth: Array<boolean> = new Array<boolean>(len);
+		for(let i = 0;i < (1 << len);i++) {
+			for(let j = 0;j < len;j++) {
+				if((1 << j) & i) truth[j] = true;
+				else truth[j] = false;
+			}
+			if(fstTree.evalTest(lst, truth) !== sndTree.evalTest(lst, truth)) return false;
+		}
 		return true;
 	}
 
-	public cnt = 0;
-
-	public equalsTree(fst: Expression, snd: Expression): boolean {
-		// get all nodes of two ast
-		let fstNodes = this.getNodes(fst);
-		let sndNodes = this.getNodes(snd);
-		// sort node
-		fstNodes = this.sortNodes(fstNodes);
-		sndNodes = this.sortNodes(sndNodes);
-		// compare each node
+	public static equalsTree(fst: Expression, snd: Expression, courseId: string): boolean {
+		let fstNodes: Expression[] = EqualAst.getNodes(fst);
+		let sndNodes: Expression[] = EqualAst.getNodes(snd);
+		fstNodes = EqualAst.sortNodes(fstNodes);
+		sndNodes = EqualAst.sortNodes(sndNodes);
 		if(fstNodes.length !== sndNodes.length) return false;
 		for(let i = 0;i < fstNodes.length;i++) {
-			if(!this.cmpNodes(fstNodes[i], sndNodes[i])) return false;
+			if(!EqualAst.cmpNodes(fstNodes[i], sndNodes[i])) return false;
 		}
+		let dup: boolean = false;
 		for(let i = 0;i < fstNodes.length;i++){
 			for(let j = i + 1;j < fstNodes.length;j++){
-				if(this.cmpNodes(fstNodes[i], fstNodes[j])) this.cnt++;
+				if(EqualAst.cmpNodes(fstNodes[i], fstNodes[j])) dup = true;
 			}
 		}
-		// compare truth table
-		return this.cmpTruthTable(fstNodes, sndNodes, fst, snd);
-	}
-	
-	public equalityCheck() {
-		const err: string[] = [];
-		for(const key in this.myAst) {
-			const myCondition = this.myAst[key];
-			const regCondition = this.regAst[key];
-			if(!this.equalsTree(myCondition, regCondition)) err.push(key);
+		if(!dup) {
+			return EqualAst.cmpTruthTable(fstNodes, fst, snd);
 		}
-		console.log(err);
-		console.log(err.length);
-		console.log(this.cnt);
+		else {
+			EqualAst.dup.push(courseId);
+			return true;
+		}
+	}
+
+	//(100112 and third year standing) or (100112 and second year standing and consent of the department and for education students in early childhood education-special education major)
+	//(3rd and 100112) or (100112 and (fac = 02 and ma = 27)) and consent
+	
+	public static equalityCheck() {
+		const err: string[] = [];
+		for(const key in EqualAst.myAst) {
+			const myCondition = EqualAst.myAst[key];
+			const regCondition = EqualAst.regAst[key];
+			if(!EqualAst.equalsTree(myCondition, regCondition, key)) EqualAst.notEq.push(key);
+		}
 	}
 }
 
-const eq = new EqualAst();
-eq.equalityCheck();
+EqualAst.equalityCheck();
+console.log(EqualAst.notEq);
+console.log(EqualAst.dup);
+console.log('number of condition that not match : ' + String(EqualAst.notEq.length));
+console.log('number of condition that have duplicate node : ' + String(EqualAst.dup.length))
