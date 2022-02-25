@@ -1,5 +1,6 @@
 import Atomic from './Atomic';
-import { Student } from '../../../auto-prerequisite-checker/src/student/data.type.decl';
+import { Student } from '../data.type.decl';
+import PreChecker from '../ast.builder';
 
 export class Year extends Atomic {
 	private year: number;
@@ -11,22 +12,48 @@ export class Year extends Atomic {
 		this.isAtLeast = isAtLeast;
 	}
 
-	getYear(): number {
+	public getIsAtLeast(): boolean {
+		return this.isAtLeast;
+	}
+
+	public getYear(): number {
 		return this.year;
 	}
 
-	print(): string {
+	public getYearName(): string {
+		switch(this.year) {
+			case 1: {
+				return 'first';
+			} case 2: {
+				return 'second';
+			} case 3: {
+				return 'third';
+			} case 4: {
+				return 'fourth';
+			} case 5: {
+				return 'fifth';
+			} default: {
+				return 'sixth';
+			}
+		}
+	}
+
+	public print(): string {
 		let str = '';
 		if(this.isAtLeast) str += 'at least ';
-		str += this.year + ' year standing';
+		str += this.getYearName() + ' year standing';
 		return str;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		const stdYear: number = parseInt(std.year);
-		const stdYearStanding: number = 2564 - stdYear + 1;
+		const stdYearStanding: number = PreChecker.getYear() - stdYear + 1;
 		const reqYear: number = this.year;
-		if(this.isAtLeast) return stdYear <= reqYear;
-		else return stdYear === reqYear;
+		const res: boolean = stdYearStanding >= reqYear;
+		if(!res) {
+			const errStr = 'requires ' + this.print();
+			err.push(errStr);
+		}
+		return res;
 	}
 }

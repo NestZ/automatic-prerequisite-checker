@@ -1,17 +1,19 @@
-import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
+import Atomic from "./Atomic";
+import { Student } from "../data.type.decl";
 
-export default class Major {
+export default class Major extends Atomic {
 	private majorId: string;
 
 	constructor(majorId: string) {
+		super();
 		this.majorId = majorId;
 	}
 
-	getMajor(): string {
+	public getDepId(): string {
 		return this.majorId;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		return std.majorId === this.majorId;
 	}
 }

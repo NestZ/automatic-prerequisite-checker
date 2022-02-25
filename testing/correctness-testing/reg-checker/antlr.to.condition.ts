@@ -30,8 +30,12 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 	visitAnd(ctx: AndContext): Expression {
 		const left: Expression = super.visit(ctx.expr(0));
 		const right: Expression = super.visit(ctx.expr(1));
-		if(left instanceof Faculty && right instanceof Major) { // sub major ?
-			return new Faculty((left as Faculty).getFaculty(), (right as Major)); // sub major ?
+		if(left instanceof Faculty && (right instanceof Major || right instanceof SubMajor)) {
+			if(right instanceof Major) {
+				return new Faculty((left as Faculty).getFacultyId(), right as Major);
+			} else if(right instanceof SubMajor) {
+				return new Faculty((left as Faculty).getFacultyId(), right as SubMajor);
+			}
 		}
 		return new And(left, right);
 	}
@@ -43,13 +47,13 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 	}
 
 	visitNot(ctx: NotContext): Expression {
-		const field = super.visit(ctx.expr()) as Faculty;
-		field.setIsNon();
-		return field;
+		const expr: Expression = super.visit(ctx.expr());
+		expr.setIsNon();
+		return expr;
 	}
 
 	visitCondition(ctx: ConditionContext): Expression {
-		return new Condition(super.visit(ctx.expr()));
+		return super.visit(ctx.expr());
 	}
 
 	visitAtomic(ctx: AtomicContext): Expression {
@@ -57,7 +61,8 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		if(!isNaN(Number(child))) return new CourseNum(child, false);
 		else if(child == 'none' || child == 'see bulletin') return new Atomic(child);
 		else if(child == 'fac') return new Faculty(ctx.FIELD_NUM().payload.text, null);
-		else if(child == 'ma') return new Major(ctx.FIELD_NUM().payload.text); // sub major ?
+		else if(child == 'ma') return new Major(ctx.FIELD_NUM().payload.text);
+		else if(child == 'sub') return new SubMajor(ctx.FIELD_NUM().payload.text);
 		else return super.visit(ctx.getChild(0));
 	}
 
@@ -66,7 +71,32 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 	}
 
 	visitReq_year(ctx: Req_yearContext): Expression {
-		return new Year(ctx.YEAR().payload.text, false);
+		const yearStr: string = ctx.YEAR().payload.text;
+		let year: number;
+		switch(yearStr) {
+			case '1st': {
+				year = 1;
+				break;
+			} case '2nd': {
+				year = 2;
+				break;
+			} case '3rd': {
+				year = 3;
+				break;
+			} case '4th': {
+				year = 4;
+				break;
+			} case '5th': {
+				year = 5;
+				break;
+			} case '6th': {
+				year = 6;
+				break;
+			} default: {
+				throw yearStr + ' is invalid year';
+			}
+		}
+		return new Year(year, false);
 	}
 
 	visitConsent(ctx: ConsentContext): Expression {

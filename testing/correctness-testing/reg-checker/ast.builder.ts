@@ -18,14 +18,14 @@ type CourseCondition = {
 	[courseNum: string]: Expression
 };
 
-export default class PreChecker {
+export default class RegPreChecker {
 	static getAST(): CourseCondition {
-		const csv: Course[] = load('../tbl-bulletin-corres.csv');
+		const csv: Course[] = load('./bulletin-corres.csv');
 
 		let astLst: CourseCondition = <CourseCondition>{};
 
 		csv.forEach((course: Course, i: number) => {
-			let inputStream: CodePointCharStream = CharStreams.fromString(course['pre_en']);
+			let inputStream: CodePointCharStream = CharStreams.fromString(course['pre_check']);
 			let lexer: RegConditionRegLexer = new RegConditionRegLexer(inputStream);
 			let tokenStream: CommonTokenStream = new CommonTokenStream(lexer);
 			let parser: RegConditionRegParser = new RegConditionRegParser(tokenStream);

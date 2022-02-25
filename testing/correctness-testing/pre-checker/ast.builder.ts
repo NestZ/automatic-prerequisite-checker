@@ -1,5 +1,6 @@
 import AntlrToCondition from './antlr.to.condition';
 import Condition from './obj/Condition';
+import Expression from './obj/Expression';
 import { CharStreams, CodePointCharStream, CommonTokenStream } from 'antlr4ts';
 import { RegConditionLexer } from './parser/RegConditionLexer';
 import { ConditionContext, RegConditionParser } from './parser/RegConditionParser';
@@ -12,6 +13,7 @@ export default class PreChecker {
 	private static subMajor: SubMajorData[] = null;
 	private static facGroup: FacGroupData[] = null;
 	private static scienceBased: FacultyData[] = null;
+	private static academicYear: number;
 
 	public static getFaculty(): FacultyData[] {
 		if(PreChecker.faculty === null) {
@@ -64,6 +66,16 @@ export default class PreChecker {
 		throw "can't find " + faculty + ' faculty';
 	}
 
+	public static facultyName(facultyId: string): string {
+		const facLst: FacultyData[] = PreChecker.getFaculty();
+		for(const fac of facLst) {
+			if(fac.facId === facultyId) {
+				return fac.facName;
+			}
+		}
+		throw "can't find faculty with id " + facultyId;
+	}
+
 	public static majorId(facultyId: string, major: string): string {
 		const facLst: MajorData[] = PreChecker.getMajor().filter(
 			(fac: MajorData) => {
@@ -76,6 +88,20 @@ export default class PreChecker {
 			}
 		}
 		throw "can't find " + major + ' major';
+	}
+
+	public static majorName(facultyId: string, majorId: string): string {
+		const facLst: MajorData[] = PreChecker.getMajor().filter(
+			(fac: MajorData) => {
+				return fac.facId === facultyId;
+			}
+		);
+		for(const fac of facLst) {
+			if(fac.majorId === majorId && fac.facId === facultyId) {
+				return fac.majorName;
+			}
+		}
+		throw "can't find major with id " + majorId;
 	}
 
 	public static subMajorId(facultyId: string, subMajor: string): string {
@@ -92,7 +118,21 @@ export default class PreChecker {
 		throw "can't find " + subMajor + ' sub-major';
 	}
 
-	public static facGroupId(facGroup: string) {
+	public static subMajorName(facultyId: string, subMajorId: string): string {
+		const facLst: SubMajorData[] = PreChecker.getSubMajor().filter(
+			(fac: SubMajorData) => {
+				return fac.facId === facultyId;
+			}
+		);
+		for(const fac of facLst) {
+			if(fac.facId === facultyId && fac.subMajorId === subMajorId) {
+				return fac.subMajorName;
+			}
+		}
+		throw "can't find sub-major with id " + subMajorId;
+	}
+
+	public static facGroupId(facGroup: string): string {
 		const facGroupLst: FacGroupData[] = PreChecker.getFacGroup();
 		for(const fg of facGroupLst) {
 			if(fg.facGroupName.toLowerCase() === facGroup) {
@@ -102,8 +142,26 @@ export default class PreChecker {
 		throw "can't find " + facGroup + ' faculty group';
 	}
 
+	public static facGroupName(facGroupId: string): string {
+		const facGroupLst: FacGroupData[] = PreChecker.getFacGroup();
+		for(const fg of facGroupLst) {
+			if(fg.facGroupId === facGroupId) {
+				return fg.facGroupName;
+			}
+		}
+		throw "can't find faculty group with id " + facGroupId;
+	}
+
+	public static setYear(year: number): void {
+		PreChecker.academicYear = year;
+	}
+
+	public static getYear(): number {
+		return PreChecker.academicYear;
+	}
+
 	public static getAST(): CourseCondition {
-		const csv: Course[] = load('../bulletin-beautifier/csv/reg-condition-corres-refactored.csv');
+		const csv: Course[] = load('../../bulletin-beautifier/csv/reg-condition-corres-refactored.csv');
 
 		let astLst: CourseCondition = <CourseCondition>{};
 
@@ -117,7 +175,7 @@ export default class PreChecker {
 			const antlrTree: ConditionContext = parser.condition();
 		
 			let antlrToCondition: AntlrToCondition;
-			let condition: Condition;
+			let condition: Expression;
 		
 			try {
 				antlrToCondition = new AntlrToCondition();
@@ -133,7 +191,7 @@ export default class PreChecker {
 			astLst[courseNum] = condition;
 
 			const conditionStr = astLst[courseNum].print();
-			console.log(conditionStr);
+			// console.log(conditionStr);
 
 		});
 

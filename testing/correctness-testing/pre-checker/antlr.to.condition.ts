@@ -1,6 +1,5 @@
 import Or from './obj/Or';
 import And from './obj/And';
-import Condition from './obj/Condition';
 import CourseNum from './obj/CourseNum';
 import Major from './obj/Major';
 import SubMajor from './obj/SubMajor';
@@ -20,8 +19,8 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		return null;
 	}
 
-	visitCondition(ctx: ConditionContext): Condition {
-		return new Condition(super.visit(ctx.expr()));
+	visitCondition(ctx: ConditionContext): Expression {
+		return super.visit(ctx.expr());
 	}
 
 	visitOr(ctx: OrContext): Or {

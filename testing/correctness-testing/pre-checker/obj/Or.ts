@@ -1,5 +1,5 @@
 import Expression from "./Expression";
-import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
+import { Student } from "../data.type.decl";
 
 export default class Or extends Expression {
 	private left: Expression;
@@ -11,11 +11,24 @@ export default class Or extends Expression {
 		this.right = right;
 	}
 
-	print(): string {
+	public getLeftExpr(): Expression {
+		return this.left;
+	}
+
+	public getRightExpr(): Expression {
+		return this.right;
+	}
+
+	public print(): string {
 		return this.left.print() + ' or ' + this.right.print();
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
-		return this.left.eval(std, passedCourses, cart, course) || this.right.eval(std, passedCourses, cart, course);
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+		const leftValid = this.left.eval(std, passedCourses, cart, course, err);
+		const rightValid = this.right.eval(std, passedCourses, cart, course, err);
+		let res: boolean = leftValid || rightValid;
+		res = this.getIsNon() ? !res : res;
+		if(res) err.splice(0, err.length);
+		return res;
 	}
 }

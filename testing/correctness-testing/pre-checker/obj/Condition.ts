@@ -1,5 +1,5 @@
 import Expression from "./Expression";
-import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
+import { Student } from "../data.type.decl";
 
 export default class Condition {
 	private expr: Expression;
@@ -8,15 +8,15 @@ export default class Condition {
 		this.expr = expr;
 	}
 
-	getExpression(): Expression {
+	public getExpression(): Expression {
 		return this.expr;
 	}
 
-	print(): string {
+	public print(): string {
 		return this.expr.print();
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
-		return this.expr.eval(std, passedCourses, cart, course);
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+		return this.expr.eval(std, passedCourses, cart, course, err);
 	}
 }

@@ -1,41 +1,45 @@
 import Atomic from "./Atomic";
-import PreChecker from "pre-checker/ast.builder";
-import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
+import PreChecker from "../ast.builder";
+import { Student } from "../data.type.decl";
 import { FacultyData } from "../data.type.decl";
 
 export default class FacGroup extends Atomic {
 	private facultyGroup: string;
-	private isNon: boolean;
 
 	constructor(facultyGroup: string) {
 		super();
 		this.facultyGroup = facultyGroup;
-		this.isNon = false;
 	}
 
-	setIsNon(): void {
-		this.isNon = true;
+	public getFacultyGroup(): string {
+		return this.facultyGroup;
 	}
 
-	print(): string {
+	public print(): string {
 		let str = '';
-		if(this.isNon) str += 'not for ';
+		let facGroupName = this.facultyGroup;
+		if(this.facultyGroup !== 'science based') {
+			facGroupName = PreChecker.facGroupName(this.facultyGroup);
+		}
+		if(this.getIsNon()) str += 'not for ';
 		else str += 'for ';
-		str += 'students in ' + this.facultyGroup + ' group';
+		str += 'students in ' + facGroupName + ' group';
 		return str;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		const faculty: FacultyData[] = PreChecker.getFaculty();
+		let res: boolean = false;
 		for(const fac of faculty) {
 			if(std.facId === fac.facId) {
 				if(this.facultyGroup === 'science based') {
-					if(fac.isScienceBased === '1') return true;
+					if(fac.isScienceBased === '1') res = true;
 				} else {
-					if(this.facultyGroup === fac.facGroup) return true;
+					if(this.facultyGroup === fac.facGroup) res = true;
 				}
 			}
 		}
-		return false;
+		err.push(this.print());
+		return this.getIsNon() ? !res : res;
 	}
 }

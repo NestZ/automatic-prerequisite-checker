@@ -1,5 +1,5 @@
 import Expression from "./Expression";
-import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
+import { Student } from "../data.type.decl";
 
 export default class Atomic extends Expression {
 	private name?: string;
@@ -9,11 +9,15 @@ export default class Atomic extends Expression {
 		this.name = name;
 	}
 
-	print(): string {
+	public getName(): string {
 		return this.name;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string): boolean {
+	public print(): string {
+		return this.name;
+	}
+
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		return true;
 	}
 }

@@ -1,9 +1,17 @@
-import { Student } from "../../../auto-prerequisite-checker/src/student/data.type.decl";
+import { Student } from "../data.type.decl";
 
 export default abstract class Expression {
-	print?(): string;
+	private isNon: boolean = false;
+	
+	public print?(): string;
 
-	setIsNon?(): void;
+	public setIsNon(): void {
+		this.isNon = true;
+	}
 
-	eval?(std: Student, passedCourses: string[], cart: string[], course: string): boolean;
+	public getIsNon(): boolean {
+		return this.isNon;
+	}
+
+	public eval?(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean;
 }
