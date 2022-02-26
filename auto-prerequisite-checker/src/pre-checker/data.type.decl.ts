@@ -13,6 +13,11 @@ export type CourseCondition = {
 	[courseNum: string]: Expression;
 };
 
+export type EvalReturn = {
+	valid: boolean;
+	notSatisfiedCondition: Expression;
+}
+
 export type FacultyData = {
 	facId: string,
 	facName: string,
@@ -46,5 +51,5 @@ export type RegistCheckBody = {
 export type RegistrationResult = {
 	courseId: string,
 	result: string,
-	errors: string[],
+	requiredConditions: string,
 }

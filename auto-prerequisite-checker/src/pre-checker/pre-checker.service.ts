@@ -2,7 +2,7 @@ import PreChecker from './ast.builder';
 import Expression from './obj/Expression';
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Student } from '../student/data.type.decl';
-import { CourseCondition, RegistrationResult } from './data.type.decl';
+import { CourseCondition, EvalReturn, RegistrationResult } from './data.type.decl';
 
 @Injectable()
 export class PreCheckerService implements OnModuleInit {
@@ -20,14 +20,12 @@ export class PreCheckerService implements OnModuleInit {
 		for(let course of cart) {
 			const condition: Expression = this.ast[course];
 			if(condition === null) console.log(course + 'is null');
-			let err = [];
-			const valid: boolean = condition.eval(std, passedCourses, cart, course, err);
+			const res: EvalReturn = condition.eval(std, passedCourses, cart, course);
+			const errStr: string = res.notSatisfiedCondition === null ? 'none' : res.notSatisfiedCondition.toString();
 			const result: RegistrationResult = {
 				courseId: course,
-				result: valid ? 'valid' : 'invalid',
-				errors: err.filter(function(elem, i, self) {
-					return i === self.indexOf(elem);
-				}),
+				result: res.valid ? 'valid' : 'invalid',
+				requiredConditions: errStr,
 			}
 			results.push(result);
 		}
