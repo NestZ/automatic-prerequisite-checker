@@ -1,23 +1,19 @@
 import Expression from "./Expression";
+import BinaryExpr from "./BinaryExpr";
 import { Student } from "../../student/data.type.decl";
 
-export default class Or extends Expression {
-	private left: Expression;
-	private right: Expression;
-
+export default class Or extends BinaryExpr {
 	constructor(left: Expression, right: Expression) {
-		super();
-		this.left = left;
-		this.right = right;
+		super(left, right);
 	}
 
 	public toString(): string {
-		return this.left.toString() + ' or ' + this.right.toString();
+		return this.getLeftExpr().toString() + ' or ' + this.getRightExpr().toString();
 	}
 
 	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
-		const leftValid = this.left.eval(std, passedCourses, cart, course, err);
-		const rightValid = this.right.eval(std, passedCourses, cart, course, err);
+		const leftValid = this.getLeftExpr().eval(std, passedCourses, cart, course, err);
+		const rightValid = this.getRightExpr().eval(std, passedCourses, cart, course, err);
 		const res: boolean = leftValid || rightValid;
 		if(res) err.splice(0, err.length);
 		return res;

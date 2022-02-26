@@ -1,8 +1,8 @@
-import Atomic from './Atomic';
-import { Student } from '../../student/data.type.decl';
 import PreChecker from '../ast.builder';
+import Expression from './Expression';
+import { Student } from '../../student/data.type.decl';
 
-export class Year extends Atomic {
+export default class Year extends Expression {
 	private year: number;
 	private isAtLeast: boolean;
 
@@ -12,7 +12,11 @@ export class Year extends Atomic {
 		this.isAtLeast = isAtLeast;
 	}
 
-	public getYear(): number {
+	public getIsAtLeast(): boolean {
+		return this.isAtLeast;
+	}
+
+	public getYearNumber(): number {
 		return this.year;
 	}
 

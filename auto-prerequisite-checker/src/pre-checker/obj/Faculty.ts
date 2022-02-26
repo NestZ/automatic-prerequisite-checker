@@ -1,33 +1,31 @@
-import Atomic from './Atomic';
 import Major from './Major';
 import SubMajor from './SubMajor';
 import PreChecker from '../ast.builder';
+import NegatableExpr from './NegatableExpr';
 import { Student } from '../../student/data.type.decl';
 
-export default class Faculty extends Atomic {
+export default class Faculty extends NegatableExpr {
 	private facultyId: string;
 	private dep: Major | SubMajor;
-	private isNon: boolean;
 
 	constructor(facultyId: string, dep: Major | SubMajor) {
 		super();
 		this.facultyId = facultyId
 		this.dep = dep;
-		this.isNon = false;
-	}
-
-	public setIsNon(): void {
-		this.isNon = true;
 	}
 
 	public getFacultyId(): string {
 		return this.facultyId;
 	}
 
+	public getDep(): Major | SubMajor {
+		return this.dep;
+	}
+
 	public toString(): string {
 		let str: string = '';
 		const facName = PreChecker.facultyName(this.facultyId);
-		if(this.isNon) str += 'not for ';
+		if(this.getIsNon()) str += 'not for ';
 		else str += 'for ';
 		str += facName + ' students';
 		if(this.dep !== null) {
@@ -48,7 +46,7 @@ export default class Faculty extends Atomic {
 			validDep = this.dep.eval(std, passedCourses, cart, course, err);
 		}
 		const valid: boolean = validFac && validDep;
-		const res: boolean = this.isNon ? !valid : valid;
+		const res: boolean = this.getIsNon() ? !valid : valid;
 		if(!res) err.push(this.toString());
 		return res;
 	}

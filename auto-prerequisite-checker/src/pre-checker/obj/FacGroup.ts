@@ -1,20 +1,18 @@
-import Atomic from "./Atomic";
 import PreChecker from "../ast.builder";
+import NegatableExpr from "./NegatableExpr";
 import { Student } from "../../student/data.type.decl";
 import { FacultyData } from "../data.type.decl";
 
-export default class FacGroup extends Atomic {
+export default class FacGroup extends NegatableExpr {
 	private facultyGroup: string;
-	private isNon: boolean;
 
 	constructor(facultyGroup: string) {
 		super();
 		this.facultyGroup = facultyGroup;
-		this.isNon = false;
 	}
 
-	public setIsNon(): void {
-		this.isNon = true;
+	public getFacGroup(): string {
+		return this.facultyGroup;
 	}
 
 	public toString(): string {
@@ -23,7 +21,7 @@ export default class FacGroup extends Atomic {
 		if(this.facultyGroup !== 'science based') {
 			facGroupName = PreChecker.facGroupName(this.facultyGroup);
 		}
-		if(this.isNon) str += 'not for ';
+		if(this.getIsNon()) str += 'not for ';
 		else str += 'for ';
 		str += 'students in ' + facGroupName + ' group';
 		return str;

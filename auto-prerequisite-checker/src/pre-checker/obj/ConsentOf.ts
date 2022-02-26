@@ -1,7 +1,7 @@
-import Atomic from './Atomic';
+import Expression from './Expression';
 import { Student } from '../../student/data.type.decl';
 
-export class ConsentOf extends Atomic {
+export default class ConsentOf extends Expression {
 	private consentOf: string;
 
 	constructor(consentOf: string) {

@@ -1,7 +1,7 @@
-import Atomic from "./Atomic";
+import Expression from "./Expression";
 import { Student } from "../../student/data.type.decl";
 
-export default class CourseNum extends Atomic {
+export default class CourseNum extends Expression {
 	private courseNum: string;
 	private isConcurrent: boolean;
 
@@ -9,6 +9,14 @@ export default class CourseNum extends Atomic {
 		super();
 		this.courseNum = courseNum;
 		this.isConcurrent = isConcurrent;
+	}
+
+	public getIsConcurrent(): boolean {
+		return this.isConcurrent;
+	}
+
+	public getCourseNum(): string {
+		return this.courseNum;
 	}
 
 	public toString(): string {

@@ -1,16 +1,9 @@
-import Expression from "./Expression";
 import { Student } from "../../student/data.type.decl";
+import Expression from "./Expression";
 
-export default class Atomic extends Expression {
-	private name?: string;
-
-	constructor(name?: string) {
-		super();
-		this.name = name;
-	}
-
+export default class None implements Expression {
 	public toString(): string {
-		return this.name;
+		return 'none';
 	}
 
 	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
