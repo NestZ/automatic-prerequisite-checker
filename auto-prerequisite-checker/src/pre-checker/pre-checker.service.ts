@@ -1,5 +1,5 @@
 import PreChecker from './ast.builder';
-import Condition from './obj/Condition';
+import Expression from './obj/Expression';
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Student } from '../student/data.type.decl';
 import { CourseCondition, RegistrationResult } from './data.type.decl';
@@ -18,7 +18,8 @@ export class PreCheckerService implements OnModuleInit {
 	async registCheck(std: Student, passedCourses: string[], cart: string[]): Promise<RegistrationResult[]> {
 		const results: RegistrationResult[] = [];
 		for(let course of cart) {
-			const condition: Condition = this.ast[course];
+			const condition: Expression = this.ast[course];
+			if(condition === null) console.log(course + 'is null');
 			let err = [];
 			const valid: boolean = condition.eval(std, passedCourses, cart, course, err);
 			const result: RegistrationResult = {

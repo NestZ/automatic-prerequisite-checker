@@ -4,13 +4,14 @@ import CourseNum from './obj/CourseNum';
 import Major from './obj/Major';
 import SubMajor from './obj/SubMajor';
 import Faculty from './obj/Faculty';
-import Atomic from './obj/Atomic';
 import FacGroup from './obj/FacGroup';
 import Expression from './obj/Expression';
 import PreChecker from './ast.builder';
+import None from './obj/None';
+import NegatableExpr from './obj/NegatableExpr';
+import Year from './obj/Year';
+import ConsentOf from './obj/ConsentOf';
 import { RegConditionVisitor } from './parser/RegConditionVisitor';
-import { ConsentOf } from './obj/ConsentOf';
-import { Year } from './obj/Year';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { AndContext, AtomicContext, AtomicExpressionContext, At_least_req_yearContext, ConcurrenceContext, ConditionContext, ConsentContext, ExprContext, ExpressionContext, OrContext, ReqFacultyAndMajorContext, ReqFacultyContext, ReqMajorContext, ReqSubMajorContext, Req_fac_groupContext, Req_majorContext, Req_studentContext, Req_yearContext } from './parser/RegConditionParser';
 
@@ -46,12 +47,12 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 	public visitAtomic(ctx: AtomicContext): Expression {
 		const child: string = ctx.getChild(0).payload.text;
 		if(!isNaN(Number(child))) return new CourseNum(child, false);
-		else if(child == 'none' || child == 'see bulletin') return new Atomic(child);
+		else if(child === 'none') return new None();
 		else return super.visit(ctx.getChild(0));
 	}
 
 	public visitReq_student(ctx: Req_studentContext): Expression {
-		const fac: Expression = super.visit(ctx.getChild(1));
+		const fac: NegatableExpr = super.visit(ctx.getChild(1)) as NegatableExpr;
 		if(ctx.getChild(0).payload.text !== 'for') {
 			fac.setIsNon();
 		}
@@ -135,7 +136,7 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 
 	public visitAt_least_req_year(ctx: At_least_req_yearContext): Year {
 		const year: Expression = super.visit(ctx.req_year());
-		return new Year((year as Year).getYear(), true);
+		return new Year((year as Year).getYearNumber(), true);
 	}
 
 	public visitConsent(ctx: ConsentContext): ConsentOf {
