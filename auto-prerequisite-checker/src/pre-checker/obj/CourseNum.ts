@@ -1,5 +1,6 @@
 import Expression from "./Expression";
 import { Student } from "../../student/data.type.decl";
+import { EvalReturn } from "../data.type.decl";
 
 export default class CourseNum extends Expression {
 	private courseNum: string;
@@ -24,17 +25,15 @@ export default class CourseNum extends Expression {
 		return this.courseNum;
 	}
 
-	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string): EvalReturn {
 		for(const passed of passedCourses) {
-			if(passed === this.courseNum) return true;
+			if(passed === this.courseNum) return { valid: true, notSatisfiedCondition: null };
 		}
 		if(this.isConcurrent) {
 			for(const cur of cart) {
-				if(cur === this.courseNum) return true;
+				if(cur === this.courseNum) return { valid: true, notSatisfiedCondition: null };
 			}
 		}
-		let errStr: string = 'requires ' + this.toString();
-		err.push(errStr);
-		return false;
+		return { valid: false, notSatisfiedCondition: this };
 	}
 }

@@ -1,6 +1,7 @@
 import PreChecker from '../ast.builder';
 import Expression from './Expression';
 import { Student } from '../../student/data.type.decl';
+import { EvalReturn } from '../data.type.decl';
 
 export default class Year extends Expression {
 	private year: number;
@@ -45,15 +46,12 @@ export default class Year extends Expression {
 		return str;
 	}
 
-	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string): EvalReturn {
 		const stdYear: number = parseInt(std.year);
 		const stdYearStanding: number = PreChecker.getYear() - stdYear + 1;
 		const reqYear: number = this.year;
-		let res: boolean = stdYearStanding >= reqYear;
-		if(!res) {
-			const errStr = 'requires ' + this.toString();
-			err.push(errStr);
-		}
-		return res;
+		const valid: boolean = stdYearStanding >= reqYear;
+		if(valid) return { valid, notSatisfiedCondition: null };
+		return { valid, notSatisfiedCondition: this };
 	}
 }

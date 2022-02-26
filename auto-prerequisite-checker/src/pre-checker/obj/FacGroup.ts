@@ -1,7 +1,7 @@
 import PreChecker from "../ast.builder";
 import NegatableExpr from "./NegatableExpr";
 import { Student } from "../../student/data.type.decl";
-import { FacultyData } from "../data.type.decl";
+import { EvalReturn, FacultyData } from "../data.type.decl";
 
 export default class FacGroup extends NegatableExpr {
 	private facultyGroup: string;
@@ -27,18 +27,17 @@ export default class FacGroup extends NegatableExpr {
 		return str;
 	}
 
-	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string): EvalReturn {
 		const faculty: FacultyData[] = PreChecker.getFaculty();
 		for(const fac of faculty) {
 			if(std.facId === fac.facId) {
 				if(this.facultyGroup === 'science based') {
-					if(fac.isScienceBased === '1') return true;
+					if(fac.isScienceBased === '1') return { valid: true, notSatisfiedCondition: null };
 				} else {
-					if(this.facultyGroup === fac.facGroup) return true;
+					if(this.facultyGroup === fac.facGroup) return { valid: true, notSatisfiedCondition: null };
 				}
 			}
 		}
-		err.push(this.toString());
-		return false;
+		return { valid: false, notSatisfiedCondition: this };
 	}
 }

@@ -1,5 +1,6 @@
 import Expression from './Expression';
 import { Student } from '../../student/data.type.decl';
+import { EvalReturn } from '../data.type.decl';
 
 export default class ConsentOf extends Expression {
 	private consentOf: string;
@@ -13,7 +14,7 @@ export default class ConsentOf extends Expression {
 		return 'consent of the ' + this.consentOf;
 	}
 
-	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
-		return true;
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string): EvalReturn {
+		return { valid: true, notSatisfiedCondition: null };
 	}
 }

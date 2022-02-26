@@ -3,6 +3,7 @@ import SubMajor from './SubMajor';
 import PreChecker from '../ast.builder';
 import NegatableExpr from './NegatableExpr';
 import { Student } from '../../student/data.type.decl';
+import { EvalReturn } from '../data.type.decl';
 
 export default class Faculty extends NegatableExpr {
 	private facultyId: string;
@@ -39,15 +40,15 @@ export default class Faculty extends NegatableExpr {
 		return str;
 	}
 
-	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string): EvalReturn {
 		let validFac: boolean = std.facId === this.facultyId;
 		let validDep: boolean = this.dep === null;
 		if(this.dep !== null) {
-			validDep = this.dep.eval(std, passedCourses, cart, course, err);
+			validDep = this.dep.eval(std, passedCourses, cart, course).valid;
 		}
 		const valid: boolean = validFac && validDep;
 		const res: boolean = this.getIsNon() ? !valid : valid;
-		if(!res) err.push(this.toString());
-		return res;
+		if(res) return { valid: true, notSatisfiedCondition: null };
+		return { valid: false, notSatisfiedCondition: this };
 	}
 }

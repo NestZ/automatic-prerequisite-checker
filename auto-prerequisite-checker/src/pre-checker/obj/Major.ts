@@ -1,5 +1,6 @@
 import Expression from "./Expression";
 import { Student } from "../../student/data.type.decl";
+import { EvalReturn } from "../data.type.decl";
 
 export default class Major extends Expression {
 	private majorId: string;
@@ -17,7 +18,9 @@ export default class Major extends Expression {
 		return '';
 	}
 
-	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
-		return std.majorId === this.majorId;
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string): EvalReturn {
+		const valid: boolean = std.majorId === this.majorId;
+		if(valid) return { valid, notSatisfiedCondition: null };
+		return { valid, notSatisfiedCondition: this };
 	}
 }

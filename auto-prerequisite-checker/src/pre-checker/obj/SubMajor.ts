@@ -1,5 +1,6 @@
 import Expression from "./Expression";
 import { Student } from "../../student/data.type.decl";
+import { EvalReturn } from "../data.type.decl";
 
 export default class SubMajor extends Expression {
 	private subMajorId: string;
@@ -17,8 +18,10 @@ export default class SubMajor extends Expression {
 		return '';
 	}
 
-	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string): EvalReturn {
 		//TODO: check sub-major
-		return std.majorId === this.subMajorId;
+		const valid =  std.majorId === this.subMajorId;
+		if(valid) return { valid, notSatisfiedCondition: null };
+		else return { valid, notSatisfiedCondition: this };
 	}
 }

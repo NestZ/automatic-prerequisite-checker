@@ -1,6 +1,7 @@
 import Expression from "./Expression";
 import BinaryExpr from "./BinaryExpr";
 import { Student } from "../../student/data.type.decl";
+import { EvalReturn } from "../data.type.decl";
 
 export default class Or extends BinaryExpr {
 	constructor(left: Expression, right: Expression) {
@@ -11,11 +12,14 @@ export default class Or extends BinaryExpr {
 		return this.getLeftExpr().toString() + ' or ' + this.getRightExpr().toString();
 	}
 
-	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
-		const leftValid = this.getLeftExpr().eval(std, passedCourses, cart, course, err);
-		const rightValid = this.getRightExpr().eval(std, passedCourses, cart, course, err);
-		const res: boolean = leftValid || rightValid;
-		if(res) err.splice(0, err.length);
-		return res;
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string): EvalReturn {
+		const left = this.getLeftExpr().eval(std, passedCourses, cart, course);
+		const right = this.getRightExpr().eval(std, passedCourses, cart, course);
+		const valid: boolean = left.valid || right.valid;
+		let notSatisfiedCondition: Expression = null;
+		if(!(left.valid) && !(right.valid)) {
+			notSatisfiedCondition = this;
+		}
+		return { valid, notSatisfiedCondition };
 	}
 }
