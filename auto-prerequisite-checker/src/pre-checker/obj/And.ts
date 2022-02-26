@@ -11,11 +11,11 @@ export default class And extends Expression {
 		this.right = right;
 	}
 
-	print(): string {
-		return this.left.print() + ' and ' + this.right.print();
+	public toString(): string {
+		return this.left.toString() + ' and ' + this.right.toString();
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		const leftValid: boolean = this.left.eval(std, passedCourses, cart, course, err);
 		const rightValid: boolean = this.right.eval(std, passedCourses, cart, course, err);
 		const res: boolean = leftValid && rightValid;

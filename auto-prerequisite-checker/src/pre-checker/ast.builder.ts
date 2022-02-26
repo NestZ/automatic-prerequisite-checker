@@ -1,5 +1,5 @@
 import AntlrToCondition from './antlr.to.condition';
-import Condition from './obj/Condition';
+import Expression from './obj/Expression';
 import { CharStreams, CodePointCharStream, CommonTokenStream } from 'antlr4ts';
 import { RegConditionLexer } from './parser/RegConditionLexer';
 import { ConditionContext, RegConditionParser } from './parser/RegConditionParser';
@@ -16,28 +16,32 @@ export default class PreChecker {
 
 	public static getFaculty(): FacultyData[] {
 		if(PreChecker.faculty === null) {
-			PreChecker.faculty = load('src/pre-checker/csv/faculty.csv');
+			PreChecker.faculty = load('./src/pre-checker/csv/faculty.csv');
+			// PreChecker.faculty = load('./faculty.csv');
 		}
 		return PreChecker.faculty;
 	}
 
 	public static getMajor(): MajorData[] {
 		if(PreChecker.major === null) {
-			PreChecker.major = load('src/pre-checker/csv/major.csv');
+			PreChecker.major = load('./src/pre-checker/csv/major.csv');
+			// PreChecker.major = load('./major.csv');
 		}
 		return PreChecker.major;
 	}
 
 	public static getSubMajor(): SubMajorData[] {
 		if(PreChecker.subMajor === null) {
-			PreChecker.subMajor = load('src/pre-checker/csv/sub_major.csv');
+			PreChecker.subMajor = load('./src/pre-checker/csv/sub_major.csv');
+			// PreChecker.subMajor = load('./sub_major.csv');
 		}
 		return PreChecker.subMajor;
 	}
 
 	public static getFacGroup(): FacGroupData[] {
 		if(PreChecker.facGroup === null) {
-			PreChecker.facGroup = load('src/pre-checker/csv/faculty_group.csv');
+			PreChecker.facGroup = load('./src/pre-checker/csv/faculty_group.csv');
+			// PreChecker.facGroup = load('./faculty_group.csv');
 		}
 		return PreChecker.facGroup;
 	}
@@ -160,7 +164,8 @@ export default class PreChecker {
 	}
 
 	public static getAST(): CourseCondition {
-		const csv: Course[] = load('src/pre-checker/csv/reg-condition-corres-refactored.csv');
+		const csv: Course[] = load('./src/pre-checker/csv/reg-condition-corres-refactored.csv');
+		// const csv: Course[] = load('./reg-condition-corres-refactored.csv');
 
 		let astLst: CourseCondition = <CourseCondition>{};
 
@@ -174,7 +179,7 @@ export default class PreChecker {
 			const antlrTree: ConditionContext = parser.condition();
 		
 			let antlrToCondition: AntlrToCondition;
-			let condition: Condition;
+			let condition: Expression;
 		
 			try {
 				antlrToCondition = new AntlrToCondition();
@@ -189,7 +194,7 @@ export default class PreChecker {
 			const courseNum = course.courseno;
 			astLst[courseNum] = condition;
 
-			const conditionStr = astLst[courseNum].print();
+			const conditionStr = astLst[courseNum].toString();
 			// console.log(conditionStr);
 
 		});

@@ -1,5 +1,4 @@
 import AntlrToCondition from './antlr.to.condition';
-import Condition from './obj/Condition';
 import Expression from './obj/Expression';
 import { CharStreams, CodePointCharStream, CommonTokenStream } from 'antlr4ts';
 import { RegConditionLexer } from './parser/RegConditionLexer';
@@ -13,7 +12,7 @@ export default class PreChecker {
 	private static subMajor: SubMajorData[] = null;
 	private static facGroup: FacGroupData[] = null;
 	private static scienceBased: FacultyData[] = null;
-	private static academicYear: number;
+	private static academicYear: number = 2564;
 
 	public static getFaculty(): FacultyData[] {
 		if(PreChecker.faculty === null) {

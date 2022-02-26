@@ -7,11 +7,11 @@ export default class SubMajor {
 		this.subMajorId = subMajorId;
 	}
 
-	getDepId(): string {
+	public getDepId(): string {
 		return this.subMajorId;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		//TODO: check sub-major
 		return std.majorId === this.subMajorId;
 	}

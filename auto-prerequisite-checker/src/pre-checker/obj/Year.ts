@@ -12,11 +12,11 @@ export class Year extends Atomic {
 		this.isAtLeast = isAtLeast;
 	}
 
-	getYear(): number {
+	public getYear(): number {
 		return this.year;
 	}
 
-	getYearName(): string {
+	public getYearName(): string {
 		switch(this.year) {
 			case 1: {
 				return 'first';
@@ -34,20 +34,20 @@ export class Year extends Atomic {
 		}
 	}
 
-	print(): string {
+	public toString(): string {
 		let str = '';
 		if(this.isAtLeast) str += 'at least ';
 		str += this.getYearName() + ' year standing';
 		return str;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		const stdYear: number = parseInt(std.year);
 		const stdYearStanding: number = PreChecker.getYear() - stdYear + 1;
 		const reqYear: number = this.year;
 		let res: boolean = stdYearStanding >= reqYear;
 		if(!res) {
-			const errStr = 'requires ' + this.print();
+			const errStr = 'requires ' + this.toString();
 			err.push(errStr);
 		}
 		return res;

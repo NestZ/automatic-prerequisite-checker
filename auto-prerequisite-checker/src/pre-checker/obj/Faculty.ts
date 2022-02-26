@@ -16,15 +16,15 @@ export default class Faculty extends Atomic {
 		this.isNon = false;
 	}
 
-	setIsNon(): void {
+	public setIsNon(): void {
 		this.isNon = true;
 	}
 
-	getFacultyId(): string {
+	public getFacultyId(): string {
 		return this.facultyId;
 	}
 
-	print(): string {
+	public toString(): string {
 		let str: string = '';
 		const facName = PreChecker.facultyName(this.facultyId);
 		if(this.isNon) str += 'not for ';
@@ -41,7 +41,7 @@ export default class Faculty extends Atomic {
 		return str;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		let validFac: boolean = std.facId === this.facultyId;
 		let validDep: boolean = this.dep === null;
 		if(this.dep !== null) {
@@ -49,7 +49,7 @@ export default class Faculty extends Atomic {
 		}
 		const valid: boolean = validFac && validDep;
 		const res: boolean = this.isNon ? !valid : valid;
-		if(!res) err.push(this.print());
+		if(!res) err.push(this.toString());
 		return res;
 	}
 }

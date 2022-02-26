@@ -13,13 +13,13 @@ export default class FacGroup extends Atomic {
 		this.isNon = false;
 	}
 
-	setIsNon(): void {
+	public setIsNon(): void {
 		this.isNon = true;
 	}
 
-	print(): string {
-		let str = '';
-		let facGroupName = this.facultyGroup;
+	public toString(): string {
+		let str: string = '';
+		let facGroupName: string = this.facultyGroup;
 		if(this.facultyGroup !== 'science based') {
 			facGroupName = PreChecker.facGroupName(this.facultyGroup);
 		}
@@ -29,7 +29,7 @@ export default class FacGroup extends Atomic {
 		return str;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		const faculty: FacultyData[] = PreChecker.getFaculty();
 		for(const fac of faculty) {
 			if(std.facId === fac.facId) {
@@ -40,7 +40,7 @@ export default class FacGroup extends Atomic {
 				}
 			}
 		}
-		err.push(this.print());
+		err.push(this.toString());
 		return false;
 	}
 }

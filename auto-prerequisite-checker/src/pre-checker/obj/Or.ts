@@ -11,11 +11,11 @@ export default class Or extends Expression {
 		this.right = right;
 	}
 
-	print(): string {
-		return this.left.print() + ' or ' + this.right.print();
+	public toString(): string {
+		return this.left.toString() + ' or ' + this.right.toString();
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		const leftValid = this.left.eval(std, passedCourses, cart, course, err);
 		const rightValid = this.right.eval(std, passedCourses, cart, course, err);
 		const res: boolean = leftValid || rightValid;

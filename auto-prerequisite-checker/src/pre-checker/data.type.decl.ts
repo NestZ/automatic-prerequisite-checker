@@ -1,4 +1,4 @@
-import Condition from "./obj/Condition";
+import Expression from "./obj/Expression";
 
 export type Course = {
 	courseno: string,
@@ -10,7 +10,7 @@ export type Course = {
 };
 
 export type CourseCondition = {
-	[courseNum: string]: Condition;
+	[courseNum: string]: Expression;
 };
 
 export type FacultyData = {

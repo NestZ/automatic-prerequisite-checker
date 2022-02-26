@@ -1,6 +1,5 @@
 import Or from './obj/Or';
 import And from './obj/And';
-import Condition from './obj/Condition';
 import CourseNum from './obj/CourseNum';
 import Major from './obj/Major';
 import SubMajor from './obj/SubMajor';
@@ -16,42 +15,42 @@ import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor
 import { AndContext, AtomicContext, AtomicExpressionContext, At_least_req_yearContext, ConcurrenceContext, ConditionContext, ConsentContext, ExprContext, ExpressionContext, OrContext, ReqFacultyAndMajorContext, ReqFacultyContext, ReqMajorContext, ReqSubMajorContext, Req_fac_groupContext, Req_majorContext, Req_studentContext, Req_yearContext } from './parser/RegConditionParser';
 
 export default class AntlrToCondition extends AbstractParseTreeVisitor<Expression> implements RegConditionVisitor<Expression> {
-	defaultResult(): Expression {
+	public defaultResult(): Expression {
 		return null;
 	}
 
-	visitCondition(ctx: ConditionContext): Condition {
-		return new Condition(super.visit(ctx.expr()));
+	public visitCondition(ctx: ConditionContext): Expression {
+		return super.visit(ctx.expr());
 	}
 
-	visitOr(ctx: OrContext): Or {
+	public visitOr(ctx: OrContext): Or {
 		const left: Expression = super.visit(ctx.expr(0));
 		const right: Expression = super.visit(ctx.expr(1));
 		return new Or(left, right);
 	}
 
-	visitExpression(ctx: ExpressionContext): Expression {
+	public visitExpression(ctx: ExpressionContext): Expression {
 		return super.visit(ctx.expr());
 	}
 
-	visitAtomicExpression(ctx: AtomicExpressionContext): Expression {
+	public visitAtomicExpression(ctx: AtomicExpressionContext): Expression {
 		return super.visit(ctx.atomic());
 	}
 
-	visitAnd(ctx: AndContext): And {
+	public visitAnd(ctx: AndContext): And {
 		const left: Expression = super.visit(ctx.expr(0));
 		const right: Expression = super.visit(ctx.expr(1));
 		return new And(left, right);
 	}
 
-	visitAtomic(ctx: AtomicContext): Expression {
+	public visitAtomic(ctx: AtomicContext): Expression {
 		const child: string = ctx.getChild(0).payload.text;
 		if(!isNaN(Number(child))) return new CourseNum(child, false);
 		else if(child == 'none' || child == 'see bulletin') return new Atomic(child);
 		else return super.visit(ctx.getChild(0));
 	}
 
-	visitReq_student(ctx: Req_studentContext): Expression {
+	public visitReq_student(ctx: Req_studentContext): Expression {
 		const fac: Expression = super.visit(ctx.getChild(1));
 		if(ctx.getChild(0).payload.text !== 'for') {
 			fac.setIsNon();
@@ -59,7 +58,7 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		return fac;
 	}
 
-	getFieldName(ctx: any): string {
+	public getFieldName(ctx: any): string {
 		const cnt: number = ctx.childCount;
 		let name: string = '';
 		for(let i = 0;i < cnt;i++) {
@@ -69,13 +68,13 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		return name;
 	}
 
-	visitReqFaculty(ctx: ReqFacultyContext): Faculty {
+	public visitReqFaculty(ctx: ReqFacultyContext): Faculty {
 		const facultyName: string = this.getFieldName(ctx.field());
 		const facId: string = PreChecker.facultyId(facultyName);
 		return new Faculty(facId, null);
 	}
 
-	visitReqFacultyAndMajor(ctx: ReqFacultyAndMajorContext): Faculty {
+	public visitReqFacultyAndMajor(ctx: ReqFacultyAndMajorContext): Faculty {
 		const facultyName: string = this.getFieldName(ctx.field());
 		const facId: string = PreChecker.facultyId(facultyName);
 		const childCtx: Req_majorContext = ctx.req_major();
@@ -92,7 +91,7 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		return new Faculty(facId, dep);
 	}
 
-	visitReq_fac_group(ctx: Req_fac_groupContext): FacGroup {
+	public visitReq_fac_group(ctx: Req_fac_groupContext): FacGroup {
 		const groupName: string = this.getFieldName(ctx.field());
 		let group: string = groupName;
 		if(groupName !== 'science based') {
@@ -101,11 +100,11 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		return new FacGroup(group);
 	}
 
-	visitConcurrence(ctx: ConcurrenceContext): CourseNum {
+	public visitConcurrence(ctx: ConcurrenceContext): CourseNum {
 		return new CourseNum(ctx.COURSE_NUM().payload.text, true);
 	}
 
-	visitReq_year(ctx: Req_yearContext): Year {
+	public visitReq_year(ctx: Req_yearContext): Year {
 		const yearStr: string = ctx.YEAR().payload.text;
 		let year: number;
 		switch(yearStr) {
@@ -134,12 +133,12 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		return new Year(year, false);
 	}
 
-	visitAt_least_req_year(ctx: At_least_req_yearContext): Year {
+	public visitAt_least_req_year(ctx: At_least_req_yearContext): Year {
 		const year: Expression = super.visit(ctx.req_year());
 		return new Year((year as Year).getYear(), true);
 	}
 
-	visitConsent(ctx: ConsentContext): ConsentOf {
+	public visitConsent(ctx: ConsentContext): ConsentOf {
 		const consentOf: string = ctx.CONSENT_OF().payload.text;
 		return new ConsentOf(consentOf);
 	}

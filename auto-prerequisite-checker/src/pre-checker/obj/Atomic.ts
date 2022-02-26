@@ -9,11 +9,11 @@ export default class Atomic extends Expression {
 		this.name = name;
 	}
 
-	print(): string {
+	public toString(): string {
 		return this.name;
 	}
 
-	eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
+	public eval(std: Student, passedCourses: string[], cart: string[], course: string, err: string[]): boolean {
 		return true;
 	}
 }
