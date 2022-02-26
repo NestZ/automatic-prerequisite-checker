@@ -1,12 +1,10 @@
 import Or from '../pre-checker/obj/Or';
 import And from '../pre-checker/obj/And';
-import Condition from '../pre-checker/obj/Condition';
 import CourseNum from '../pre-checker/obj/CourseNum';
 import Major from '../pre-checker/obj/Major';
 import SubMajor from '../pre-checker/obj/SubMajor';
 import Faculty from '../pre-checker/obj/Faculty';
 import Atomic from '../pre-checker/obj/Atomic';
-import FacGroup from '../pre-checker/obj/FacGroup';
 import Expression from '../pre-checker/obj/Expression';
 import { RegConditionRegVisitor } from './parser/RegConditionRegVisitor';
 import { ConsentOf } from '../pre-checker/obj/ConsentOf';

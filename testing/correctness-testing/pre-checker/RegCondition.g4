@@ -8,7 +8,6 @@ expr : '(' expr ')' #Expression
 	| expr OR expr #Or
 	;
 atomic : 'none'
-	| 'see bulletin'
 	| concurrence
 	| COURSE_NUM
 	| req_year

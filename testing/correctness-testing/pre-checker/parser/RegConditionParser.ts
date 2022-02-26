@@ -1,4 +1,4 @@
-// Generated from RegCondition.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from pre-checker/RegCondition.g4 by ANTLR 4.9.0-SNAPSHOT
 
 
 import { ATN } from "antlr4ts/atn/ATN";
@@ -42,14 +42,13 @@ export class RegConditionParser extends Parser {
 	public static readonly T__11 = 12;
 	public static readonly T__12 = 13;
 	public static readonly T__13 = 14;
-	public static readonly T__14 = 15;
-	public static readonly CONSENT_OF = 16;
-	public static readonly YEAR = 17;
-	public static readonly COURSE_NUM = 18;
-	public static readonly AND = 19;
-	public static readonly OR = 20;
-	public static readonly FIELD = 21;
-	public static readonly WS = 22;
+	public static readonly CONSENT_OF = 15;
+	public static readonly YEAR = 16;
+	public static readonly COURSE_NUM = 17;
+	public static readonly AND = 18;
+	public static readonly OR = 19;
+	public static readonly FIELD = 20;
+	public static readonly WS = 21;
 	public static readonly RULE_condition = 0;
 	public static readonly RULE_expr = 1;
 	public static readonly RULE_atomic = 2;
@@ -70,16 +69,15 @@ export class RegConditionParser extends Parser {
 	];
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
-		undefined, "'('", "')'", "'none'", "'see bulletin'", "'for'", "'not for'", 
-		"'students'", "'students in'", "'group'", "'major'", "'sub-major'", "'concurrent to'", 
+		undefined, "'('", "')'", "'none'", "'for'", "'not for'", "'students'", 
+		"'students in'", "'group'", "'major'", "'sub-major'", "'concurrent to'", 
 		"'year standing'", "'at least'", "'consent of the'", undefined, undefined, 
 		undefined, "'and'", "'or'",
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
-		undefined, undefined, "CONSENT_OF", "YEAR", "COURSE_NUM", "AND", "OR", 
-		"FIELD", "WS",
+		undefined, "CONSENT_OF", "YEAR", "COURSE_NUM", "AND", "OR", "FIELD", "WS",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(RegConditionParser._LITERAL_NAMES, RegConditionParser._SYMBOLIC_NAMES, []);
 
@@ -173,11 +171,10 @@ export class RegConditionParser extends Parser {
 			case RegConditionParser.T__2:
 			case RegConditionParser.T__3:
 			case RegConditionParser.T__4:
-			case RegConditionParser.T__5:
-			case RegConditionParser.T__7:
-			case RegConditionParser.T__11:
+			case RegConditionParser.T__6:
+			case RegConditionParser.T__10:
+			case RegConditionParser.T__12:
 			case RegConditionParser.T__13:
-			case RegConditionParser.T__14:
 			case RegConditionParser.YEAR:
 			case RegConditionParser.COURSE_NUM:
 				{
@@ -262,7 +259,7 @@ export class RegConditionParser extends Parser {
 		let _localctx: AtomicContext = new AtomicContext(this._ctx, this.state);
 		this.enterRule(_localctx, 4, RegConditionParser.RULE_atomic);
 		try {
-			this.state = 55;
+			this.state = 54;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case RegConditionParser.T__2:
@@ -272,60 +269,53 @@ export class RegConditionParser extends Parser {
 				this.match(RegConditionParser.T__2);
 				}
 				break;
-			case RegConditionParser.T__3:
+			case RegConditionParser.T__10:
 				this.enterOuterAlt(_localctx, 2);
 				{
 				this.state = 47;
-				this.match(RegConditionParser.T__3);
-				}
-				break;
-			case RegConditionParser.T__11:
-				this.enterOuterAlt(_localctx, 3);
-				{
-				this.state = 48;
 				this.concurrence();
 				}
 				break;
 			case RegConditionParser.COURSE_NUM:
-				this.enterOuterAlt(_localctx, 4);
+				this.enterOuterAlt(_localctx, 3);
 				{
-				this.state = 49;
+				this.state = 48;
 				this.match(RegConditionParser.COURSE_NUM);
 				}
 				break;
 			case RegConditionParser.YEAR:
+				this.enterOuterAlt(_localctx, 4);
+				{
+				this.state = 49;
+				this.req_year();
+				}
+				break;
+			case RegConditionParser.T__12:
 				this.enterOuterAlt(_localctx, 5);
 				{
 				this.state = 50;
-				this.req_year();
+				this.at_least_req_year();
 				}
 				break;
 			case RegConditionParser.T__13:
 				this.enterOuterAlt(_localctx, 6);
 				{
 				this.state = 51;
-				this.at_least_req_year();
-				}
-				break;
-			case RegConditionParser.T__14:
-				this.enterOuterAlt(_localctx, 7);
-				{
-				this.state = 52;
 				this.consent();
 				}
 				break;
+			case RegConditionParser.T__3:
 			case RegConditionParser.T__4:
-			case RegConditionParser.T__5:
-				this.enterOuterAlt(_localctx, 8);
+				this.enterOuterAlt(_localctx, 7);
 				{
-				this.state = 53;
+				this.state = 52;
 				this.req_student();
 				}
 				break;
-			case RegConditionParser.T__7:
-				this.enterOuterAlt(_localctx, 9);
+			case RegConditionParser.T__6:
+				this.enterOuterAlt(_localctx, 8);
 				{
-				this.state = 54;
+				this.state = 53;
 				this.req_fac_group();
 				}
 				break;
@@ -352,28 +342,28 @@ export class RegConditionParser extends Parser {
 		let _localctx: Req_studentContext = new Req_studentContext(this._ctx, this.state);
 		this.enterRule(_localctx, 6, RegConditionParser.RULE_req_student);
 		try {
-			this.state = 67;
+			this.state = 66;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case RegConditionParser.T__4:
+			case RegConditionParser.T__3:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 57;
-				this.match(RegConditionParser.T__4);
-				this.state = 60;
+				this.state = 56;
+				this.match(RegConditionParser.T__3);
+				this.state = 59;
 				this._errHandler.sync(this);
 				switch (this._input.LA(1)) {
 				case RegConditionParser.AND:
 				case RegConditionParser.OR:
 				case RegConditionParser.FIELD:
 					{
-					this.state = 58;
+					this.state = 57;
 					this.req_fac();
 					}
 					break;
-				case RegConditionParser.T__7:
+				case RegConditionParser.T__6:
 					{
-					this.state = 59;
+					this.state = 58;
 					this.req_fac_group();
 					}
 					break;
@@ -382,25 +372,25 @@ export class RegConditionParser extends Parser {
 				}
 				}
 				break;
-			case RegConditionParser.T__5:
+			case RegConditionParser.T__4:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 62;
-				this.match(RegConditionParser.T__5);
-				this.state = 65;
+				this.state = 61;
+				this.match(RegConditionParser.T__4);
+				this.state = 64;
 				this._errHandler.sync(this);
 				switch (this._input.LA(1)) {
 				case RegConditionParser.AND:
 				case RegConditionParser.OR:
 				case RegConditionParser.FIELD:
 					{
-					this.state = 63;
+					this.state = 62;
 					this.req_fac();
 					}
 					break;
-				case RegConditionParser.T__7:
+				case RegConditionParser.T__6:
 					{
-					this.state = 64;
+					this.state = 63;
 					this.req_fac_group();
 					}
 					break;
@@ -432,17 +422,17 @@ export class RegConditionParser extends Parser {
 		let _localctx: Req_facContext = new Req_facContext(this._ctx, this.state);
 		this.enterRule(_localctx, 8, RegConditionParser.RULE_req_fac);
 		try {
-			this.state = 76;
+			this.state = 75;
 			this._errHandler.sync(this);
 			switch ( this.interpreter.adaptivePredict(this._input, 7, this._ctx) ) {
 			case 1:
 				_localctx = new ReqFacultyContext(_localctx);
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 69;
+				this.state = 68;
 				this.field();
-				this.state = 70;
-				this.match(RegConditionParser.T__6);
+				this.state = 69;
+				this.match(RegConditionParser.T__5);
 				}
 				break;
 
@@ -450,11 +440,11 @@ export class RegConditionParser extends Parser {
 				_localctx = new ReqFacultyAndMajorContext(_localctx);
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 72;
+				this.state = 71;
 				this.field();
+				this.state = 72;
+				this.match(RegConditionParser.T__6);
 				this.state = 73;
-				this.match(RegConditionParser.T__7);
-				this.state = 74;
 				this.req_major();
 				}
 				break;
@@ -481,12 +471,12 @@ export class RegConditionParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
+			this.state = 77;
+			this.match(RegConditionParser.T__6);
 			this.state = 78;
-			this.match(RegConditionParser.T__7);
-			this.state = 79;
 			this.field();
-			this.state = 80;
-			this.match(RegConditionParser.T__8);
+			this.state = 79;
+			this.match(RegConditionParser.T__7);
 			}
 		}
 		catch (re) {
@@ -508,17 +498,17 @@ export class RegConditionParser extends Parser {
 		let _localctx: Req_majorContext = new Req_majorContext(this._ctx, this.state);
 		this.enterRule(_localctx, 12, RegConditionParser.RULE_req_major);
 		try {
-			this.state = 88;
+			this.state = 87;
 			this._errHandler.sync(this);
 			switch ( this.interpreter.adaptivePredict(this._input, 8, this._ctx) ) {
 			case 1:
 				_localctx = new ReqMajorContext(_localctx);
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 82;
+				this.state = 81;
 				this.field();
-				this.state = 83;
-				this.match(RegConditionParser.T__9);
+				this.state = 82;
+				this.match(RegConditionParser.T__8);
 				}
 				break;
 
@@ -526,10 +516,10 @@ export class RegConditionParser extends Parser {
 				_localctx = new ReqSubMajorContext(_localctx);
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 85;
+				this.state = 84;
 				this.field();
-				this.state = 86;
-				this.match(RegConditionParser.T__10);
+				this.state = 85;
+				this.match(RegConditionParser.T__9);
 				}
 				break;
 			}
@@ -555,9 +545,9 @@ export class RegConditionParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
+			this.state = 89;
+			this.match(RegConditionParser.T__10);
 			this.state = 90;
-			this.match(RegConditionParser.T__11);
-			this.state = 91;
 			this.match(RegConditionParser.COURSE_NUM);
 			}
 		}
@@ -582,10 +572,10 @@ export class RegConditionParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 93;
+			this.state = 92;
 			this.match(RegConditionParser.YEAR);
-			this.state = 94;
-			this.match(RegConditionParser.T__12);
+			this.state = 93;
+			this.match(RegConditionParser.T__11);
 			}
 		}
 		catch (re) {
@@ -609,9 +599,9 @@ export class RegConditionParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
+			this.state = 95;
+			this.match(RegConditionParser.T__12);
 			this.state = 96;
-			this.match(RegConditionParser.T__13);
-			this.state = 97;
 			this.req_year();
 			}
 		}
@@ -636,9 +626,9 @@ export class RegConditionParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
+			this.state = 98;
+			this.match(RegConditionParser.T__13);
 			this.state = 99;
-			this.match(RegConditionParser.T__14);
-			this.state = 100;
 			this.match(RegConditionParser.CONSENT_OF);
 			}
 		}
@@ -664,13 +654,13 @@ export class RegConditionParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 103;
+			this.state = 102;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			do {
 				{
 				{
-				this.state = 102;
+				this.state = 101;
 				_la = this._input.LA(1);
 				if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << RegConditionParser.AND) | (1 << RegConditionParser.OR) | (1 << RegConditionParser.FIELD))) !== 0))) {
 				this._errHandler.recoverInline(this);
@@ -684,7 +674,7 @@ export class RegConditionParser extends Parser {
 				}
 				}
 				}
-				this.state = 105;
+				this.state = 104;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			} while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << RegConditionParser.AND) | (1 << RegConditionParser.OR) | (1 << RegConditionParser.FIELD))) !== 0));
@@ -724,49 +714,49 @@ export class RegConditionParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\x18n\x04\x02" +
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\x17m\x04\x02" +
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
 		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x03" +
 		"\x02\x03\x02\x03\x02\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x05" +
 		"\x03$\n\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x07\x03,\n" +
 		"\x03\f\x03\x0E\x03/\v\x03\x03\x04\x03\x04\x03\x04\x03\x04\x03\x04\x03" +
-		"\x04\x03\x04\x03\x04\x03\x04\x05\x04:\n\x04\x03\x05\x03\x05\x03\x05\x05" +
-		"\x05?\n\x05\x03\x05\x03\x05\x03\x05\x05\x05D\n\x05\x05\x05F\n\x05\x03" +
-		"\x06\x03\x06\x03\x06\x03\x06\x03\x06\x03\x06\x03\x06\x05\x06O\n\x06\x03" +
-		"\x07\x03\x07\x03\x07\x03\x07\x03\b\x03\b\x03\b\x03\b\x03\b\x03\b\x05\b" +
-		"[\n\b\x03\t\x03\t\x03\t\x03\n\x03\n\x03\n\x03\v\x03\v\x03\v\x03\f\x03" +
-		"\f\x03\f\x03\r\x06\rj\n\r\r\r\x0E\rk\x03\r\x02\x02\x03\x04\x0E\x02\x02" +
-		"\x04\x02\x06\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16" +
-		"\x02\x18\x02\x02\x03\x03\x02\x15\x17\x02r\x02\x1A\x03\x02\x02\x02\x04" +
-		"#\x03\x02\x02\x02\x069\x03\x02\x02\x02\bE\x03\x02\x02\x02\nN\x03\x02\x02" +
-		"\x02\fP\x03\x02\x02\x02\x0EZ\x03\x02\x02\x02\x10\\\x03\x02\x02\x02\x12" +
-		"_\x03\x02\x02\x02\x14b\x03\x02\x02\x02\x16e\x03\x02\x02\x02\x18i\x03\x02" +
-		"\x02\x02\x1A\x1B\x05\x04\x03\x02\x1B\x1C\x07\x02\x02\x03\x1C\x03\x03\x02" +
-		"\x02\x02\x1D\x1E\b\x03\x01\x02\x1E\x1F\x07\x03\x02\x02\x1F \x05\x04\x03" +
-		"\x02 !\x07\x04\x02\x02!$\x03\x02\x02\x02\"$\x05\x06\x04\x02#\x1D\x03\x02" +
-		"\x02\x02#\"\x03\x02\x02\x02$-\x03\x02\x02\x02%&\f\x04\x02\x02&\'\x07\x15" +
-		"\x02\x02\',\x05\x04\x03\x05()\f\x03\x02\x02)*\x07\x16\x02\x02*,\x05\x04" +
-		"\x03\x04+%\x03\x02\x02\x02+(\x03\x02\x02\x02,/\x03\x02\x02\x02-+\x03\x02" +
-		"\x02\x02-.\x03\x02\x02\x02.\x05\x03\x02\x02\x02/-\x03\x02\x02\x020:\x07" +
-		"\x05\x02\x021:\x07\x06\x02\x022:\x05\x10\t\x023:\x07\x14\x02\x024:\x05" +
-		"\x12\n\x025:\x05\x14\v\x026:\x05\x16\f\x027:\x05\b\x05\x028:\x05\f\x07" +
-		"\x0290\x03\x02\x02\x0291\x03\x02\x02\x0292\x03\x02\x02\x0293\x03\x02\x02" +
-		"\x0294\x03\x02\x02\x0295\x03\x02\x02\x0296\x03\x02\x02\x0297\x03\x02\x02" +
-		"\x0298\x03\x02\x02\x02:\x07\x03\x02\x02\x02;>\x07\x07\x02\x02<?\x05\n" +
-		"\x06\x02=?\x05\f\x07\x02><\x03\x02\x02\x02>=\x03\x02\x02\x02?F\x03\x02" +
-		"\x02\x02@C\x07\b\x02\x02AD\x05\n\x06\x02BD\x05\f\x07\x02CA\x03\x02\x02" +
-		"\x02CB\x03\x02\x02\x02DF\x03\x02\x02\x02E;\x03\x02\x02\x02E@\x03\x02\x02" +
-		"\x02F\t\x03\x02\x02\x02GH\x05\x18\r\x02HI\x07\t\x02\x02IO\x03\x02\x02" +
-		"\x02JK\x05\x18\r\x02KL\x07\n\x02\x02LM\x05\x0E\b\x02MO\x03\x02\x02\x02" +
-		"NG\x03\x02\x02\x02NJ\x03\x02\x02\x02O\v\x03\x02\x02\x02PQ\x07\n\x02\x02" +
-		"QR\x05\x18\r\x02RS\x07\v\x02\x02S\r\x03\x02\x02\x02TU\x05\x18\r\x02UV" +
-		"\x07\f\x02\x02V[\x03\x02\x02\x02WX\x05\x18\r\x02XY\x07\r\x02\x02Y[\x03" +
-		"\x02\x02\x02ZT\x03\x02\x02\x02ZW\x03\x02\x02\x02[\x0F\x03\x02\x02\x02" +
-		"\\]\x07\x0E\x02\x02]^\x07\x14\x02\x02^\x11\x03\x02\x02\x02_`\x07\x13\x02" +
-		"\x02`a\x07\x0F\x02\x02a\x13\x03\x02\x02\x02bc\x07\x10\x02\x02cd\x05\x12" +
-		"\n\x02d\x15\x03\x02\x02\x02ef\x07\x11\x02\x02fg\x07\x12\x02\x02g\x17\x03" +
-		"\x02\x02\x02hj\t\x02\x02\x02ih\x03\x02\x02\x02jk\x03\x02\x02\x02ki\x03" +
-		"\x02\x02\x02kl\x03\x02\x02\x02l\x19\x03\x02\x02\x02\f#+-9>CENZk";
+		"\x04\x03\x04\x03\x04\x05\x049\n\x04\x03\x05\x03\x05\x03\x05\x05\x05>\n" +
+		"\x05\x03\x05\x03\x05\x03\x05\x05\x05C\n\x05\x05\x05E\n\x05\x03\x06\x03" +
+		"\x06\x03\x06\x03\x06\x03\x06\x03\x06\x03\x06\x05\x06N\n\x06\x03\x07\x03" +
+		"\x07\x03\x07\x03\x07\x03\b\x03\b\x03\b\x03\b\x03\b\x03\b\x05\bZ\n\b\x03" +
+		"\t\x03\t\x03\t\x03\n\x03\n\x03\n\x03\v\x03\v\x03\v\x03\f\x03\f\x03\f\x03" +
+		"\r\x06\ri\n\r\r\r\x0E\rj\x03\r\x02\x02\x03\x04\x0E\x02\x02\x04\x02\x06" +
+		"\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02\x18\x02" +
+		"\x02\x03\x03\x02\x14\x16\x02p\x02\x1A\x03\x02\x02\x02\x04#\x03\x02\x02" +
+		"\x02\x068\x03\x02\x02\x02\bD\x03\x02\x02\x02\nM\x03\x02\x02\x02\fO\x03" +
+		"\x02\x02\x02\x0EY\x03\x02\x02\x02\x10[\x03\x02\x02\x02\x12^\x03\x02\x02" +
+		"\x02\x14a\x03\x02\x02\x02\x16d\x03\x02\x02\x02\x18h\x03\x02\x02\x02\x1A" +
+		"\x1B\x05\x04\x03\x02\x1B\x1C\x07\x02\x02\x03\x1C\x03\x03\x02\x02\x02\x1D" +
+		"\x1E\b\x03\x01\x02\x1E\x1F\x07\x03\x02\x02\x1F \x05\x04\x03\x02 !\x07" +
+		"\x04\x02\x02!$\x03\x02\x02\x02\"$\x05\x06\x04\x02#\x1D\x03\x02\x02\x02" +
+		"#\"\x03\x02\x02\x02$-\x03\x02\x02\x02%&\f\x04\x02\x02&\'\x07\x14\x02\x02" +
+		"\',\x05\x04\x03\x05()\f\x03\x02\x02)*\x07\x15\x02\x02*,\x05\x04\x03\x04" +
+		"+%\x03\x02\x02\x02+(\x03\x02\x02\x02,/\x03\x02\x02\x02-+\x03\x02\x02\x02" +
+		"-.\x03\x02\x02\x02.\x05\x03\x02\x02\x02/-\x03\x02\x02\x0209\x07\x05\x02" +
+		"\x0219\x05\x10\t\x0229\x07\x13\x02\x0239\x05\x12\n\x0249\x05\x14\v\x02" +
+		"59\x05\x16\f\x0269\x05\b\x05\x0279\x05\f\x07\x0280\x03\x02\x02\x0281\x03" +
+		"\x02\x02\x0282\x03\x02\x02\x0283\x03\x02\x02\x0284\x03\x02\x02\x0285\x03" +
+		"\x02\x02\x0286\x03\x02\x02\x0287\x03\x02\x02\x029\x07\x03\x02\x02\x02" +
+		":=\x07\x06\x02\x02;>\x05\n\x06\x02<>\x05\f\x07\x02=;\x03\x02\x02\x02=" +
+		"<\x03\x02\x02\x02>E\x03\x02\x02\x02?B\x07\x07\x02\x02@C\x05\n\x06\x02" +
+		"AC\x05\f\x07\x02B@\x03\x02\x02\x02BA\x03\x02\x02\x02CE\x03\x02\x02\x02" +
+		"D:\x03\x02\x02\x02D?\x03\x02\x02\x02E\t\x03\x02\x02\x02FG\x05\x18\r\x02" +
+		"GH\x07\b\x02\x02HN\x03\x02\x02\x02IJ\x05\x18\r\x02JK\x07\t\x02\x02KL\x05" +
+		"\x0E\b\x02LN\x03\x02\x02\x02MF\x03\x02\x02\x02MI\x03\x02\x02\x02N\v\x03" +
+		"\x02\x02\x02OP\x07\t\x02\x02PQ\x05\x18\r\x02QR\x07\n\x02\x02R\r\x03\x02" +
+		"\x02\x02ST\x05\x18\r\x02TU\x07\v\x02\x02UZ\x03\x02\x02\x02VW\x05\x18\r" +
+		"\x02WX\x07\f\x02\x02XZ\x03\x02\x02\x02YS\x03\x02\x02\x02YV\x03\x02\x02" +
+		"\x02Z\x0F\x03\x02\x02\x02[\\\x07\r\x02\x02\\]\x07\x13\x02\x02]\x11\x03" +
+		"\x02\x02\x02^_\x07\x12\x02\x02_`\x07\x0E\x02\x02`\x13\x03\x02\x02\x02" +
+		"ab\x07\x0F\x02\x02bc\x05\x12\n\x02c\x15\x03\x02\x02\x02de\x07\x10\x02" +
+		"\x02ef\x07\x11\x02\x02f\x17\x03\x02\x02\x02gi\t\x02\x02\x02hg\x03\x02" +
+		"\x02\x02ij\x03\x02\x02\x02jh\x03\x02\x02\x02jk\x03\x02\x02\x02k\x19\x03" +
+		"\x02\x02\x02\f#+-8=BDMYj";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!RegConditionParser.__ATN) {

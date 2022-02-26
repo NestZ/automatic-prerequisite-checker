@@ -1,4 +1,4 @@
-// Generated from RegCondition.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from pre-checker/RegCondition.g4 by ANTLR 4.9.0-SNAPSHOT
 
 
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";

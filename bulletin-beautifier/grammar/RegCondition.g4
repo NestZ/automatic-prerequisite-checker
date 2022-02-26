@@ -8,7 +8,6 @@ expr : '(' expr ')' #Expression
 	| expr OR expr #Or
 	;
 atomic : 'none'
-	| 'see bulletin'
 	| concurrence
 	| COURSE_NUM
 	| req_year
@@ -46,9 +45,12 @@ WS : [ \n] -> skip;
 //update semantic action (check valid major / faculty)
 //fix data schema
 //merge error and manual file from reg
-//remove active = 0 from manual file
 //check major / faculty name (have s or not ?)
-//grouping up faculty group in manual file
+//group up faculty group in manual file
 //science based : science, engineering, agriculture, agro-industry, architecture
 //humanities and social science : humanities, education, fine arts, social sciences, business administration, economics, mass communication, political science and public administration, law
 //(science based, humanities and social science, sciences and technology, health sciences)
+
+//get data from api and stores to mongo database
+//implement route for update reg's data
+//implement route for query registration validity
