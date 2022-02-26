@@ -28,7 +28,7 @@ export default class EqualAst {
 	}
 
 	public static hashCourseNum(obj: CourseNum): string {
-		let ret = 'cid' + obj.getCourseNum();
+		let ret: string = 'cid' + obj.getCourseNum();
 		if(obj.getIsConcurrent()) ret = 'con-' + ret;
 		return ret;
 	}
@@ -38,7 +38,7 @@ export default class EqualAst {
 	}
 
 	public static hashFaculty(obj: Faculty): string {
-		let ret = 'fac' + obj.getFacultyId();
+		let ret: string = 'fac' + obj.getFacultyId();
 		if(obj.getDep() instanceof Major) ret += EqualAst.hashMajor(obj.getDep() as Major);
 		else if(obj.getDep() instanceof SubMajor) ret += EqualAst.hashSubMajor(obj.getDep() as SubMajor);
 		return ret;
@@ -53,7 +53,7 @@ export default class EqualAst {
 	}
 
 	public static hashYear(obj: Year): string {
-		let ret = 'year' + String(obj.getYearNumber());
+		let ret: string = 'year' + String(obj.getYearNumber());
 		if(obj.getIsAtLeast()) ret = 'at-least-' + ret;
 		return ret;
 	}
@@ -85,8 +85,8 @@ export default class EqualAst {
 	
 	public static sortNodes(nodes: Expression[]): Expression[] {
 		return nodes.sort((fst: Expression, snd: Expression) => {
-			const fstHash = EqualAst.hash(fst);
-			const sndHash = EqualAst.hash(snd);
+			const fstHash: string = EqualAst.hash(fst);
+			const sndHash: string = EqualAst.hash(snd);
 			return fstHash.localeCompare(sndHash);
 		});
 	}
@@ -98,8 +98,8 @@ export default class EqualAst {
 	public static cmpTruthTable(lst: Expression[], fstTree: Expression, sndTree: Expression): boolean {
 		const len: number = lst.length;
 		const truth: Array<boolean> = new Array<boolean>(len);
-		for(let i = 0;i < (1 << len);i++) {
-			for(let j = 0;j < len;j++) {
+		for(let i: number = 0;i < (1 << len);i++) {
+			for(let j: number = 0;j < len;j++) {
 				if((1 << j) & i) truth[j] = true;
 				else truth[j] = false;
 			}
@@ -118,8 +118,8 @@ export default class EqualAst {
 			if(!EqualAst.cmpNodes(fstNodes[i], sndNodes[i])) return false;
 		}
 		let dup: boolean = false;
-		for(let i = 0;i < fstNodes.length;i++){
-			for(let j = i + 1;j < fstNodes.length;j++){
+		for(let i: number = 0;i < fstNodes.length;i++) {
+			for(let j: number = i + 1;j < fstNodes.length;j++){
 				if(EqualAst.cmpNodes(fstNodes[i], fstNodes[j])) dup = true;
 			}
 		}
@@ -138,8 +138,8 @@ export default class EqualAst {
 	public static equalityCheck() {
 		const err: string[] = [];
 		for(const key in EqualAst.myAst) {
-			const myCondition = EqualAst.myAst[key];
-			const regCondition = EqualAst.regAst[key];
+			const myCondition: Expression = EqualAst.myAst[key];
+			const regCondition: Expression = EqualAst.regAst[key];
 			if(!EqualAst.equalsTree(myCondition, regCondition, key)) EqualAst.notEq.push(key);
 		}
 	}
