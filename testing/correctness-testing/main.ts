@@ -1,16 +1,16 @@
 import RegPreChecker from "./reg-checker/ast.builder";
 import PreChecker from "./pre-checker/ast.builder";
-import Expression from "./pre-checker/obj/Expression";
-import Atomic from "./pre-checker/obj/Atomic";
-import CourseNum from "./pre-checker/obj/CourseNum";
-import FacGroup from "./pre-checker/obj/FacGroup";
-import Faculty from "./pre-checker/obj/Faculty";
-import Major from "./pre-checker/obj/Major";
-import SubMajor from "./pre-checker/obj/SubMajor";
-import And from "./pre-checker/obj/And";
-import Or from "./pre-checker/obj/Or";
-import { ConsentOf } from "./pre-checker/obj/ConsentOf";
-import { Year } from "./pre-checker/obj/Year";
+import Expression from "./obj/Expression";
+import CourseNum from "./obj/CourseNum";
+import FacGroup from "./obj/FacGroup";
+import Faculty from "./obj/Faculty";
+import Major from "./obj/Major";
+import SubMajor from "./obj/SubMajor";
+import And from "./obj/And";
+import Or from "./obj/Or";
+import None from "./obj/None";
+import { ConsentOf } from "./obj/ConsentOf";
+import { Year } from "./obj/Year";
 import { CourseCondition } from "./pre-checker/data.type.decl";
 
 export default class EqualAst {
@@ -19,8 +19,8 @@ export default class EqualAst {
 	public static notEq: string[] = [];
 	public static dup: string[] = [];
 
-	public static hashAtomic(obj: Atomic): string {
-		return obj.getName();
+	public static hashNone(obj: None): string {
+		return obj.toString();
 	}
 
 	public static hashConsentOf(obj: ConsentOf): string {
@@ -34,7 +34,7 @@ export default class EqualAst {
 	}
 
 	public static hashFacGroup(obj: FacGroup): string {
-		return 'group' + obj.getFacultyGroup();
+		return 'group' + obj.getFacGroup();
 	}
 
 	public static hashFaculty(obj: Faculty): string {
@@ -53,7 +53,7 @@ export default class EqualAst {
 	}
 
 	public static hashYear(obj: Year): string {
-		let ret = 'year' + String(obj.getYear());
+		let ret = 'year' + String(obj.getYearNumber());
 		if(obj.getIsAtLeast()) ret = 'at-least-' + ret;
 		return ret;
 	}
@@ -66,13 +66,13 @@ export default class EqualAst {
 		else if(obj instanceof Major) return EqualAst.hashMajor(obj);
 		else if(obj instanceof SubMajor) return EqualAst.hashSubMajor(obj);
 		else if(obj instanceof Year) return EqualAst.hashYear(obj);
-		else if(obj instanceof Atomic) return EqualAst.hashAtomic(obj);
+		else if(obj instanceof None) return EqualAst.hashNone(obj);
 	}
 
 	public static getNodesRecur(tree: Expression, expr: Expression[]): void {
 		if(tree instanceof And || tree instanceof Or) {
-			EqualAst.getNodesRecur(tree.getLeftExpr(), expr);
-			EqualAst.getNodesRecur(tree.getRightExpr(), expr);
+			EqualAst.getNodesRecur(tree.getLeftExpr() as Expression, expr);
+			EqualAst.getNodesRecur(tree.getRightExpr() as Expression, expr);
 		}
 		else expr.push(tree);
 	}

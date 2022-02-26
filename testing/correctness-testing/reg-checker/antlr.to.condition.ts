@@ -1,14 +1,15 @@
-import Or from '../pre-checker/obj/Or';
-import And from '../pre-checker/obj/And';
-import CourseNum from '../pre-checker/obj/CourseNum';
-import Major from '../pre-checker/obj/Major';
-import SubMajor from '../pre-checker/obj/SubMajor';
-import Faculty from '../pre-checker/obj/Faculty';
-import Atomic from '../pre-checker/obj/Atomic';
-import Expression from '../pre-checker/obj/Expression';
+import Or from '../obj/Or';
+import And from '../obj/And';
+import CourseNum from '../obj/CourseNum';
+import Major from '../obj/Major';
+import SubMajor from '../obj/SubMajor';
+import Faculty from '../obj/Faculty';
+import Expression from '../obj/Expression';
+import NegatableExpr from '../../../auto-prerequisite-checker/src/pre-checker/obj/NegatableExpr';
+import None from '../obj/None';
 import { RegConditionRegVisitor } from './parser/RegConditionRegVisitor';
-import { ConsentOf } from '../pre-checker/obj/ConsentOf';
-import { Year } from '../pre-checker/obj/Year';
+import { ConsentOf } from '../obj/ConsentOf';
+import { Year } from '../obj/Year';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { AndContext, AtomicContext, AtomicExpressionContext, ConcurrenceContext, ConditionContext, ConsentContext, ExpressionContext, NotContext, OrContext, Req_yearContext } from './parser/RegConditionRegParser';
 
@@ -46,7 +47,7 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 
 	visitNot(ctx: NotContext): Expression {
 		const expr: Expression = super.visit(ctx.expr());
-		expr.setIsNon();
+		(expr as any as NegatableExpr).setIsNon();
 		return expr;
 	}
 
@@ -57,7 +58,7 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 	visitAtomic(ctx: AtomicContext): Expression {
 		const child: string = ctx.getChild(0).payload.text;
 		if(!isNaN(Number(child))) return new CourseNum(child, false);
-		else if(child == 'none' || child == 'see bulletin') return new Atomic(child);
+		else if(child == 'none') return new None();
 		else if(child == 'fac') return new Faculty(ctx.FIELD_NUM().payload.text, null);
 		else if(child == 'ma') return new Major(ctx.FIELD_NUM().payload.text);
 		else if(child == 'sub') return new SubMajor(ctx.FIELD_NUM().payload.text);

@@ -1,5 +1,5 @@
 import AntlrToCondition from './antlr.to.condition';
-import Expression from './obj/Expression';
+import Expression from '../obj/Expression';
 import { CharStreams, CodePointCharStream, CommonTokenStream } from 'antlr4ts';
 import { RegConditionLexer } from './parser/RegConditionLexer';
 import { ConditionContext, RegConditionParser } from './parser/RegConditionParser';
@@ -189,7 +189,7 @@ export default class PreChecker {
 			const courseNum = course.courseno;
 			astLst[courseNum] = condition;
 
-			const conditionStr = astLst[courseNum].print();
+			const conditionStr = astLst[courseNum].toString();
 			// console.log(conditionStr);
 
 		});

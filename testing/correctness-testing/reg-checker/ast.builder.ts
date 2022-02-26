@@ -1,5 +1,5 @@
 import AntlrToCondition from './antlr.to.condition';
-import Expression from '../pre-checker/obj/Expression';
+import Expression from '../obj/Expression';
 import { CharStreams, CodePointCharStream, CommonTokenStream } from 'antlr4ts';
 import { RegConditionRegLexer } from './parser/RegConditionRegLexer';
 import { ConditionContext, RegConditionRegParser } from './parser/RegConditionRegParser';
