@@ -12,10 +12,14 @@ export class PreCheckerController {
 	) {}
 
 	@Get()
-	async registCheck(@Body() data: RegistCheckBody): Promise<{ results: RegistrationResult[] }> {
-		const stdData: Student = (await this.student.getStudentData(data.stdId)).student;
-		const stdCourses: string[] = (await this.student.getStudentCourses(data.stdId)).courses;
-		const res: RegistrationResult[] = await this.preChecker.registCheck(stdData, stdCourses, data.cart);
-		return { results: res };
+	async registCheck(@Body() data: RegistCheckBody): Promise<{ results: RegistrationResult[] } | { errors: any }> {
+		try {
+			const stdData: Student = ((await this.student.getStudentData(data.stdId)) as { student: Student }).student;
+			const stdCourses: string[] = ((await this.student.getStudentCourses(data.stdId)) as { courses: string [] }).courses;
+			const res: RegistrationResult[] = await this.preChecker.registCheck(stdData, stdCourses, data.cart);
+			return { results: res };
+		} catch(err) {
+			return { errors: err };
+		}
 	}
 }

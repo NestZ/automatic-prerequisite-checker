@@ -31,13 +31,18 @@ export class StudentService {
 	}
 
 	async getStudentData(stdId: string): Promise<Student> {
+		const facId: string = (await this.getCache('facId:' + stdId)) as string;
+		const year: string = (await this.getCache('year:' + stdId)) as string;
+		const majorId: string = (await this.getCache('majorId:' + stdId)) as string;
+		const curriculumId: string = (await this.getCache('curriculumId:' + stdId)) as string;
 		const data: Student = {
 			stdId,
-			facId: (await this.getCache('facId:' + stdId)) as string,
-			majorId: (await this.getCache('majorId:' + stdId)) as string,
-			curriculumId: (await this.getCache('curriculumId:' + stdId)) as string,
-			year: (await this.getCache('year:' + stdId)) as string,
+			facId,
+			majorId,
+			curriculumId,
+			year,
 		};
+		if(facId === null && year === null) throw "Can't find student with id " + stdId;
 		return data;
 	}
 
