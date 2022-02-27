@@ -1,4 +1,4 @@
-import { Controller, Get, Logger, OnModuleInit, Param, Post } from '@nestjs/common';
+import { Controller, Get, Logger, Param, Post } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { lastValueFrom, Observable } from 'rxjs';

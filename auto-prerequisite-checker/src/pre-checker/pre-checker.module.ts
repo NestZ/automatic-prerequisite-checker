@@ -12,7 +12,7 @@ export const PreCheckerProvider = {
 @Module({
   imports: [StudentModule],
   providers: [PreCheckerProvider, PreCheckerService],
-  exports: [PreCheckerProvider],
+  exports: [PreCheckerProvider, PreCheckerService],
   controllers: [PreCheckerController],
 })
 export class PreCheckerModule {}

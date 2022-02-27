@@ -19,7 +19,6 @@ export class PreCheckerService implements OnModuleInit {
 		const results: RegistrationResult[] = [];
 		for(let course of cart) {
 			const condition: Expression = this.ast[course];
-			if(condition === null) console.log(course + 'is null');
 			const res: EvalReturn = condition.eval(std, passedCourses, cart, course);
 			const errStr: string = res.notSatisfiedCondition === null ? 'none' : res.notSatisfiedCondition.toString();
 			const result: RegistrationResult = {
