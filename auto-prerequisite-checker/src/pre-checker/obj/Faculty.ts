@@ -7,12 +7,18 @@ import { EvalReturn } from '../data.type.decl';
 
 export default class Faculty extends NegatableExpr {
 	private facultyId: string;
+	private facultyName: string;
 	private dep: Major | SubMajor;
 
-	constructor(facultyId: string, dep: Major | SubMajor) {
+	constructor(facultyId: string, facultyName: string, dep: Major | SubMajor) {
 		super();
-		this.facultyId = facultyId
+		this.facultyId = facultyId;
+		this.facultyName = facultyName;
 		this.dep = dep;
+	}
+
+	public getFacultyName(): string {
+		return this.facultyName;
 	}
 
 	public getFacultyId(): string {
@@ -25,17 +31,12 @@ export default class Faculty extends NegatableExpr {
 
 	public toString(): string {
 		let str: string = '';
-		const facName = PreChecker.facultyName(this.facultyId);
 		if(this.getIsNon()) str += 'not for ';
 		else str += 'for ';
-		str += facName + ' students';
+		str += this.facultyName + ' students';
 		if(this.dep !== null) {
-			let depName: string;
-			if(this.dep instanceof Major) depName = PreChecker.majorName(this.facultyId, this.dep.getDepId());
-			else depName = PreChecker.subMajorName(this.facultyId, this.dep.getDepId());
-			str += ' in ' + depName;
-			if(this.dep instanceof Major) str += ' major';
-			else str += ' sub-major';
+			if(this.dep instanceof Major) str += ' in ' + this.dep.toString();
+			else str += ' in ' + this.dep.toString();
 		}
 		return str;
 	}

@@ -41,7 +41,7 @@ export default class PreChecker {
 	public static getFacGroup(): FacGroupData[] {
 		if(PreChecker.facGroup === null) {
 			PreChecker.facGroup = load('./src/pre-checker/csv/faculty_group.csv');
-			// PreChecker.facGroup = load('./faculty_group.csv');
+			// PreChecker.facGroup = load('./faculty_group.csv')
 		}
 		return PreChecker.facGroup;
 	}
@@ -66,7 +66,7 @@ export default class PreChecker {
 				return fac.facId;
 			}
 		}
-		throw "can't find " + faculty + ' faculty';
+		throw "Can't find " + faculty + ' faculty';
 	}
 
 	public static facultyName(facultyId: string): string {
@@ -76,7 +76,7 @@ export default class PreChecker {
 				return fac.facName;
 			}
 		}
-		throw "can't find faculty with id " + facultyId;
+		throw "Can't find faculty with id " + facultyId;
 	}
 
 	public static majorId(facultyId: string, major: string): string {
@@ -90,7 +90,7 @@ export default class PreChecker {
 				return fac.majorId;
 			}
 		}
-		throw "can't find " + major + ' major';
+		throw "Can't find " + major + ' major';
 	}
 
 	public static majorName(facultyId: string, majorId: string): string {
@@ -104,7 +104,7 @@ export default class PreChecker {
 				return fac.majorName;
 			}
 		}
-		throw "can't find major with id " + majorId;
+		throw "Can't find major with id " + majorId;
 	}
 
 	public static subMajorId(facultyId: string, subMajor: string): string {
@@ -121,18 +121,26 @@ export default class PreChecker {
 		throw "can't find " + subMajor + ' sub-major';
 	}
 
-	public static subMajorName(facultyId: string, subMajorId: string): string {
+	public static majorIdFromSubMajor(facId: string, subMajorId: string, subMajorName: string): string {
 		const facLst: SubMajorData[] = PreChecker.getSubMajor().filter(
 			(fac: SubMajorData) => {
-				return fac.facId === facultyId;
+				return fac.facId === facId && fac.subMajorId === subMajorId && fac.subMajorName === subMajorName;
 			}
 		);
-		for(const fac of facLst) {
-			if(fac.facId === facultyId && fac.subMajorId === subMajorId) {
-				return fac.subMajorName;
+		if(facLst.length === 1) return facLst[0].majorId;
+		else if(facLst.length > 1) throw "There are two identical sub-major";
+		throw "Can't find major id corresponding with sub-major " + subMajorName;
+	}
+
+	public static subMajorName(facultyId: string, majorId: string, subMajorId: string): string {
+		const facLst: SubMajorData[] = PreChecker.getSubMajor().filter(
+			(fac: SubMajorData) => {
+				return fac.facId === facultyId && fac.majorId === majorId && fac.subMajorId === subMajorId;
 			}
-		}
-		throw "can't find sub-major with id " + subMajorId;
+		);
+		if(facLst.length === 1) return facLst[0].subMajorName;
+		else if(facLst.length > 1) throw "There are two identical sub-major"
+		throw "Can't find sub-major with id " + subMajorId;
 	}
 
 	public static facGroupId(facGroup: string): string {
@@ -142,7 +150,7 @@ export default class PreChecker {
 				return fg.facGroupId;
 			}
 		}
-		throw "can't find " + facGroup + ' faculty group';
+		throw "Can't find " + facGroup + ' faculty group';
 	}
 
 	public static facGroupName(facGroupId: string): string {
@@ -152,7 +160,7 @@ export default class PreChecker {
 				return fg.facGroupName;
 			}
 		}
-		throw "can't find faculty group with id " + facGroupId;
+		throw "Can't find faculty group with id " + facGroupId;
 	}
 
 	public static setYear(year: number): void {
