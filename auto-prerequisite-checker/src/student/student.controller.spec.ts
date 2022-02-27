@@ -8,7 +8,7 @@ import { StudentService } from './student.service';
 import { PreCheckerModule } from '../pre-checker/pre-checker.module';
 import { PreCheckerService } from '../pre-checker/pre-checker.service';
 import { Student } from './data.type.decl';
-
+import { RegistrationResult } from 'src/pre-checker/data.type.decl';
 
 describe('StudentController', () => {
   let studentController: StudentController;
@@ -62,5 +62,74 @@ describe('StudentController', () => {
       const cart: string[] = [course];
       await preCheckerService.registCheck(student, [], cart);
     }
-  }, 25 * 1000);
+  }, 60 * 1000);
+
+  it('could check none', async () => {
+    const std: Student = await studentService.getStudentData('610610587');
+    const courses = ((await studentController.getStudentCourses('610610587')) as { courses: string[] }).courses;
+    const cart: string[] = ['013201'];
+    const res: RegistrationResult[] = await preCheckerService.registCheck(std, courses, cart);
+    expect(res[0].result).toEqual('valid');
+  });
+
+  it('could check course number', async () => {
+    const std: Student = await studentService.getStudentData('610610587');
+    const courses = ((await studentController.getStudentCourses('610610587')) as { courses: string[] }).courses;
+    const cart: string[] = ['206162'];
+    const res: RegistrationResult[] = await preCheckerService.registCheck(std, courses, cart);
+    expect(res[0].result).toEqual('valid');
+  });
+
+  it('could check concurrent', async () => {
+    const std: Student = await studentService.getStudentData('610610587');
+    const courses = ((await studentController.getStudentCourses('610610587')) as { courses: string[] }).courses;
+    const cart: string[] = ['261215'];
+    const res: RegistrationResult[] = await preCheckerService.registCheck(std, courses, cart);
+    expect(res[0].result).toEqual('valid');
+  });
+
+  it('could check consent', async () => {
+    const std: Student = await studentService.getStudentData('610610587');
+    const courses = ((await studentController.getStudentCourses('610610587')) as { courses: string[] }).courses;
+    const cart: string[] = ['261491'];
+    const res: RegistrationResult[] = await preCheckerService.registCheck(std, courses, cart);
+    expect(res[0].result).toEqual('valid');
+  });
+
+  it('could check or', async () => {
+    const std: Student = await studentService.getStudentData('610610587');
+    const courses = ((await studentController.getStudentCourses('610610587')) as { courses: string[] }).courses;
+    const cart: string[] = ['261200'];
+    const res: RegistrationResult[] = await preCheckerService.registCheck(std, courses, cart);
+    expect(res[0].result).toEqual('valid');
+  });
+
+  it('could check and', async () => {
+    const std: Student = await studentService.getStudentData('610610587');
+    const courses = ((await studentController.getStudentCourses('610610587')) as { courses: string[] }).courses;
+    const cart: string[] = ['261218'];
+    const res: RegistrationResult[] = await preCheckerService.registCheck(std, courses, cart);
+    expect(res[0].result).toEqual('valid');
+  });
+
+  it('could check not fac', async () => {
+    const std: Student = await studentService.getStudentData('610610587');
+    const courses = ((await studentController.getStudentCourses('610610587')) as { courses: string[] }).courses;
+    const cart: string[] = ['013110'];
+    const res: RegistrationResult[] = await preCheckerService.registCheck(std, courses, cart);
+    expect(res[0].result).toEqual('valid');
+  });
+
+  it('could check fac', async () => {
+    const std: Student = {
+      stdId: '610610587',
+      facId: '01',
+      majorId: '17',
+      curriculumId: '0002',
+      year: '2561',
+    };
+    const cart: string[] = ['020490'];
+    const res: RegistrationResult[] = await preCheckerService.registCheck(std, [], cart);
+    expect(res[0].result).toEqual('valid');
+  });
 });
