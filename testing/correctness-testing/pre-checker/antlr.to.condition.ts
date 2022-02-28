@@ -72,7 +72,7 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 	visitReqFaculty(ctx: ReqFacultyContext): Faculty {
 		const facultyName: string = this.getFieldName(ctx.field());
 		const facId: string = PreChecker.facultyId(facultyName);
-		return new Faculty(facId, null);
+		return new Faculty(facId, facultyName, null);
 	}
 
 	visitReqFacultyAndMajor(ctx: ReqFacultyAndMajorContext): Faculty {
@@ -83,21 +83,19 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		if(childCtx instanceof ReqMajorContext) {
 			const depName: string = this.getFieldName((childCtx as ReqMajorContext).field());
 			const depId: string = PreChecker.majorId(facId, depName);
-			dep = new Major(depId);
+			dep = new Major(facId, depId, depName);
 		} else {
 			const depName: string = this.getFieldName((childCtx as ReqSubMajorContext).field());
 			const depId: string = PreChecker.subMajorId(facId, depName);
-			dep = new SubMajor(depId);
+			const majorId: string = PreChecker.majorIdFromSubMajor(facId, depId, depName);
+			dep = new SubMajor(facId, majorId, depId, depName);
 		}
-		return new Faculty(facId, dep);
+		return new Faculty(facId, facultyName, dep);
 	}
 
 	visitReq_fac_group(ctx: Req_fac_groupContext): FacGroup {
 		const groupName: string = this.getFieldName(ctx.field());
-		let group: string = groupName;
-		if(groupName !== 'science based') {
-			group = PreChecker.facGroupId(groupName);
-		}
+		let group: string = PreChecker.facGroupId(groupName);
 		return new FacGroup(group);
 	}
 

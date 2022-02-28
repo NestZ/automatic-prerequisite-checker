@@ -45,11 +45,11 @@ export default class EqualAst {
 	}
 
 	public static hashMajor(obj: Major): string {
-		return 'major' + obj.getDepId();
+		return 'major' + obj.getMajorId();
 	}
 
 	public static hashSubMajor(obj: SubMajor): string {
-		return 'subMajor' + obj.getDepId();
+		return 'subMajor' + obj.getSubMajorId();
 	}
 
 	public static hashYear(obj: Year): string {

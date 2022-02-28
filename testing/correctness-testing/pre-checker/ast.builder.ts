@@ -11,7 +11,6 @@ export default class PreChecker {
 	private static major: MajorData[] = null;
 	private static subMajor: SubMajorData[] = null;
 	private static facGroup: FacGroupData[] = null;
-	private static scienceBased: FacultyData[] = null;
 	private static academicYear: number = 2564;
 
 	public static getFaculty(): FacultyData[] {
@@ -42,17 +41,15 @@ export default class PreChecker {
 		return PreChecker.facGroup;
 	}
 
-	public static getScienceBased(): FacultyData[] {
-		if(PreChecker.scienceBased === null) {
-			PreChecker.scienceBased = PreChecker.getFaculty().filter(
-				(fac: FacultyData) => {
-					if(fac.isScienceBased === '1') {
-						return true;
-					}
-				}
-			);
-		}
-		return PreChecker.scienceBased;
+	public static majorIdFromSubMajor(facId: string, subMajorId: string, subMajorName: string): string {
+		const facLst: SubMajorData[] = PreChecker.getSubMajor().filter(
+			(fac: SubMajorData) => {
+				return fac.facId === facId && fac.subMajorId === subMajorId && fac.subMajorName === subMajorName;
+			}
+		);
+		if(facLst.length === 1) return facLst[0].majorId;
+		else if(facLst.length > 1) throw "There are two identical sub-major";
+		throw "Can't find major id corresponding with sub-major " + subMajorName;
 	}
 
 	public static facultyId(faculty: string): string {

@@ -5,8 +5,8 @@ import EqualAst from '../main';
 import * as FacultyObj from '../../../auto-prerequisite-checker/src/pre-checker/obj/Faculty';
 
 export default class Faculty extends FacultyObj.default {
-	constructor(facultyId: string, dep: Major | SubMajor) {
-		super(facultyId, dep);
+	constructor(facultyId: string, facultyName: string, dep: Major | SubMajor) {
+		super(facultyId, facultyName, dep);
 	}
 
 	public evalTest(lst: Expression[], truth: Array<boolean>): boolean {

@@ -12,6 +12,7 @@ import { ConsentOf } from '../obj/ConsentOf';
 import { Year } from '../obj/Year';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { AndContext, AtomicContext, AtomicExpressionContext, ConcurrenceContext, ConditionContext, ConsentContext, ExpressionContext, NotContext, OrContext, Req_yearContext } from './parser/RegConditionRegParser';
+import PreChecker from '../../../auto-prerequisite-checker/src/pre-checker/ast.builder';
 
 export default class AntlrToCondition extends AbstractParseTreeVisitor<Expression> implements RegConditionRegVisitor<Expression> {
 	defaultResult(): Expression {
@@ -30,10 +31,12 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		const left: Expression = super.visit(ctx.expr(0));
 		const right: Expression = super.visit(ctx.expr(1));
 		if(left instanceof Faculty && (right instanceof Major || right instanceof SubMajor)) {
+			const facName = (left as Faculty).getFacultyName();
+			const facId = (left as Faculty).getFacultyId();
 			if(right instanceof Major) {
-				return new Faculty((left as Faculty).getFacultyId(), right as Major);
+				return new Faculty(facId, facName, right as Major);
 			} else if(right instanceof SubMajor) {
-				return new Faculty((left as Faculty).getFacultyId(), right as SubMajor);
+				return new Faculty(facId, facName, right as SubMajor);
 			}
 		}
 		return new And(left, right);
@@ -59,9 +62,13 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 		const child: string = ctx.getChild(0).payload.text;
 		if(!isNaN(Number(child))) return new CourseNum(child, false);
 		else if(child == 'none') return new None();
-		else if(child == 'fac') return new Faculty(ctx.FIELD_NUM().payload.text, null);
-		else if(child == 'ma') return new Major(ctx.FIELD_NUM().payload.text);
-		else if(child == 'sub') return new SubMajor(ctx.FIELD_NUM().payload.text);
+		else if(child == 'fac') {
+			const facId: string = ctx.FIELD_NUM().payload.text;
+			const facName: string = PreChecker.facultyName(facId);
+			return new Faculty(facId, facName, null);
+		}
+		else if(child == 'ma') return new Major('', ctx.FIELD_NUM().payload.text, '');
+		else if(child == 'sub') return new SubMajor('', '', ctx.FIELD_NUM().payload.text, '');
 		else return super.visit(ctx.getChild(0));
 	}
 
