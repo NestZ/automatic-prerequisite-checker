@@ -169,9 +169,9 @@ courseNumber, oldCondition, newCondition
 210200,second year standing and for science students in material science or consent of the department,(second year standing and for science students in materials science major) or consent of the department
 215208,202111 and concurrent to 215207 and not for science students in microbiology,202111 and concurrent to 215207 and not for science students in microbiology major
 127459,fourth year standing; politics and government major,fourth year standing and for political science and public administration students in politics and government major
-208100,enrollments are not permitted science basedfor  students,not for students in science based group
-253303,third year standing science basedfor  students (environmental not for engineering students),third year standing and not for engineering students in environmental engineering major and for students in science based group
-207100,non sciences based,not for students in science based group
+208100,enrollments are not permitted science basedfor  students,not for students in sciences and technology group
+253303,third year standing science basedfor  students (environmental not for engineering students),third year standing and not for engineering students in environmental engineering major and for students in sciences and technology group
+207100,non sciences based,not for students in sciences and technology group
 651620,sixth year standing or consent of academic committee; for veterinary medicine students,(sixth year standing and for veterinary medicine students) or consent of the academic committee
 126359,fourth year standing; international affairs major,fourth year standing and for political science and public administration students in international affairs major
 208272,208271;for  students in humanities and social sciences,208271 and for students in humanities and social sciences group
@@ -180,3 +180,11 @@ courseNumber, oldCondition, newCondition
 321232,second year standing physical therapyfor  students and occupational therapyfor  students,second year standing and (for associated medical sciences students in occupational therapy major or for associated medical sciences students in physical therapy major)
 202108,"high school biology; enrollment is permittedfor  students from the faculties of agriculture, pharmacy and nursing",for agriculture students or for pharmacy students or for nursing students
 208263,students in sciences and technology and health for sciences,"for science students or for engineering students or for medicine students or for agriculture students or for dentistry students or for pharmacy students or for associated medical sciences students or for nursing students or for agro-industry students or for veterinary medicine students or for economics students or for architecture students or for arts, media and technology students"
+203499,fourth year standing and permission of staff member with whom student propose to work,consent of the department
+211499,fourth year standing and permission of staff member with whom student proposes to work,consent of the department
+206309,"Higher Certificate of Education Students or at least 6 credits from the following : 206112 ,206203 ,206207 ,206216 ,204201",consent of the department
+006479,18 Credits of compulsory course in Home and Community,consent of the department
+151489,"126102 AND a Minor in ASEAN Studies Couse in the Curriculum, at least 9 Credits",consent of the department
+321223,Second year standing or first year standing for two year-program,consent of the department
+204398,COMPULSORY COURSES AT LEAST 30 CREDITS,consent of the department
+562491,fourth year standing or second year standing (two year program),consent of the department

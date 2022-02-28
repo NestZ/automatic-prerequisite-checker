@@ -3,7 +3,7 @@ courseno,title_long_en,degree_level,pre_en,year_end,open_status
 001320,English and Science and Future Trends,U,(001101 and 001102 and 001201 and 001202) or 001218 or (001222 or 001223 or 001224 or 001225 or 001226 or 001227 or 001228 or 001229),2599.0,1
 204482,Simulation and Modelling,U,(204203 or 204211 or 204214 or 204215 or 204216 or 204217 or 204219 or 229223) and 206112 and (208250 or 208263 or 208264 or 208269),2599.0,1
 801481,Theory in Professional Practice,U,(third year standing or fourth year standing) and for architecture students,2599.0,1
-206309,Fundamental Concepts of Arithmetics,U,none,2599.0,1
+206309,Fundamental Concepts of Arithmetics,U,consent of the department,2599.0,1
 202108,Basic Biology 1,U,for agriculture students or for pharmacy students or for nursing students,2599.0,1
 461526,Development of Aromatherapy Products,U,321242 and (461102 or 461201) and (461353 or 461256) and consent of the department or (463402 and 463251 and 321242),2599.0,1
 001321,British and American Cultural Studies,U,001201 and (001202 or 001222 or 001223 or 001224 or 001225 or 001226 or 001227 or 001228 or 001229) and 001210,2599.0,1
@@ -15,13 +15,13 @@ courseno,title_long_en,degree_level,pre_en,year_end,open_status
 202109,Basic Biology 2,U,202108 and not for agriculture students and not for pharmacy students,2599.0,1
 203351,Glass Blowing,U,203104 or 203111 or 203116 or 203151 or 203154 or 203162 or 203171 or consent of the department,2599.0,1
 215208,Introductory Microbiology Laboratory,U,202111 and concurrent to 215207 and not for science students in microbiology major,2599.0,1
-253303,Environmental and Safety Management in Industry,U,third year standing and not for engineering students in environmental engineering major and for students in science based group,2599.0,1
+253303,Environmental and Safety Management in Industry,U,third year standing and not for engineering students in environmental engineering major and for students in sciences and technology group,2599.0,1
 365421,Principles of Watershed Management,U,(361210 or 361211 or 361212 or 154104) or (363210 and 400211) or consent of the department,2599.0,1
 462541,Drugstore Management,U,(461353 and consent of the department) or (461256 and consent of the department) or 464446,2599.0,1
 204381,Numerical Computation and Software,U,(204203 or 204211 or 204214 or 204215 or 204216 or 204217 or 204219 or 229223) and 206112,2599.0,1
 204383,Image Processing,U,(204203 or 204211 or 204214 or 204215 or 204216 or 204217 or 204219 or 229223) and 206112,2599.0,1
 651620,Veterinary Perspectives,U,(sixth year standing and for veterinary medicine students) or consent of the academic committee,2599.0,1
-211499,Special Problems in Biochemistry and Biochemical Innovation,U,none,2599.0,1
+211499,Special Problems in Biochemistry and Biochemical Innovation,U,consent of the department,2599.0,1
 215322,Actinomycetes Laboratory,U,(215200 or 215201) or (215205 and 215206) or (215207 and 215208) and concurrent to 215321,2599.0,1
 215324,Phycology Laboratory,U,(215200 or 215201) or (215205 and 215206) or (215207 and 215208) and concurrent to 215323,2599.0,1
 215326,Mycology Laboratory,U,(215200 or 215201) or (215205 and 215206) or (215207 and 215208) and concurrent to 215325,2599.0,1
@@ -35,7 +35,7 @@ courseno,title_long_en,degree_level,pre_en,year_end,open_status
 215466,Systematic Bacteriology Laboratory,U,(215200 or 215201) or (215205 and 215206) or (215207 and 215208) and concurrent to 215465,2599.0,1
 215476,Microbial Ecology Laboratory,U,(215200 or 215201) or (215205 and 215206) or (215207 and 215208) and concurrent to 215475,2599.0,1
 215486,Industrial Microbiology Laboratory,U,(215200 or 215201) or (215205 and 215206) or (215207 and 215208) and concurrent to 215485,2599.0,1
-203499,Special Problems in Chemistry,U,none,2599.0,1
+203499,Special Problems in Chemistry,U,consent of the department,2599.0,1
 321232,Physiology for Physical Therapy Students and Occupational Therapy Students,U,second year standing and (for associated medical sciences students in occupational therapy major or for associated medical sciences students in physical therapy major),2599.0,1
 303261,Biochemistry for Veterinary Students,U,(202182 and 203152 and 203158) or (202182 and 203153 and 203159) or (651108 and 203154 and 203159),2599.0,1
 601341,Fundamental Food Engineering 1,U,(207111 and 206104) or (207117 and 207187 and 206104) or (207123 and 207173 and 206104),2599.0,1
@@ -47,7 +47,7 @@ courseno,title_long_en,degree_level,pre_en,year_end,open_status
 203427,Biomolecular and Material Design,U,(203104 or 203113) and (206112 or 206116) and 207187 or consent of the department,2599.0,1
 254490,Special Study for Project,U,(254205 and 254216 and 254222 and 254231 and 259106) or consent of the department,2599.0,1
 254493,Industrial Internship,U,(254205 and 254216 and 254222 and 254231 and 259106) or consent of the department,2599.0,1
-151489,Seminar in Asean Studies,U,none,2599.0,1
+151489,Seminar in Asean Studies,U,consent of the department,2599.0,1
 251499,Civil Engineering Project,U,concurrent to 251399 or consent of the department,2599.0,1
 365322,Forest Resources Conservation,U,(361210 or 361211 or 361212) or (363210 and 400211) or consent of the department,2599.0,1
 365425,Wildlife Resource Conservation,U,(361210 or 361211 or 361212) or (363210 and 400211) or consent of the department,2599.0,1
@@ -87,12 +87,12 @@ courseno,title_long_en,degree_level,pre_en,year_end,open_status
 209405,Chemical Process Design and Green Chemistry,U,203103 or 203111 or 203114 or 203162 or consent of the department,2599.0,1
 208263,Elementary Statistics,U,"for science students or for engineering students or for medicine students or for agriculture students or for dentistry students or for pharmacy students or for associated medical sciences students or for nursing students or for agro-industry students or for veterinary medicine students or for economics students or for architecture students or for arts, media and technology students",2599.0,1
 215438,Molecular Cloning of Genes Laboratory,U,(215205 and 215206) or (215207 and 215208) and concurrent to 215437,2599.0,1
-321223,Physiology for Nursing Students,U,none,2599.0,1
+321223,Physiology for Nursing Students,U,consent of the department,2599.0,1
 205232,Crystallography and Mineralogy,U,205103 and not for science students in geology major,2599.0,1
 254381,Introduction to Thermodynamics and Fluid Mechanics,U,(206104 or 206112) and (207106 and 207116) or (207104 or 207111),2599.0,1
 258301,Unit Operations of Chemical Engineering 1,U,(203104 and 203108) or (203113 and 203117) and third year standing,2599.0,1
 258302,Unit Operations of Chemical Engineering 2,U,(203104 and 203108) or (203113 and 203117) and third year standing,2599.0,1
-562491,Emergency and Critical Nursing Practice,U,none,2599.0,1
+562491,Emergency and Critical Nursing Practice,U,consent of the department,2599.0,1
 601463,"Nutrition, Health and Prevention",U,fourth year standing and for agro-industry students in food science and technology major,2599.0,1
 601464,Nutrition for Food Manufacturer,U,fourth year standing and for agro-industry students in food science and technology major,2599.0,1
 318351,Pathology for Dental Students,U,(301252 and 301253 and 303252 and 321251) or consent of the department,2599.0,1
@@ -194,7 +194,7 @@ courseno,title_long_en,degree_level,pre_en,year_end,open_status
 204320,Database Management,U,204214 or 204215 or 204216 or 204217 or 204219 or 229223,2599.0,1
 329305,Applied Skills for Research,U,third year standing and (for medicine students or consent of the department),2599.0,1
 327592,Computational Analytics in Medical Treatment,U,fifth year standing and (for medicine students or consent of the department),2599.0,1
-208100,Introduction to Statistical Concepts,U,not for students in science based group,2599.0,1
+208100,Introduction to Statistical Concepts,U,not for students in sciences and technology group,2599.0,1
 254200,Mechanical Engineering Design Process,U,259107 and concurrent to 254205 or consent of the department,2599.0,1
 254413,Introduction to Contact Mechanics,U,254214 or 254216 and 254325 or consent of the department,2599.0,1
 301253,Basic Neuroanatomy and Embryology,U,301251 or 301221 or 301254 or consent of the department,2599.0,1
@@ -337,7 +337,7 @@ courseno,title_long_en,degree_level,pre_en,year_end,open_status
 651561,Small Animal Clinical Skill Practice,U,fifth year standing and for veterinary medicine students,2599.0,1
 651641,Abattoirs and Veterinary Public Health-Clerkship,U,sixth year standing and for veterinary medicine students,2599.0,1
 331594,Point-of-care Ultrasound for Medical Students,U,fifth year standing and (for medicine students or consent of the faculty),2599.0,1
-006479,Home and Community Internship,U,none,2599.0,1
+006479,Home and Community Internship,U,consent of the department,2599.0,1
 651313,Veterinary General Pathology,U,third year standing and for veterinary medicine students,2599.0,1
 601322,Halal Food,U,third year standing and for agro-industry students,2599.0,1
 208270,Statistics in Social Sciences,U,for students in humanities and social sciences group,2599.0,1
@@ -912,7 +912,7 @@ courseno,title_long_en,degree_level,pre_en,year_end,open_status
 203355,Numerical Techniques in Chemistry,U,(203104 or 203113) and (206112 or 206116),2599.0,1
 203255,Mathematics in Chemistry,U,(203104 or 203113) and (206112 or 206116),2599.0,1
 003480,Cooperative Education,U,fourth year standing and for humanities students in german major,2599.0,1
-204398,Computer Job Training,U,none,2599.0,1
+204398,Computer Job Training,U,consent of the department,2599.0,1
 254422,Introduction to Finite Element Method,U,(254212 or 254214 or 254216) and 254334,2599.0,1
 330203,Integumentary System,U,second year standing and for medicine students,2599.0,1
 330205,Cardiovascular System,U,second year standing and for medicine students,2599.0,1
@@ -2072,7 +2072,7 @@ courseno,title_long_en,degree_level,pre_en,year_end,open_status
 951103,Sketch Drawing,U,"for arts, media and technology students in animation major",2599.0,1
 554497,Comprehensive Obstetric and Gynecological Nursing Practice,U,consent of the faculty,2599.0,1
 555491,Comprehensive Pediatric Nursing Practice,U,consent of the faculty,2599.0,1
-207100,Physics in Everyday Life,U,not for students in science based group,2599.0,1
+207100,Physics in Everyday Life,U,not for students in sciences and technology group,2599.0,1
 333116,nan,U,consent of the instructor,2599.0,1
 333117,nan,U,consent of the instructor,2599.0,1
 333118,nan,U,consent of the instructor,2599.0,1
