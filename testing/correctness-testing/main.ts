@@ -17,7 +17,6 @@ export default class EqualAst {
 	private static myAst: CourseCondition = PreChecker.getAST();
 	private static regAst: CourseCondition = RegPreChecker.getAST();
 	public static notEq: string[] = [];
-	public static dup: string[] = [];
 
 	public static hashNone(obj: None): string {
 		return obj.toString();
@@ -117,23 +116,13 @@ export default class EqualAst {
 		for(let i = 0;i < fstNodes.length;i++) {
 			if(!EqualAst.cmpNodes(fstNodes[i], sndNodes[i])) return false;
 		}
-		let dup: boolean = false;
 		for(let i: number = 0;i < fstNodes.length;i++) {
 			for(let j: number = i + 1;j < fstNodes.length;j++){
-				if(EqualAst.cmpNodes(fstNodes[i], fstNodes[j])) dup = true;
+				if(EqualAst.cmpNodes(fstNodes[i], fstNodes[j])) return false;
 			}
 		}
-		if(!dup) {
-			return EqualAst.cmpTruthTable(fstNodes, fst, snd);
-		}
-		else {
-			EqualAst.dup.push(courseId);
-			return true;
-		}
+		return EqualAst.cmpTruthTable(fstNodes, fst, snd);
 	}
-
-	//(100112 and third year standing) or (100112 and second year standing and consent of the department and for education students in early childhood education-special education major)
-	//(3rd and 100112) or (100112 and (fac = 02 and ma = 27)) and consent
 	
 	public static equalityCheck() {
 		const err: string[] = [];
@@ -147,6 +136,4 @@ export default class EqualAst {
 
 EqualAst.equalityCheck();
 console.log(EqualAst.notEq);
-console.log(EqualAst.dup);
 console.log('number of condition that not match : ' + String(EqualAst.notEq.length));
-console.log('number of condition that have duplicate node : ' + String(EqualAst.dup.length))
