@@ -20,6 +20,8 @@ COPY package.json .
 
 COPY yarn.lock .
 
+COPY src/pre-checker/csv/* ./
+
 RUN yarn --prod
 
 COPY --from=build-app /app/dist /app/dist
