@@ -17,7 +17,6 @@ export type FacultyData = {
 	facId: string,
 	facName: string,
 	facGroup: string,
-	isScienceBased: string,
 };
 
 export type MajorData = {

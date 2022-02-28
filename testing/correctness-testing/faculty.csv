@@ -1,31 +1,31 @@
-facId,facName,facGroup,isScienceBased
-01,Humanities,01,1
-02,Education,01,1
-03,Fine Arts,01,1
-04,Social Sciences,01,1
-05,Science,03,1
-06,Engineering,03,1
-07,Medicine,02,1
-08,Agriculture,03,1
-09,Dentistry,02,1
-10,Pharmacy,02,1
-11,Associated Medical Sciences,02,1
-12,Nursing,02,1
-13,Agro-Industry,03,1
-14,Veterinary Medicine,02,1
-15,Business Administration,01,1
-16,Economics,01,1
-17,Architecture,03,1
-18,Mass Communication,01,1
-19,Political Science and Public Administration,01,1
-20,Law,01,1
-21,"Arts, Media and Technology",03,1
-22,Public Health,02,1
-23,Maritime Studies and Management,03,1
-24,International College of Digital Innovation,03,1
-25,Public Policy,01,1
-26,Biomedical Engineering,03,1
-27,Research Institute for Health Sciences,02,1
-95,Lifelong Education,01,1
-96,International College,01,1
-99,Graduate School,01,1
+facId,facName,facGroup
+01,Humanities,01
+02,Education,01
+03,Fine Arts,01
+04,Social Sciences,01
+05,Science,03
+06,Engineering,03
+07,Medicine,02
+08,Agriculture,03
+09,Dentistry,02
+10,Pharmacy,02
+11,Associated Medical Sciences,02
+12,Nursing,02
+13,Agro-Industry,03
+14,Veterinary Medicine,02
+15,Business Administration,01
+16,Economics,01
+17,Architecture,03
+18,Mass Communication,01
+19,Political Science and Public Administration,01
+20,Law,01
+21,"Arts, Media and Technology",03
+22,Public Health,02
+23,Maritime Studies and Management,03
+24,International College of Digital Innovation,03
+25,Public Policy,01
+26,Biomedical Engineering,03
+27,Research Institute for Health Sciences,02
+95,Lifelong Education,01
+96,International College,01
+99,Graduate School,01

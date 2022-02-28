@@ -17,10 +17,7 @@ export default class FacGroup extends NegatableExpr {
 
 	public toString(): string {
 		let str: string = '';
-		let facGroupName: string = this.facultyGroup;
-		if(this.facultyGroup !== 'science based') {
-			facGroupName = PreChecker.facGroupName(this.facultyGroup);
-		}
+		let facGroupName: string = PreChecker.facGroupName(this.facultyGroup);
 		if(this.getIsNon()) str += 'not for ';
 		else str += 'for ';
 		str += 'students in ' + facGroupName + ' group';
@@ -31,11 +28,7 @@ export default class FacGroup extends NegatableExpr {
 		const faculty: FacultyData[] = PreChecker.getFaculty();
 		for(const fac of faculty) {
 			if(std.facId === fac.facId) {
-				if(this.facultyGroup === 'science based') {
-					if(fac.isScienceBased === '1') return { valid: true, notSatisfiedCondition: null };
-				} else {
-					if(this.facultyGroup === fac.facGroup) return { valid: true, notSatisfiedCondition: null };
-				}
+				if(this.facultyGroup === fac.facGroup) return { valid: true, notSatisfiedCondition: null };
 			}
 		}
 		return { valid: false, notSatisfiedCondition: this };

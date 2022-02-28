@@ -95,10 +95,7 @@ export default class AntlrToCondition extends AbstractParseTreeVisitor<Expressio
 
 	public visitReq_fac_group(ctx: Req_fac_groupContext): FacGroup {
 		const groupName: string = this.getFieldName(ctx.field());
-		let group: string = groupName;
-		if(groupName !== 'science based') {
-			group = PreChecker.facGroupId(groupName);
-		}
+		let group: string = PreChecker.facGroupId(groupName);
 		return new FacGroup(group);
 	}
 
