@@ -11,52 +11,38 @@ export default class PreChecker {
 	private static major: MajorData[] = null;
 	private static subMajor: SubMajorData[] = null;
 	private static facGroup: FacGroupData[] = null;
-	private static scienceBased: FacultyData[] = null;
 	private static academicYear: number;
 
 	public static getFaculty(): FacultyData[] {
 		if(PreChecker.faculty === null) {
-			PreChecker.faculty = load('./src/pre-checker/csv/faculty.csv');
-			// PreChecker.faculty = load('./faculty.csv');
+			// PreChecker.faculty = load('./src/pre-checker/csv/faculty.csv');
+			PreChecker.faculty = load('./faculty.csv');
 		}
 		return PreChecker.faculty;
 	}
 
 	public static getMajor(): MajorData[] {
 		if(PreChecker.major === null) {
-			PreChecker.major = load('./src/pre-checker/csv/major.csv');
-			// PreChecker.major = load('./major.csv');
+			// PreChecker.major = load('./src/pre-checker/csv/major.csv');
+			PreChecker.major = load('./major.csv');
 		}
 		return PreChecker.major;
 	}
 
 	public static getSubMajor(): SubMajorData[] {
 		if(PreChecker.subMajor === null) {
-			PreChecker.subMajor = load('./src/pre-checker/csv/sub_major.csv');
-			// PreChecker.subMajor = load('./sub_major.csv');
+			// PreChecker.subMajor = load('./src/pre-checker/csv/sub_major.csv');
+			PreChecker.subMajor = load('./sub_major.csv');
 		}
 		return PreChecker.subMajor;
 	}
 
 	public static getFacGroup(): FacGroupData[] {
 		if(PreChecker.facGroup === null) {
-			PreChecker.facGroup = load('./src/pre-checker/csv/faculty_group.csv');
-			// PreChecker.facGroup = load('./faculty_group.csv')
+			// PreChecker.facGroup = load('./src/pre-checker/csv/faculty_group.csv');
+			PreChecker.facGroup = load('./faculty_group.csv')
 		}
 		return PreChecker.facGroup;
-	}
-
-	public static getScienceBased(): FacultyData[] {
-		if(PreChecker.scienceBased === null) {
-			PreChecker.scienceBased = PreChecker.getFaculty().filter(
-				(fac: FacultyData) => {
-					if(fac.isScienceBased === '1') {
-						return true;
-					}
-				}
-			);
-		}
-		return PreChecker.scienceBased;
 	}
 
 	public static facultyId(faculty: string): string {
@@ -172,8 +158,8 @@ export default class PreChecker {
 	}
 
 	public static getAST(): CourseCondition {
-		const csv: Course[] = load('./src/pre-checker/csv/reg-condition-corres-refactored.csv');
-		// const csv: Course[] = load('./reg-condition-corres-refactored.csv');
+		// const csv: Course[] = load('./src/pre-checker/csv/bulletin.csv');
+		const csv: Course[] = load('./bulletin.csv');
 
 		let astLst: CourseCondition = <CourseCondition>{};
 

@@ -1,6 +1,5 @@
 import Major from './Major';
 import SubMajor from './SubMajor';
-import PreChecker from '../ast.builder';
 import NegatableExpr from './NegatableExpr';
 import { Student } from '../../student/data.type.decl';
 import { EvalReturn } from '../data.type.decl';
