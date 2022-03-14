@@ -54,10 +54,12 @@ spec:
         ports:
         - containerPort: 3000
         resources:
-          limits:
-            cpu: 500m
+          limits: 
+            cpu: 1000m
+            memory: 1000Mi
           requests:
-            cpu: 200m
+            cpu: 500m
+            memory: 700Mi
 
 ---
 
