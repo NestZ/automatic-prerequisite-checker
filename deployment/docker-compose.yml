@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  redis:
+    image: bitnami/redis:latest
+    ports:
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  app:
+    image: nestz1234/automatic-prerequisite-checker
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "redis"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REG_API_USERNAME=<username>
+      - REG_API_PASSWORD=<password>
+      - REG_API_GET_STUDENTS_PATH=https://apiv2.reg.cmu.ac.th/v2/student
+      - REG_API_GET_STUDENT_COURSES_PATH=https://apiv2.reg.cmu.ac.th/v2/regist
+      - ACADEMIC_YEAR=2564
+    links:
+      - redis
