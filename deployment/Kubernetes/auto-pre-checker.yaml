@@ -60,20 +60,3 @@ spec:
           requests:
             cpu: 500m
             memory: 700Mi
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: auto-prerequisite-checker
-  labels:
-    run: auto-prerequisite-checker
-spec:
-  ports:
-  - port: 3000
-    nodePort: 30000
-    protocol: TCP
-  selector:
-    run: auto-prerequisite-checker
-  type: LoadBalancer
