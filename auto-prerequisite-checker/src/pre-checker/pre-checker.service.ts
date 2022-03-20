@@ -23,11 +23,18 @@ export class PreCheckerService implements OnModuleInit {
 				results.push({ courseId: course, result: 'valid', requiredConditions: "Can't find course condition" });
 			} else {
 				const res: EvalReturn = condition.eval(std, passedCourses, cart, course);
-				const errStr: string = res.notSatisfiedCondition === null ? 'none' : res.notSatisfiedCondition.toString();
-				const result: RegistrationResult = {
-					courseId: course,
-					result: res.valid ? 'valid' : 'invalid',
-					requiredConditions: errStr,
+				let result: RegistrationResult;
+				if(res.valid) {
+					result = {
+						courseId: course,
+						result: 'valid',
+					}
+				} else {
+					result = {
+						courseId: course,
+						result: 'invalid',
+						requiredConditions: res.notSatisfiedCondition.toString(),
+					}
 				}
 				results.push(result);
 			}

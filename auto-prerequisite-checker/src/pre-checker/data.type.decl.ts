@@ -50,5 +50,5 @@ export type RegistCheckBody = {
 export type RegistrationResult = {
 	courseId: string,
 	result: string,
-	requiredConditions: string,
+	requiredConditions?: string,
 }
